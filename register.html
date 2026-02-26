@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Lab - Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR (was missing!) -->
+<nav class="navbar">
+    <h2 class="logo">Forex Lab</h2>
+    <div>
+        <a href="index.html" class="btn">Home</a>
+        <a href="login.html" class="btn">Login</a>
+    </div>
+</nav>
+
+<div class="auth-container">
+    <div class="auth-box">
+
+        <h2>Create Account</h2>
+        <p class="auth-subtitle">Join Forex Lab today</p>
+
+        <!-- Error message box (hidden by default) -->
+        <div id="errorMsg" style="
+            display:none;
+            background:rgba(255,50,50,0.15);
+            border:1px solid red;
+            color:#ff6b6b;
+            padding:10px;
+            border-radius:10px;
+            margin-bottom:10px;
+            font-size:14px;
+        "></div>
+
+        <form id="registerForm">
+
+            <input type="text"
+                   placeholder="Username"
+                   id="username"
+                   minlength="3"
+                   required>
+
+            <input type="email"
+                   placeholder="Email"
+                   id="email"
+                   required>
+
+            <input type="password"
+                   placeholder="Password (min 6 characters)"
+                   id="password"
+                   minlength="6"
+                   required>
+
+            <input type="password"
+                   placeholder="Confirm Password"
+                   id="confirmPassword"
+                   required>
+
+            <button type="submit" class="auth-btn" id="registerBtn">
+                Create Account
+            </button>
+
+        </form>
+
+        <p class="switch-text">
+            Already have an account?
+            <a href="login.html">Login here</a>
+        </p>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

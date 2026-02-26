@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Lab - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <h2 class="logo">Forex Lab</h2>
+    <div>
+        <a href="index.html" class="btn">Home</a>
+        <a href="register.html" class="btn">Register</a>
+    </div>
+</nav>
+
+<div class="auth-container">
+    <div class="auth-box">
+
+        <h2>Login to Forex Lab</h2>
+        <p class="auth-subtitle">Access your dashboard</p>
+
+        <!-- Error message box -->
+        <div id="errorMsg" style="
+            display:none;
+            background:rgba(255,50,50,0.15);
+            border:1px solid red;
+            color:#ff6b6b;
+            padding:10px;
+            border-radius:10px;
+            margin-bottom:10px;
+            font-size:14px;
+        "></div>
+
+        <form id="loginForm">
+
+            <input type="email"
+                   placeholder="Enter your Email"
+                   id="loginEmail"
+                   required>
+
+            <input type="password"
+                   placeholder="Enter your Password"
+                   id="loginPassword"
+                   required>
+
+            <!-- Forgot password link -->
+            <p style="text-align:right; margin-top:5px; font-size:13px;">
+                <a href="#" style="color:#00ffcc; opacity:0.7;">Forgot password?</a>
+            </p>
+
+            <button type="submit" class="auth-btn" id="loginBtn">
+                Login
+            </button>
+
+        </form>
+
+        <p class="switch-text">
+            Don't have an account?
+            <a href="register.html">Register here</a>
+        </p>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

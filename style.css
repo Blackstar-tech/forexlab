@@ -1,0 +1,485 @@
+/* GOOGLE FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins', sans-serif;
+}
+
+/* BODY BACKGROUND */
+body{
+
+background:
+linear-gradient(rgba(10,15,35,0.92), rgba(10,15,35,0.96)),
+url("./images/chart-bg.jpg");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+color:white;
+
+}
+
+/* NAVBAR */
+.navbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(10px);
+
+}
+
+.logo{
+
+color:#00ffcc;
+font-size:26px;
+font-weight:700;
+
+}
+
+/* NAV LINKS */
+.navbar a{
+
+color:white;
+text-decoration:none;
+margin-left:25px;
+font-weight:500;
+transition:0.3s;
+
+}
+
+.navbar a:hover{
+
+color:#00ffcc;
+text-shadow:0 0 10px #00ffcc;
+
+}
+
+/* HEADER */
+header{
+
+text-align:center;
+padding:80px 20px 40px 20px;
+
+}
+
+header h1{
+
+font-size:48px;
+margin-bottom:10px;
+
+}
+
+header p{
+
+opacity:0.8;
+margin-bottom:20px;
+
+}
+
+/* BUTTONS */
+.btn{
+
+padding:12px 28px;
+border:2px solid #00ffcc;
+background:transparent;
+color:#00ffcc;
+
+border-radius:30px;
+cursor:pointer;
+transition:0.3s;
+
+text-decoration:none;
+font-weight:600;
+display:inline-block;
+
+}
+
+.btn:hover{
+
+background:#00ffcc;
+color:black;
+
+box-shadow:0 0 20px #00ffcc;
+
+transform:translateY(-2px);
+
+}
+
+/* PRICING SECTION */
+.pricing{
+
+display:flex;
+justify-content:center;
+align-items:center;
+gap:40px;
+
+flex-wrap:wrap;
+padding:50px 20px;
+
+}
+
+/* PRICING CARD */
+.card{
+
+background:rgba(0,0,0,0.7);
+padding:35px;
+
+border-radius:20px;
+width:280px;
+
+text-align:center;
+
+transition:0.4s;
+
+box-shadow:0 0 15px rgba(0,0,0,0.4);
+
+}
+
+.card:hover{
+
+transform:translateY(-15px);
+
+box-shadow:0 0 30px rgba(0,255,204,0.6);
+
+}
+
+.card h2{
+
+color:#00ffcc;
+font-size:26px;
+margin-bottom:10px;
+
+}
+
+.card h3{
+
+font-size:34px;
+margin-bottom:10px;
+
+}
+
+.card p{
+
+opacity:0.8;
+margin-bottom:15px;
+
+}
+
+/* AUTH PAGES CONTAINER */
+.auth-container{
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+min-height:100vh;
+
+padding:20px;
+
+}
+
+/* AUTH BOX */
+.auth-box{
+
+background:rgba(0,0,0,0.75);
+
+padding:40px;
+
+border-radius:20px;
+
+width:400px;
+max-width:90%;
+
+text-align:center;
+
+box-shadow:0 0 30px rgba(0,255,204,0.25);
+
+backdrop-filter:blur(10px);
+
+}
+
+/* AUTH TITLE */
+.auth-box h2{
+
+color:#00ffcc;
+margin-bottom:10px;
+
+}
+
+/* AUTH SUBTITLE */
+.auth-subtitle{
+
+opacity:0.7;
+margin-bottom:25px;
+
+}
+
+/* INPUT FIELDS */
+.auth-box input{
+
+width:100%;
+
+padding:12px;
+margin:12px 0;
+
+border:none;
+border-radius:25px;
+
+outline:none;
+
+background:rgba(255,255,255,0.08);
+
+color:white;
+
+transition:0.3s;
+
+}
+
+/* INPUT FOCUS EFFECT */
+.auth-box input:focus{
+
+box-shadow:0 0 12px #00ffcc;
+
+}
+
+/* AUTH BUTTON */
+.auth-btn{
+
+width:100%;
+
+padding:12px;
+
+margin-top:15px;
+
+border:2px solid #00ffcc;
+
+background:transparent;
+
+color:#00ffcc;
+
+border-radius:25px;
+
+cursor:pointer;
+
+font-weight:600;
+
+transition:0.3s;
+
+}
+
+.auth-btn:hover{
+
+background:#00ffcc;
+
+color:black;
+
+box-shadow:0 0 20px #00ffcc;
+
+}
+
+/* SWITCH TEXT */
+.switch-text{
+
+margin-top:20px;
+
+opacity:0.8;
+
+}
+
+.switch-text a{
+
+color:#00ffcc;
+
+text-decoration:none;
+
+font-weight:600;
+
+}
+
+.switch-text a:hover{
+
+text-shadow:0 0 10px #00ffcc;
+
+}
+
+/* DASHBOARD */
+.dashboard-container{
+
+display:flex;
+
+justify-content:center;
+
+gap:40px;
+
+flex-wrap:wrap;
+
+padding:50px;
+
+}
+
+/* DASHBOARD CARD */
+.dashboard-card{
+
+background:rgba(0,0,0,0.7);
+
+padding:30px;
+
+border-radius:20px;
+
+width:300px;
+
+transition:0.3s;
+
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+
+}
+
+.dashboard-card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 0 25px rgba(0,255,204,0.5);
+
+}
+
+/* DASHBOARD TITLES */
+.dashboard-card h2{
+
+color:#00ffcc;
+
+margin-bottom:15px;
+
+}
+
+/* DASHBOARD LIST */
+.dashboard-card ul{
+
+padding:0;
+
+}
+
+.dashboard-card li{
+
+list-style:none;
+
+padding:10px;
+
+transition:0.3s;
+
+border-radius:10px;
+
+}
+
+.dashboard-card li:hover{
+
+color:#00ffcc;
+
+padding-left:10px;
+
+background:rgba(0,255,204,0.08);
+
+}
+
+.dashboard-card a {
+    color: white;
+    text-decoration: none;    /* removes the underline */
+    display: block;
+    transition: 0.3s;
+}
+
+.dashboard-card a:hover {
+    color: #00ffcc;
+    padding-left: 5px;
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:black;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#00ffcc;
+
+border-radius:10px;
+
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:768px){
+
+.navbar{
+
+padding:15px 20px;
+
+}
+
+header h1{
+
+font-size:32px;
+
+}
+
+.card{
+
+width:90%;
+
+}
+
+.auth-box{
+
+width:95%;
+
+}
+
+}
+
+/* PRICING BUTTON FIX */
+.card .btn {
+
+display:inline-block;
+margin-top:15px;
+width:100%;
+
+text-align:center;
+
+transition:all 0.3s ease;
+
+}
+
+/* STRONG HOVER EFFECT */
+.card .btn:hover {
+
+background:#00ffcc;
+color:black;
+
+box-shadow:0 0 25px #00ffcc;
+
+transform:scale(1.05);
+
+}
+
+/* CARD HOVER ALSO AFFECT BUTTON */
+.card:hover .btn{
+
+box-shadow:0 0 15px rgba(0,255,204,0.5);
+
+}
