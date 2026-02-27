@@ -546,4 +546,51 @@ blockquote, pre {
     }
 
 }
+/* GLOBAL MOBILE FIX */
+@media(max-width: 768px) {
+
+    .dashboard-card {
+        width: 100% !important;
+        padding: 15px;
+    }
+
+    .strategy-section {
+        padding: 12px;
+    }
+
+    .strategy-section p {
+        width: 100% !important;
+        font-size: 13px;
+        line-height: 1.8;
+        word-wrap: break-word;
+    }
+
+    .example-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        font-size: 11px;
+    }
+
+    .example-table th,
+    .example-table td {
+        padding: 6px 8px;
+    }
+
+    .strategy-section h2 {
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    ul {
+        font-size: 13px !important;
+        line-height: 1.8 !important;
+        padding-left: 5px;
+    }
+
+}
 
