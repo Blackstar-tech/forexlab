@@ -516,3 +516,34 @@ box-shadow:0 0 15px rgba(0,255,204,0.5);
     }
 
 }
+
+/* FIX BLOCKQUOTE/PRE ON MOBILE */
+blockquote, pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    max-width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* FIX CONTENT WIDTH ON MOBILE */
+@media(max-width: 768px) {
+    
+    blockquote, pre {
+        font-size: 13px;
+        padding: 10px;
+        margin: 0 10px;
+    }
+
+    p, li {
+        font-size: 14px;
+        line-height: 1.8;
+        word-wrap: break-word;
+    }
+
+}
+
