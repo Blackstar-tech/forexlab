@@ -66,5 +66,98 @@
 </div>
 
 <script src="script.js"></script>
+
+<!-- Falling Candlesticks Background -->
+<canvas id="candleCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;"></canvas>
+
+<script>
+const canvas = document.getElementById('candleCanvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+const candles = [];
+const CANDLE_COUNT = 25;
+
+function randomBetween(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function createCandle() {
+    const isBullish = Math.random() > 0.5;
+    return {
+        x: randomBetween(0, canvas.width),
+        y: randomBetween(-300, -50),
+        speed: randomBetween(1, 3),
+        bodyHeight: randomBetween(20, 60),
+        bodyWidth: randomBetween(10, 20),
+        wickTop: randomBetween(10, 25),
+        wickBottom: randomBetween(10, 25),
+        color: isBullish ? '#00ffcc' : '#ff6464',
+        opacity: randomBetween(0.2, 0.6),
+        rotation: randomBetween(-15, 15)
+    };
+}
+
+// Initialize candles
+for (let i = 0; i < CANDLE_COUNT; i++) {
+    const candle = createCandle();
+    candle.y = randomBetween(-canvas.height, canvas.height); // spread initially
+    candles.push(candle);
+}
+
+function drawCandle(c) {
+    ctx.save();
+    ctx.globalAlpha = c.opacity;
+    ctx.translate(c.x, c.y);
+    ctx.rotate((c.rotation * Math.PI) / 180);
+
+    ctx.strokeStyle = c.color;
+    ctx.fillStyle = c.color;
+    ctx.lineWidth = 1.5;
+
+    // Top wick
+    ctx.beginPath();
+    ctx.moveTo(0, -c.bodyHeight / 2 - c.wickTop);
+    ctx.lineTo(0, -c.bodyHeight / 2);
+    ctx.stroke();
+
+    // Bottom wick
+    ctx.beginPath();
+    ctx.moveTo(0, c.bodyHeight / 2);
+    ctx.lineTo(0, c.bodyHeight / 2 + c.wickBottom);
+    ctx.stroke();
+
+    // Body
+    ctx.fillRect(-c.bodyWidth / 2, -c.bodyHeight / 2, c.bodyWidth, c.bodyHeight);
+
+    ctx.restore();
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    candles.forEach((c, i) => {
+        drawCandle(c);
+        c.y += c.speed;
+
+        // Reset when off screen
+        if (c.y > canvas.height + 100) {
+            candles[i] = createCandle();
+        }
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+</script>
 </body>
+
 </html>
