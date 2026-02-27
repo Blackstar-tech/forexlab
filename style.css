@@ -593,4 +593,26 @@ blockquote, pre {
     }
 
 }
+/* FULL WIDTH ON MOBILE */
+@media(max-width: 768px) {
+
+    .dashboard-container {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .dashboard-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        border-radius: 10px;
+    }
+
+    section, header {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+}
+
 
