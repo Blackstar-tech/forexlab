@@ -482,4 +482,37 @@ transform:scale(1.05);
 
 box-shadow:0 0 15px rgba(0,255,204,0.5);
 
+
+}
+
+/* NAVBAR MOBILE FIX */
+@media(max-width: 768px) {
+
+    .navbar {
+        padding: 12px 15px;
+        flex-wrap: nowrap;
+    }
+
+    .logo {
+        font-size: 18px;
+        white-space: nowrap;
+    }
+
+    .navbar div {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .navbar .btn {
+        padding: 6px 12px;
+        font-size: 12px;
+        margin-left: 0;
+    }
+
+    .navbar a {
+        margin-left: 0;
+        font-size: 12px;
+    }
+
 }
