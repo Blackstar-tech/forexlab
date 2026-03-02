@@ -1,1 +1,673 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FX Lab Model — Elite Forex Education</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Fraunces:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080808;
+    --white: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-light: #e8c96e;
+    --dim: #2a2a2a;
+    --muted: #6b6b6b;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  .cursor {
+    position: fixed; width: 12px; height: 12px;
+    background: var(--gold); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    transition: transform 0.15s ease;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    position: fixed; width: 36px; height: 36px;
+    border: 1px solid var(--gold); border-radius: 50%;
+    pointer-events: none; z-index: 9998;
+    transition: transform 0.35s ease, width 0.3s, height 0.3s;
+    transform: translate(-50%, -50%); opacity: 0.5;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 48px;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    backdrop-filter: blur(12px);
+    background: rgba(8,8,8,0.7);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 4px; color: var(--gold); }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); transition: color 0.3s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: transparent; border: 1px solid var(--gold); color: var(--gold);
+    padding: 10px 24px; font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 2px; text-transform: uppercase; cursor: none; transition: background 0.3s, color 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+  .hero {
+    min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 120px 48px 80px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-label::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: clamp(64px, 8vw, 110px);
+    line-height: 0.92; letter-spacing: 2px; margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-title em { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; color: var(--gold); }
+
+  .hero-sub {
+    font-size: 13px; line-height: 1.9; color: var(--muted); max-width: 420px; margin-bottom: 48px;
+    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+
+  .btn-primary {
+    background: var(--gold); color: var(--black); border: none;
+    padding: 16px 36px; font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 3px; text-transform: uppercase; font-weight: 500; cursor: none;
+    transition: background 0.3s, transform 0.2s; text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-ghost {
+    background: transparent; color: var(--white); border: none; padding: 16px 24px;
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; cursor: none; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;
+  }
+  .btn-ghost:hover { color: var(--gold); }
+  .btn-ghost::after { content: '→'; }
+
+  .hero-visual { display: flex; justify-content: flex-end; align-items: center; opacity: 0; animation: fadeIn 1.2s 0.6s forwards; }
+
+  .chart-box {
+    border: 1px solid rgba(201,168,76,0.2); padding: 32px; width: 100%; max-width: 480px;
+    position: relative; background: rgba(201,168,76,0.03);
+  }
+  .chart-box::before {
+    content: 'LIVE PERFORMANCE'; position: absolute; top: -10px; left: 24px;
+    background: var(--black); padding: 0 8px; font-size: 9px; letter-spacing: 3px; color: var(--gold);
+  }
+  .chart-header { display: flex; justify-content: space-between; margin-bottom: 24px; }
+  .chart-stat { text-align: center; }
+  .chart-stat .val { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--gold); display: block; }
+  .chart-stat .lbl { font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+  .candles { height: 140px; display: flex; align-items: flex-end; gap: 6px; margin-bottom: 16px; }
+  .candle-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; }
+  .wick { width: 1px; background: currentColor; }
+  .candle-body { width: 100%; min-width: 8px; }
+  .up { color: #4ade80; }
+  .down { color: #f87171; }
+  .up .candle-body { background: #4ade80; }
+  .down .candle-body { background: #f87171; }
+  .chart-footer { display: flex; justify-content: space-between; font-size: 9px; letter-spacing: 1px; color: var(--muted); }
+
+  .ticker { border-top: 1px solid var(--dim); border-bottom: 1px solid var(--dim); padding: 14px 0; overflow: hidden; }
+  .ticker-track { display: flex; gap: 60px; animation: ticker 20s linear infinite; white-space: nowrap; }
+  .ticker-item { font-size: 11px; letter-spacing: 2px; color: var(--muted); display: flex; gap: 12px; text-transform: uppercase; }
+  .ticker-item span { color: #4ade80; }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  .section { padding: 120px 48px; }
+  .section-label {
+    font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 72px); line-height: 1; margin-bottom: 48px; }
+
+  .modules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--dim); border: 1px solid var(--dim); }
+  .module-card { background: var(--black); padding: 40px 32px; transition: background 0.3s; position: relative; overflow: hidden; }
+  .module-card::before { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s ease; }
+  .module-card:hover { background: rgba(201,168,76,0.04); }
+  .module-card:hover::before { width: 100%; }
+  .module-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--dim); line-height: 1; margin-bottom: 16px; }
+  .module-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 300; margin-bottom: 12px; color: var(--white); }
+  .module-desc { font-size: 12px; line-height: 1.8; color: var(--muted); }
+
+  .process { background: rgba(201,168,76,0.03); border-top: 1px solid var(--dim); border-bottom: 1px solid var(--dim); }
+  .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .process-step { padding: 48px 32px; border-right: 1px solid var(--dim); }
+  .process-step:last-child { border-right: none; }
+  .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: rgba(201,168,76,0.15); line-height: 1; margin-bottom: 16px; }
+  .step-title { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; color: var(--white); }
+  .step-desc { font-size: 11px; line-height: 1.9; color: var(--muted); }
+
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .testi-card { border: 1px solid var(--dim); padding: 32px; position: relative; }
+  .testi-card::before {
+    content: '"'; font-family: 'Fraunces', serif; font-size: 80px; color: var(--gold); opacity: 0.3;
+    position: absolute; top: 8px; left: 24px; line-height: 1;
+  }
+  .testi-text { font-size: 13px; line-height: 1.9; color: var(--muted); margin-bottom: 24px; padding-top: 32px; }
+  .testi-author { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+  .testi-role { font-size: 10px; color: var(--muted); margin-top: 4px; }
+
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--dim); border: 1px solid var(--dim); max-width: 900px; margin: 0 auto;
+  }
+  .pricing-card { background: var(--black); padding: 48px 32px; text-align: center; position: relative; }
+  .pricing-card.featured { background: rgba(201,168,76,0.06); }
+  .pricing-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--black); font-size: 9px; letter-spacing: 2px; padding: 4px 16px; text-transform: uppercase;
+  }
+  .pricing-tier { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+  .pricing-price { font-family: 'Bebas Neue', sans-serif; font-size: 56px; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+  .pricing-period { font-size: 10px; color: var(--muted); letter-spacing: 2px; margin-bottom: 32px; }
+  .pricing-features { list-style: none; margin-bottom: 36px; text-align: left; }
+  .pricing-features li { font-size: 12px; color: var(--muted); padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 8px; }
+  .pricing-features li::before { content: '✓'; color: var(--gold); font-size: 10px; }
+
+  .cta-section { padding: 120px 48px; text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before {
+    content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+  .cta-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 7vw, 96px); line-height: 0.95; margin-bottom: 24px; position: relative; }
+  .cta-sub { font-size: 13px; color: var(--muted); margin-bottom: 48px; letter-spacing: 1px; position: relative; }
+
+  footer { border-top: 1px solid var(--dim); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-size: 10px; color: var(--muted); letter-spacing: 2px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+    .hero-visual { display: none; }
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .modules-grid, .process-grid, .testi-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .section { padding: 80px 24px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <div class="nav-logo">FX LAB</div>
+  <ul class="nav-links">
+    <li><a href="#model">The Model</a></li>
+    <li><a href="#modules">Modules</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <button class="nav-cta">Enroll Now</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-label">Introducing</div>
+    <h1 class="hero-title">FX Lab<br><em>Model</em></h1>
+    <p class="hero-sub">A systematic education framework engineered for traders who are serious about understanding the forex market — from structure to execution.</p>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary">Start Learning</a>
+      <a href="#model" class="btn-ghost">See the Model</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="chart-box">
+      <div class="chart-header">
+        <div class="chart-stat"><span class="val">84%</span><span class="lbl">Win Rate</span></div>
+        <div class="chart-stat"><span class="val">1:3</span><span class="lbl">Risk/Reward</span></div>
+        <div class="chart-stat"><span class="val">2K+</span><span class="lbl">Students</span></div>
+      </div>
+      <div class="candles"></div>
+      <div class="chart-footer"><span>EUR/USD · H4</span><span>FX Lab Model</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item">EUR/USD <span>+0.42%</span></div>
+    <div class="ticker-item">GBP/JPY <span>+1.14%</span></div>
+    <div class="ticker-item">XAU/USD <span>+0.78%</span></div>
+    <div class="ticker-item">USD/CAD <span>-0.23%</span></div>
+    <div class="ticker-item">AUD/USD <span>+0.56%</span></div>
+    <div class="ticker-item">NZD/USD <span>+0.31%</span></div>
+    <div class="ticker-item">GBP/USD <span>+0.89%</span></div>
+    <div class="ticker-item">USD/CHF <span>-0.11%</span></div>
+    <div class="ticker-item">EUR/USD <span>+0.42%</span></div>
+    <div class="ticker-item">GBP/JPY <span>+1.14%</span></div>
+    <div class="ticker-item">XAU/USD <span>+0.78%</span></div>
+    <div class="ticker-item">USD/CAD <span>-0.23%</span></div>
+    <div class="ticker-item">AUD/USD <span>+0.56%</span></div>
+    <div class="ticker-item">NZD/USD <span>+0.31%</span></div>
+    <div class="ticker-item">GBP/USD <span>+0.89%</span></div>
+    <div class="ticker-item">USD/CHF <span>-0.11%</span></div>
+  </div>
+</div>
+
+<section class="section" id="model">
+  <div class="section-label">What Is It</div>
+  <h2 class="section-title reveal">The Framework<br>That Changes How<br>You See Markets</h2>
+  <div style="max-width:600px;">
+    <p class="reveal" style="font-size:13px;line-height:2;color:var(--muted);margin-bottom:20px;">The FX Lab Model is not a signals service. It is a complete educational system that teaches you to read price action, understand market structure, and execute high-probability trades with a systematic approach.</p>
+    <p class="reveal" style="font-size:13px;line-height:2;color:var(--muted);">Built from years of live market observation, every module is designed to stack knowledge — from foundational concepts to advanced institutional strategies.</p>
+  </div>
+</section>
+
+<!-- THE MODEL RULES -->
+<section class="section" style="background:rgba(201,168,76,0.02);border-top:1px solid var(--dim);border-bottom:1px solid var(--dim);">
+  <div class="section-label reveal">The Exact Rules</div>
+  <h2 class="section-title reveal">How The FX Lab<br>Model Works</h2>
+
+  <!-- STEP FLOW -->
+  <div class="model-flow">
+    <div class="flow-step reveal">
+      <div class="flow-icon">01</div>
+      <div class="flow-content">
+        <div class="flow-title">Wait For Liquidity To Be Raided</div>
+        <p class="flow-desc">The model begins when price sweeps a key liquidity level — equal highs, equal lows, or swing points where stop losses are clustered. This raid is the market hunting liquidity before it makes its true move. <strong>Do not enter during the raid.</strong> The raid is not your signal — it is your warning that the signal is coming.</p>
+        <div class="flow-tags">
+          <span class="tag">Equal Highs Swept</span>
+          <span class="tag">Equal Lows Swept</span>
+          <span class="tag">Swing High/Low Taken</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-connector reveal">↓</div>
+
+    <div class="flow-step reveal">
+      <div class="flow-icon">02</div>
+      <div class="flow-content">
+        <div class="flow-title">Confirm Displacement To The Opposite Side</div>
+        <p class="flow-desc">After the raid, watch for a strong, impulsive candle (or series of candles) that moves aggressively in the opposite direction — this is displacement. It signals that institutions have reversed their position and price is now being driven with intent. Weak moves do not qualify. The displacement must be sharp, clean, and decisive, leaving Fair Value Gaps (FVGs) in its wake.</p>
+        <div class="flow-tags">
+          <span class="tag">Impulsive Rejection Candle</span>
+          <span class="tag">Strong Momentum Shift</span>
+          <span class="tag">FVGs Created</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-connector reveal">↓</div>
+
+    <div class="flow-step reveal">
+      <div class="flow-icon">03</div>
+      <div class="flow-content">
+        <div class="flow-title">Enter At The Second FVG</div>
+        <p class="flow-desc">Displacement creates multiple Fair Value Gaps. The FX Lab Model specifies entry at the <em>second</em> FVG — not the first. The first FVG is often too aggressive and price may pierce through it. The second FVG provides a more refined, higher-probability entry as price returns to fill inefficiency before continuing in the direction of the displacement. Wait for price to retrace back into this second FVG and look for a confirmation candle before executing.</p>
+        <div class="flow-tags">
+          <span class="tag">Skip The 1st FVG</span>
+          <span class="tag">Entry On 2nd FVG</span>
+          <span class="tag">Wait For Retracement</span>
+          <span class="tag">Confirmation Candle</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-connector reveal">↓</div>
+
+    <!-- BULLISH / BEARISH SPLIT -->
+    <div class="bias-split reveal">
+      <div class="bias-card bullish">
+        <div class="bias-header">
+          <div class="bias-dot bull-dot"></div>
+          <div class="bias-title">Bullish Condition</div>
+        </div>
+        <div class="bias-rule">
+          <div class="rule-label">🎯 Target</div>
+          <p class="rule-text">Equal Highs above the current range. These are the liquidity pools sitting above where resting buy-side orders and stop losses accumulate. Price is drawn to these levels after a clean bullish displacement.</p>
+        </div>
+        <div class="bias-rule">
+          <div class="rule-label">🛡 Stop Loss</div>
+          <p class="rule-text">Placed at the <strong>low of the second FVG</strong>. This is your invalidation point — if price closes below the FVG, the setup is void. Keep it tight but logical.</p>
+        </div>
+        <div class="bias-example">
+          <div class="example-chart bull-chart">
+            <div class="chart-label">Equal Highs (Target)</div>
+            <div class="eq-highs"><span></span><span></span><span></span></div>
+            <div class="chart-arrow bull-arrow">↑ Price Move</div>
+            <div class="fvg-box">2nd FVG Entry Zone</div>
+            <div class="sl-line">SL → Low of 2nd FVG</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bias-card bearish">
+        <div class="bias-header">
+          <div class="bias-dot bear-dot"></div>
+          <div class="bias-title">Bearish Condition</div>
+        </div>
+        <div class="bias-rule">
+          <div class="rule-label">🎯 Target</div>
+          <p class="rule-text">Equal Lows below the current range. These are the sell-side liquidity pools where stop losses and pending sell orders cluster. After a bearish displacement, price is drawn down to raid these levels.</p>
+        </div>
+        <div class="bias-rule">
+          <div class="rule-label">🛡 Stop Loss</div>
+          <p class="rule-text">Placed at the <strong>high of the second FVG</strong>. If price closes above the FVG, the bearish thesis is invalidated and you exit immediately to protect capital.</p>
+        </div>
+        <div class="bias-example">
+          <div class="example-chart bear-chart">
+            <div class="sl-line bear-sl">SL → High of 2nd FVG</div>
+            <div class="fvg-box bear-fvg">2nd FVG Entry Zone</div>
+            <div class="chart-arrow bear-arrow">↓ Price Move</div>
+            <div class="eq-lows"><span></span><span></span><span></span></div>
+            <div class="chart-label">Equal Lows (Target)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY CHEAT SHEET -->
+  <div class="reveal" style="margin-top:64px;">
+    <div class="cheatsheet">
+      <div class="cs-title">THE FX LAB MODEL — QUICK REFERENCE</div>
+      <div class="cs-grid">
+        <div class="cs-row header-row">
+          <span>Step</span><span>Bullish Setup</span><span>Bearish Setup</span>
+        </div>
+        <div class="cs-row">
+          <span>1 — Liquidity</span><span>Equal Lows raided (sell-side swept)</span><span>Equal Highs raided (buy-side swept)</span>
+        </div>
+        <div class="cs-row">
+          <span>2 — Displacement</span><span>Strong bullish move up</span><span>Strong bearish move down</span>
+        </div>
+        <div class="cs-row">
+          <span>3 — Entry</span><span>2nd FVG (on retracement down)</span><span>2nd FVG (on retracement up)</span>
+        </div>
+        <div class="cs-row">
+          <span>4 — Target</span><span>Equal Highs above</span><span>Equal Lows below</span>
+        </div>
+        <div class="cs-row">
+          <span>5 — Stop Loss</span><span>Low of the 2nd FVG</span><span>High of the 2nd FVG</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .model-flow { max-width: 860px; }
+  .flow-step { display: grid; grid-template-columns: 80px 1fr; gap: 32px; align-items: start; margin-bottom: 0; }
+  .flow-icon { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: var(--gold); line-height: 1; opacity: 0.7; padding-top: 4px; }
+  .flow-content { border-left: 1px solid var(--dim); padding-left: 32px; padding-bottom: 8px; }
+  .flow-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 300; color: var(--white); margin-bottom: 12px; }
+  .flow-desc { font-size: 13px; line-height: 2; color: var(--muted); margin-bottom: 16px; }
+  .flow-desc strong { color: var(--white); }
+  .flow-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; border: 1px solid rgba(201,168,76,0.3); color: var(--gold); padding: 5px 12px; }
+  .flow-connector { font-size: 24px; color: var(--gold); opacity: 0.4; padding: 16px 0 16px 40px; }
+
+  .bias-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--dim); border: 1px solid var(--dim); }
+  .bias-card { background: var(--black); padding: 40px 32px; }
+  .bias-card.bullish { border-top: 2px solid #4ade80; }
+  .bias-card.bearish { border-top: 2px solid #f87171; }
+  .bias-header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .bias-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .bull-dot { background: #4ade80; }
+  .bear-dot { background: #f87171; }
+  .bias-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; }
+  .bias-rule { margin-bottom: 24px; }
+  .rule-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .rule-text { font-size: 12px; line-height: 1.9; color: var(--muted); }
+  .rule-text strong { color: var(--white); }
+
+  /* Visual diagram */
+  .bias-example { margin-top: 24px; }
+  .example-chart { border: 1px solid var(--dim); padding: 20px; font-size: 10px; letter-spacing: 1px; color: var(--muted); display: flex; flex-direction: column; gap: 8px; }
+  .chart-label { text-transform: uppercase; color: var(--gold); letter-spacing: 2px; }
+  .eq-highs, .eq-lows { display: flex; gap: 12px; }
+  .eq-highs span { display: block; width: 32px; height: 3px; background: #4ade80; }
+  .eq-lows span { display: block; width: 32px; height: 3px; background: #f87171; }
+  .chart-arrow { font-size: 13px; letter-spacing: 1px; color: var(--white); }
+  .bull-arrow { color: #4ade80; }
+  .bear-arrow { color: #f87171; }
+  .fvg-box { border: 1px dashed rgba(201,168,76,0.4); padding: 8px 12px; color: var(--gold); background: rgba(201,168,76,0.05); font-size: 10px; letter-spacing: 1px; }
+  .bear-fvg { border-color: rgba(248,113,113,0.3); background: rgba(248,113,113,0.05); color: #f87171; }
+  .sl-line { border-top: 1px dashed #f87171; padding-top: 6px; color: #f87171; font-size: 10px; }
+  .bear-sl { color: #f87171; border-bottom: 1px dashed #f87171; border-top: none; padding-bottom: 6px; padding-top: 0; }
+
+  /* Cheat sheet */
+  .cheatsheet { border: 1px solid rgba(201,168,76,0.25); }
+  .cs-title { background: var(--gold); color: var(--black); font-size: 10px; letter-spacing: 4px; text-transform: uppercase; padding: 12px 24px; font-weight: 500; }
+  .cs-grid { }
+  .cs-row { display: grid; grid-template-columns: 180px 1fr 1fr; gap: 0; border-bottom: 1px solid var(--dim); }
+  .cs-row:last-child { border-bottom: none; }
+  .cs-row span { padding: 14px 20px; font-size: 11px; color: var(--muted); border-right: 1px solid var(--dim); line-height: 1.6; }
+  .cs-row span:last-child { border-right: none; }
+  .cs-row.header-row span { color: var(--gold); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; background: rgba(201,168,76,0.05); }
+  .cs-row span:first-child { color: var(--white); font-size: 10px; letter-spacing: 1px; }
+
+  @media (max-width: 900px) {
+    .flow-step { grid-template-columns: 1fr; gap: 12px; }
+    .flow-content { border-left: none; padding-left: 0; border-top: 1px solid var(--dim); padding-top: 20px; }
+    .bias-split { grid-template-columns: 1fr; }
+    .cs-row { grid-template-columns: 1fr; }
+    .cs-row span { border-right: none; border-bottom: 1px solid var(--dim); }
+  }
+</style>
+
+<section class="section" id="modules" style="padding-top:0;">
+  <div class="section-label reveal">The Curriculum</div>
+  <h2 class="section-title reveal">Six Modules.<br>One Model.</h2>
+  <div class="modules-grid">
+    <div class="module-card reveal">
+      <div class="module-num">01</div>
+      <div class="module-title">Market Structure</div>
+      <p class="module-desc">Learn to identify highs, lows, trend shifts, and the skeleton of every market move before it happens.</p>
+    </div>
+    <div class="module-card reveal">
+      <div class="module-num">02</div>
+      <div class="module-title">Price Action Mastery</div>
+      <p class="module-desc">Read raw candlestick behavior — no lagging indicators. Understand what price is communicating at every level.</p>
+    </div>
+    <div class="module-card reveal">
+      <div class="module-num">03</div>
+      <div class="module-title">Supply & Demand Zones</div>
+      <p class="module-desc">Map the exact price regions where institutions leave their footprints. Enter where the big money enters.</p>
+    </div>
+    <div class="module-card reveal">
+      <div class="module-num">04</div>
+      <div class="module-title">Risk Management</div>
+      <p class="module-desc">Position sizing, drawdown management, and the psychology behind protecting your capital at every stage.</p>
+    </div>
+    <div class="module-card reveal">
+      <div class="module-num">05</div>
+      <div class="module-title">Trade Execution</div>
+      <p class="module-desc">Entry triggers, confirmation signals, stop placement, and target setting — executed with surgical precision.</p>
+    </div>
+    <div class="module-card reveal">
+      <div class="module-num">06</div>
+      <div class="module-title">The FX Lab Protocol</div>
+      <p class="module-desc">The complete model combined into a repeatable daily routine. Wake up, analyse, execute. Every day.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section process">
+  <div style="padding: 0 0 48px;">
+    <div class="section-label reveal">How It Works</div>
+    <h2 class="section-title reveal">Your Journey</h2>
+  </div>
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Enroll</div>
+      <p class="step-desc">Choose your plan and get instant lifetime access to all course materials and future updates.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">Study the Model</div>
+      <p class="step-desc">Work through each module at your own pace. Videos, PDF workbooks, and annotated charts included.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">Practice Live</div>
+      <p class="step-desc">Apply the framework on a demo account. Join weekly live analysis sessions to see it in real time.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">04</div>
+      <div class="step-title">Trade with Edge</div>
+      <p class="step-desc">Go live with a system, not a gamble. Trade with structure, confidence, and a clear edge every session.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-label reveal">Proof</div>
+  <h2 class="section-title reveal">What Students Say</h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <p class="testi-text">The FX Lab Model changed everything. I went from gambling my account to having a real structured approach. Up 34% in my first 3 months of live trading.</p>
+      <div class="testi-author">James K.</div>
+      <div class="testi-role">Nairobi · Full-time Trader</div>
+    </div>
+    <div class="testi-card reveal">
+      <p class="testi-text">I've spent thousands on courses before. Nothing compared to this. The supply and demand module alone is worth the entire price. Precise, practical, profitable.</p>
+      <div class="testi-author">Amina S.</div>
+      <div class="testi-role">Lagos · Forex Student</div>
+    </div>
+    <div class="testi-card reveal">
+      <p class="testi-text">Six weeks in and I finally understand market structure. I can see the setups forming before they happen. That's exactly what I was missing for 2 years.</p>
+      <div class="testi-author">Michael O.</div>
+      <div class="testi-role">London · Part-time Trader</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pricing" style="background:rgba(201,168,76,0.02);">
+  <div class="section-label reveal" style="justify-content:center;">Enroll Today</div>
+  <h2 class="section-title reveal" style="text-align:center;">Choose Your Plan</h2>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <div class="pricing-tier">Foundation</div>
+      <div class="pricing-price">$97</div>
+      <div class="pricing-period">One-time payment</div>
+      <ul class="pricing-features">
+        <li>Modules 1–3 access</li>
+        <li>PDF workbooks</li>
+        <li>Community access</li>
+        <li>Email support</li>
+      </ul>
+      <a href="#" class="btn-primary" style="width:100%;text-align:center;display:block;">Get Started</a>
+    </div>
+    <div class="pricing-card featured reveal">
+      <div class="pricing-badge">Most Popular</div>
+      <div class="pricing-tier">Full Model</div>
+      <div class="pricing-price">$197</div>
+      <div class="pricing-period">One-time payment</div>
+      <ul class="pricing-features">
+        <li>All 6 modules — full access</li>
+        <li>PDF workbooks + chart templates</li>
+        <li>Weekly live analysis sessions</li>
+        <li>Private community access</li>
+        <li>Lifetime updates</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="#" class="btn-primary" style="width:100%;text-align:center;display:block;">Enroll Now</a>
+    </div>
+    <div class="pricing-card reveal">
+      <div class="pricing-tier">Mentorship</div>
+      <div class="pricing-price">$497</div>
+      <div class="pricing-period">One-time payment</div>
+      <ul class="pricing-features">
+        <li>Everything in Full Model</li>
+        <li>4× 1-on-1 coaching calls</li>
+        <li>Personalised trade reviews</li>
+        <li>Direct WhatsApp access</li>
+        <li>Account audit session</li>
+      </ul>
+      <a href="#" class="btn-primary" style="width:100%;text-align:center;display:block;">Apply Now</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2 class="cta-title reveal">Stop Guessing.<br>Start Trading<br><em style="font-family:'Fraunces',serif;font-style:italic;font-weight:300;color:var(--gold);">With Edge.</em></h2>
+  <p class="cta-sub reveal">Join 2,000+ students who trade with a system, not emotion.</p>
+  <a href="#pricing" class="btn-primary" style="font-size:13px;padding:20px 48px;">Enroll in FX Lab Model</a>
+</section>
+
+<footer>
+  <div class="nav-logo">FX LAB</div>
+  <p>© 2026 FX LAB MODEL. ALL RIGHTS RESERVED.</p>
+  <p>RESULTS NOT GUARANTEED. TRADING INVOLVES RISK.</p>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  });
+  (function animRing() {
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  })();
+  document.querySelectorAll('button, a, .module-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1.8)'; ring.style.width = '60px'; ring.style.height = '60px'; });
+    el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.width = '36px'; ring.style.height = '36px'; });
+  });
+
+  const candleData = [
+    {up:true,b:40,ht:8,hb:6},{up:false,b:30,ht:5,hb:10},{up:true,b:50,ht:10,hb:8},
+    {up:false,b:35,ht:7,hb:12},{up:true,b:60,ht:12,hb:7},{up:true,b:45,ht:9,hb:6},
+    {up:false,b:28,ht:6,hb:9},{up:true,b:70,ht:14,hb:8},{up:false,b:32,ht:8,hb:11},
+    {up:true,b:80,ht:16,hb:9},{up:true,b:65,ht:12,hb:7},{up:false,b:25,ht:5,hb:8},
+    {up:true,b:78,ht:15,hb:10},{up:true,b:90,ht:18,hb:8},{up:false,b:30,ht:7,hb:10},
+  ];
+  const candlesEl = document.querySelector('.candles');
+  candleData.forEach(c => {
+    const cls = c.up ? 'up' : 'down';
+    const wrap = document.createElement('div');
+    wrap.className = `candle-wrap ${cls}`;
+    wrap.innerHTML = `<div class="wick" style="height:${c.ht}px"></div><div class="candle-body" style="height:${c.b}px"></div><div class="wick" style="height:${c.hb}px"></div>`;
+    candlesEl.appendChild(wrap);
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
