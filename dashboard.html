@@ -1,178 +1,788 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Forex Lab Dashboard</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-</head>
+<title>Trading Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #05080f;
+    --bg2: #080d18;
+    --card: rgba(10, 16, 30, 0.85);
+    --gold: #f0b429;
+    --gold2: #ffda6a;
+    --cyan: #00f5d4;
+    --red: #ff3d5a;
+    --green: #00e676;
+    --border: rgba(240,180,41,0.18);
+    --glow-gold: 0 0 24px rgba(240,180,41,0.45), 0 0 60px rgba(240,180,41,0.15);
+    --glow-cyan: 0 0 24px rgba(0,245,212,0.4), 0 0 60px rgba(0,245,212,0.12);
+    --glow-red: 0 0 20px rgba(255,61,90,0.5);
+  }
 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ── Animated grid background ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,245,212,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,245,212,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Radial glow blobs ── */
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blob-1 { width: 500px; height: 500px; background: rgba(240,180,41,0.07); top: -100px; left: -100px; }
+  .blob-2 { width: 400px; height: 400px; background: rgba(0,245,212,0.06); bottom: 50px; right: -80px; }
+  .blob-3 { width: 300px; height: 300px; background: rgba(255,61,90,0.05); top: 40%; left: 50%; transform: translateX(-50%); }
+
+  /* ── Canvas candlestick bg ── */
+  #candleCanvas {
+    position: fixed;
+    bottom: 0; left: 0;
+    width: 100%; height: 55%;
+    opacity: 0.06;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ── Header ── */
+  header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 48px 16px;
+    border-bottom: 1px solid rgba(240,180,41,0.1);
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-shadow: var(--glow-gold);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-icon {
+    width: 36px; height: 36px;
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: var(--glow-gold);
+    animation: pulse-gold 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-gold {
+    0%,100% { box-shadow: 0 0 12px rgba(240,180,41,0.4); }
+    50%      { box-shadow: 0 0 30px rgba(240,180,41,0.8); }
+  }
+
+  .live-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--green);
+    border: 1px solid var(--green);
+    padding: 4px 10px;
+    border-radius: 2px;
+    text-shadow: 0 0 10px var(--green);
+    box-shadow: 0 0 14px rgba(0,230,118,0.2);
+    animation: blink 2s ease-in-out infinite;
+    letter-spacing: 2px;
+  }
+
+  @keyframes blink {
+    0%,100% { opacity: 1; }
+    50%      { opacity: 0.4; }
+  }
+
+  /* ── Ticker bar ── */
+  .ticker-wrap {
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    background: rgba(240,180,41,0.04);
+    border-bottom: 1px solid rgba(240,180,41,0.08);
+    padding: 10px 0;
+  }
+
+  .ticker-track {
+    display: flex;
+    gap: 60px;
+    animation: ticker 22s linear infinite;
+    white-space: nowrap;
+    width: max-content;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .tick-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    display: flex; align-items: center; gap: 8px;
+    letter-spacing: 1px;
+  }
+  .tick-item .sym { color: var(--gold2); font-weight: 700; }
+  .tick-item .up  { color: var(--green); }
+  .tick-item .dn  { color: var(--red); }
+
+  /* ── Main layout ── */
+  main {
+    position: relative;
+    z-index: 10;
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr 1fr;
+    gap: 28px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(240,180,41,0.04) 0%, transparent 60%);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(240,180,41,0.3);
+  }
+
+  /* Strategies – gold theme */
+  .card-strategies { border-color: rgba(240,180,41,0.25); }
+  .card-strategies:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(240,180,41,0.15), 0 0 0 1px rgba(240,180,41,0.4); }
+
+  /* Psychology – cyan theme */
+  .card-psychology { border-color: rgba(0,245,212,0.25); }
+  .card-psychology::before { background: linear-gradient(135deg, rgba(0,245,212,0.05) 0%, transparent 60%); }
+  .card-psychology:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(0,245,212,0.15), 0 0 0 1px rgba(0,245,212,0.4); }
+
+  /* Trade Journal – red-orange theme */
+  .card-journal { border-color: rgba(255,120,61,0.25); }
+  .card-journal::before { background: linear-gradient(135deg, rgba(255,120,61,0.05) 0%, transparent 60%); }
+  .card-journal:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(255,120,61,0.2), 0 0 0 1px rgba(255,120,61,0.4); }
+
+  /* ── Corner accent ── */
+  .corner-accent {
+    position: absolute;
+    top: 0; right: 0;
+    width: 60px; height: 60px;
+    overflow: hidden;
+  }
+  .corner-accent::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 60px 60px 0;
+    border-color: transparent;
+  }
+  .card-strategies .corner-accent::before { border-right-color: rgba(240,180,41,0.15); }
+  .card-psychology .corner-accent::before { border-right-color: rgba(0,245,212,0.12); }
+  .card-journal    .corner-accent::before { border-right-color: rgba(255,120,61,0.12); }
+
+  /* ── Card heading ── */
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  .card-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .card-strategies .card-icon { background: rgba(240,180,41,0.12); box-shadow: 0 0 20px rgba(240,180,41,0.2); }
+  .card-psychology .card-icon { background: rgba(0,245,212,0.1);  box-shadow: 0 0 20px rgba(0,245,212,0.2); }
+  .card-journal    .card-icon { background: rgba(255,120,61,0.1); box-shadow: 0 0 20px rgba(255,120,61,0.2); }
+
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.9rem;
+    letter-spacing: 3px;
+    line-height: 1;
+  }
+  .card-strategies .card-title { color: var(--gold); text-shadow: 0 0 20px rgba(240,180,41,0.5); }
+  .card-psychology .card-title { color: var(--cyan); text-shadow: 0 0 20px rgba(0,245,212,0.5); }
+  .card-journal    .card-title { color: #ff783d; text-shadow: 0 0 20px rgba(255,120,61,0.5); }
+
+  /* ── Menu items ── */
+  .menu-list { display: flex; flex-direction: column; gap: 6px; }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 16px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    border-radius: 2px;
+    transform: scaleY(0);
+    transition: transform 0.25s;
+  }
+
+  .menu-item:hover { color: #fff; background: rgba(255,255,255,0.04); }
+
+  /* Strategies hover */
+  .card-strategies .menu-item:hover { border-color: rgba(240,180,41,0.2); background: rgba(240,180,41,0.06); }
+  .card-strategies .menu-item::before { background: var(--gold); }
+  .card-strategies .menu-item:hover::before { transform: scaleY(1); }
+  .card-strategies .menu-item:hover { color: var(--gold2); }
+
+  /* Psychology hover */
+  .card-psychology .menu-item:hover { border-color: rgba(0,245,212,0.2); background: rgba(0,245,212,0.05); }
+  .card-psychology .menu-item::before { background: var(--cyan); }
+  .card-psychology .menu-item:hover::before { transform: scaleY(1); }
+  .card-psychology .menu-item:hover { color: var(--cyan); }
+
+  /* Journal hover */
+  .card-journal .menu-item:hover { border-color: rgba(255,120,61,0.2); background: rgba(255,120,61,0.05); }
+  .card-journal .menu-item::before { background: #ff783d; }
+  .card-journal .menu-item:hover::before { transform: scaleY(1); }
+  .card-journal .menu-item:hover { color: #ff9966; }
+
+  /* Active item */
+  .menu-item.active {
+    color: #fff;
+    font-weight: 700;
+  }
+  .card-strategies .menu-item.active { background: rgba(240,180,41,0.1); border-color: rgba(240,180,41,0.3); color: var(--gold2); }
+  .card-strategies .menu-item.active::before { transform: scaleY(1); }
+  .card-psychology .menu-item.active { background: rgba(0,245,212,0.08); border-color: rgba(0,245,212,0.3); color: var(--cyan); }
+  .card-psychology .menu-item.active::before { transform: scaleY(1); }
+
+  /* Locked items */
+  .menu-item.locked { opacity: 0.38; }
+  .menu-item.locked .lock-icon { font-size: 0.75rem; margin-left: auto; }
+
+  /* Item number */
+  .item-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    opacity: 0.4;
+    min-width: 20px;
+  }
+
+  /* ── Journal stats row ── */
+  .journal-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .stat-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+
+  .stat-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ff783d;
+    text-shadow: 0 0 12px rgba(255,120,61,0.5);
+  }
+  .stat-val.positive { color: var(--green); text-shadow: 0 0 12px rgba(0,230,118,0.5); }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ── Progress bars inside psychology ── */
+  .progress-wrap { margin-top: 6px; }
+  .progress-bar-bg {
+    height: 3px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cyan), rgba(0,245,212,0.4));
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(0,245,212,0.6);
+    transition: width 1s ease;
+  }
+
+  /* ── Bottom section label ── */
+  .section-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* ── Bottom row: Technical Analysis card ── */
+  .bottom-row {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 48px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .card-wide {
+    background: var(--card);
+    border: 1px solid rgba(240,180,41,0.15);
+    border-radius: 16px;
+    padding: 28px;
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .card-wide:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(240,180,41,0.3);
+  }
+
+  .card-wide-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .wide-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-shadow: 0 0 16px rgba(240,180,41,0.4);
+  }
+
+  .tag-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid;
+    letter-spacing: 1px;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .tag:hover { transform: scale(1.05); }
+  .tag-gold  { color: var(--gold2); border-color: rgba(240,180,41,0.35); background: rgba(240,180,41,0.07); }
+  .tag-cyan  { color: var(--cyan);  border-color: rgba(0,245,212,0.35);  background: rgba(0,245,212,0.07); }
+  .tag-red   { color: #ff6b6b;     border-color: rgba(255,107,107,0.35); background: rgba(255,107,107,0.07); }
+  .tag-green { color: var(--green); border-color: rgba(0,230,118,0.35); background: rgba(0,230,118,0.07); }
+
+  /* ── Entry animations ── */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card, .card-wide {
+    animation: fadeSlideUp 0.6s ease both;
+  }
+  .card:nth-child(1) { animation-delay: 0.1s; }
+  .card:nth-child(2) { animation-delay: 0.2s; }
+  .card:nth-child(3) { animation-delay: 0.3s; }
+  .bottom-row .card-wide:nth-child(1) { animation-delay: 0.4s; }
+  .bottom-row .card-wide:nth-child(2) { animation-delay: 0.5s; }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #05080f; }
+  ::-webkit-scrollbar-thumb { background: rgba(240,180,41,0.3); border-radius: 3px; }
+</style>
+</head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-<h2 class="logo">Forex Lab</h2>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+<canvas id="candleCanvas"></canvas>
 
-<div>
-<a href="index.html" class="btn">Home</a>
-<button onclick="logout()" class="btn">Logout</button>
-</div>
-</nav>
-
-<!-- HEADER -->
+<!-- Header -->
 <header>
-<h1>Welcome to Forex Lab</h1>
-<p>Select a section to start learning</p>
+  <div class="logo">
+    <div class="logo-icon">📈</div>
+    APEX TRADER
+  </div>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <div class="live-badge">● MARKETS LIVE</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:rgba(255,255,255,0.3);">
+      FRI 20 MAR 2026 &nbsp;|&nbsp; 14:32:07
+    </div>
+  </div>
 </header>
 
-<!-- DASHBOARD SECTIONS -->
-<div class="dashboard-container">
-
-<!-- STRATEGIES -->
-<div class="dashboard-card">
-    <h2>Strategies</h2>
-    <ul>
-        <li><a href="/liquidity-sweep.html">Liquidity Sweep Strategy</a></li>
-        <li><a href="/break-and-retest.html">Break and Retest Strategy</a></li>
-        <li>Trend Continuation Strategy</li>
-        <li>Scalping Strategy</li>
-        <li>Market Structure Strategy</li>
-    </ul>
+<!-- Ticker bar -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="ticker"></div>
 </div>
 
-<!-- PSYCHOLOGY -->
-<div class="dashboard-card">
-    <h2>Psychology</h2>
-    <ul>
-        <li><a href="/controlling-emotions.html">Controlling Emotions</a></li>
-        <li><a href="/risk-management-mindset.html">Risk Management Mindset</a></li>
-        <li><a href="/patience-discipline.html">Patience and Discipline</a></li>
-        <li><a href="/handling-losses.html">Handling Losses</a></li>
-        <li><a href="/professional-mindset.html">Professional Trader Mindset</a></li>
-    </ul>
+<!-- Main cards -->
+<main>
+
+  <!-- ── STRATEGIES ── -->
+  <div class="card card-strategies">
+    <div class="corner-accent"></div>
+    <div class="card-header">
+      <div class="card-icon">⚡</div>
+      <div>
+        <div class="card-title">Strategies</div>
+        <div style="font-size:0.72rem;color:rgba(255,255,255,0.3);letter-spacing:2px;margin-top:2px;">5 PLAYBOOKS</div>
+      </div>
+    </div>
+    <div class="section-subtitle">Select Strategy</div>
+    <div class="menu-list">
+      <div class="menu-item active">
+        <span class="item-num">01</span>
+        Liquidity Sweep Strategy
+      </div>
+      <div class="menu-item active" style="background:rgba(240,180,41,0.08);border-color:rgba(240,180,41,0.25);">
+        <span class="item-num">02</span>
+        Break &amp; Retest Strategy
+        <span style="margin-left:auto;font-size:0.7rem;color:var(--gold);font-family:'JetBrains Mono',monospace;">HOT</span>
+      </div>
+      <div class="menu-item locked">
+        <span class="item-num">03</span>
+        Trend Continuation Strategy
+        <span class="lock-icon">🔒</span>
+      </div>
+      <div class="menu-item locked">
+        <span class="item-num">04</span>
+        Scalping Strategy
+        <span class="lock-icon">🔒</span>
+      </div>
+      <div class="menu-item locked">
+        <span class="item-num">05</span>
+        Market Structure Strategy
+        <span class="lock-icon">🔒</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PSYCHOLOGY ── -->
+  <div class="card card-psychology">
+    <div class="corner-accent"></div>
+    <div class="card-header">
+      <div class="card-icon">🧠</div>
+      <div>
+        <div class="card-title">Psychology</div>
+        <div style="font-size:0.72rem;color:rgba(0,245,212,0.5);letter-spacing:2px;margin-top:2px;">MINDSET MASTERY</div>
+      </div>
+    </div>
+    <div class="section-subtitle">Modules</div>
+    <div class="menu-list">
+      <div class="menu-item">
+        <span class="item-num">01</span>
+        <div style="flex:1">
+          Controlling Emotions
+          <div class="progress-wrap">
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:78%"></div></div>
+          </div>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--cyan);">78%</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-num">02</span>
+        <div style="flex:1">
+          Risk Management Mindset
+          <div class="progress-wrap">
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:55%;background:linear-gradient(90deg,#f0b429,rgba(240,180,41,0.4));box-shadow:0 0 8px rgba(240,180,41,0.6)"></div></div>
+          </div>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--gold);">55%</span>
+      </div>
+      <div class="menu-item active" style="background:rgba(0,245,212,0.07);border-color:rgba(0,245,212,0.25);">
+        <span class="item-num">03</span>
+        <div style="flex:1">
+          Patience &amp; Discipline
+          <div class="progress-wrap">
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:32%"></div></div>
+          </div>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--cyan);">32%</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-num">04</span>
+        <div style="flex:1">
+          Handling Losses
+          <div class="progress-wrap">
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%"></div></div>
+          </div>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.2);">0%</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-num">05</span>
+        <div style="flex:1">
+          Professional Trader Mindset
+          <div class="progress-wrap">
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%"></div></div>
+          </div>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.2);">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TRADE JOURNAL ── -->
+  <div class="card card-journal">
+    <div class="corner-accent"></div>
+    <div class="card-header">
+      <div class="card-icon">📒</div>
+      <div>
+        <div class="card-title">Trade Journal</div>
+        <div style="font-size:0.72rem;color:rgba(255,120,61,0.6);letter-spacing:2px;margin-top:2px;">PERFORMANCE LOG</div>
+      </div>
+    </div>
+    <div class="journal-stats">
+      <div class="stat-box">
+        <div class="stat-val positive">+12.4%</div>
+        <div class="stat-label">This Month</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">64%</div>
+        <div class="stat-label">Win Rate</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val positive">2.3R</div>
+        <div class="stat-label">Avg RR</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">47</div>
+        <div class="stat-label">Total Trades</div>
+      </div>
+    </div>
+    <div class="section-subtitle">Quick Access</div>
+    <div class="menu-list">
+      <div class="menu-item">
+        <span class="item-num">01</span>
+        Log a Trade
+        <span style="margin-left:auto;font-size:0.8rem;">＋</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-num">02</span>
+        Trade History
+        <span style="margin-left:auto;font-size:0.7rem;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,0.3);">47</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-num">03</span>
+        My Stats
+        <span style="margin-left:auto;font-size:0.8rem;color:var(--green);">↗</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Bottom wide cards -->
+<div class="bottom-row">
+  <div class="card-wide">
+    <div class="card-wide-header">
+      <span style="font-size:1.2rem;">📊</span>
+      <div class="wide-title">Technical Analysis</div>
+    </div>
+    <div class="section-subtitle">Topics covered</div>
+    <div class="tag-row">
+      <span class="tag tag-gold">Support &amp; Resistance</span>
+      <span class="tag tag-cyan">Order Blocks</span>
+      <span class="tag tag-red">Liquidity Zones</span>
+      <span class="tag tag-green">Fair Value Gaps</span>
+      <span class="tag tag-gold">Fibonacci</span>
+      <span class="tag tag-cyan">Market Structure</span>
+      <span class="tag tag-red">Break of Structure</span>
+      <span class="tag tag-green">Volume Profile</span>
+    </div>
+  </div>
+
+  <div class="card-wide" style="border-color:rgba(0,245,212,0.15);">
+    <div class="card-wide-header">
+      <span style="font-size:1.2rem;">🎯</span>
+      <div class="wide-title" style="color:var(--cyan);text-shadow:0 0 16px rgba(0,245,212,0.4);">Risk Management</div>
+    </div>
+    <div class="section-subtitle">Core rules</div>
+    <div class="tag-row">
+      <span class="tag tag-cyan">Position Sizing</span>
+      <span class="tag tag-gold">1% Rule</span>
+      <span class="tag tag-red">Max Drawdown</span>
+      <span class="tag tag-green">R:R Ratios</span>
+      <span class="tag tag-cyan">Stop Loss Placement</span>
+      <span class="tag tag-gold">Daily Loss Limit</span>
+    </div>
+  </div>
 </div>
-
-<!-- JOURNAL -->
-<div class="dashboard-card">
-    <h2>📓 Trade Journal</h2>
-    <ul>
-        <li><a href="journal.html">Log a Trade</a></li>
-        <li><a href="journal.html">Trade History</a></li>
-        <li><a href="journal.html">My Stats</a></li>
-    </ul>
-</div>
-
-<!-- MODELS -->
-<div class="dashboard-card">
-    <h2>Fx-Lab Model</h2>
-    <ul>
-        <li><a href="Entrymodel1.html">Entry Model 1</li>
-        <li>Entry Model 2</li>
-        
-    </ul>
-</div>
-
-</div>
-
-<script src="script.js"></script>
-
-<!-- Falling Candlesticks Background -->
-<canvas id="candleCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;"></canvas>
 
 <script>
+// ── Animated candlestick background ──
 const canvas = document.getElementById('candleCanvas');
 const ctx = canvas.getContext('2d');
+let W, H, candles = [];
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
-const candles = [];
-const CANDLE_COUNT = 25;
-
-function randomBetween(min, max) {
-    return Math.random() * (max - min) + min;
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight * 0.55;
+  initCandles();
 }
 
-function createCandle() {
-    const isBullish = Math.random() > 0.5;
-    return {
-        x: randomBetween(0, canvas.width),
-        y: randomBetween(-300, -50),
-        speed: randomBetween(1, 3),
-        bodyHeight: randomBetween(20, 60),
-        bodyWidth: randomBetween(10, 20),
-        wickTop: randomBetween(10, 25),
-        wickBottom: randomBetween(10, 25),
-        color: isBullish ? '#00ffcc' : '#ff6464',
-        opacity: randomBetween(0.2, 0.6),
-        rotation: randomBetween(-15, 15)
-    };
+function initCandles() {
+  candles = [];
+  const count = Math.floor(W / 22);
+  for (let i = 0; i < count; i++) {
+    candles.push(makeCandle(i * 22 + 11));
+  }
 }
 
-// Initialize candles
-for (let i = 0; i < CANDLE_COUNT; i++) {
-    const candle = createCandle();
-    candle.y = randomBetween(-canvas.height, canvas.height); // spread initially
-    candles.push(candle);
+function makeCandle(x) {
+  const bullish = Math.random() > 0.45;
+  const bodyH = 20 + Math.random() * 80;
+  const bodyY = 20 + Math.random() * (H - bodyH - 40);
+  return {
+    x, bullish,
+    bodyY, bodyH,
+    wickTop: bodyY - 5 - Math.random() * 25,
+    wickBot: bodyY + bodyH + 5 + Math.random() * 25,
+    speed: 0.1 + Math.random() * 0.2,
+    offset: Math.random() * Math.PI * 2,
+  };
 }
 
-function drawCandle(c) {
-    ctx.save();
-    ctx.globalAlpha = c.opacity;
-    ctx.translate(c.x, c.y);
-    ctx.rotate((c.rotation * Math.PI) / 180);
-
-    ctx.strokeStyle = c.color;
-    ctx.fillStyle = c.color;
+let t = 0;
+function drawCandles() {
+  ctx.clearRect(0, 0, W, H);
+  t += 0.008;
+  candles.forEach(c => {
+    const dy = Math.sin(t + c.offset) * 4;
+    const y = c.bodyY + dy;
+    const col = c.bullish ? '#00e676' : '#ff3d5a';
+    ctx.strokeStyle = col;
     ctx.lineWidth = 1.5;
-
-    // Top wick
     ctx.beginPath();
-    ctx.moveTo(0, -c.bodyHeight / 2 - c.wickTop);
-    ctx.lineTo(0, -c.bodyHeight / 2);
+    ctx.moveTo(c.x, c.wickTop + dy);
+    ctx.lineTo(c.x, c.wickBot + dy);
     ctx.stroke();
-
-    // Bottom wick
-    ctx.beginPath();
-    ctx.moveTo(0, c.bodyHeight / 2);
-    ctx.lineTo(0, c.bodyHeight / 2 + c.wickBottom);
-    ctx.stroke();
-
-    // Body
-    ctx.fillRect(-c.bodyWidth / 2, -c.bodyHeight / 2, c.bodyWidth, c.bodyHeight);
-
-    ctx.restore();
+    ctx.fillStyle = col;
+    ctx.fillRect(c.x - 5, y, 10, c.bodyH);
+  });
+  requestAnimationFrame(drawCandles);
 }
 
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+window.addEventListener('resize', resize);
+resize();
+drawCandles();
 
-    candles.forEach((c, i) => {
-        drawCandle(c);
-        c.y += c.speed;
+// ── Ticker ──
+const tickers = [
+  { sym:'EUR/USD', price:'1.0842', chg:'+0.12%', up:true },
+  { sym:'BTC/USD', price:'67,420', chg:'+2.34%', up:true },
+  { sym:'GBP/USD', price:'1.2731', chg:'-0.08%', up:false },
+  { sym:'GOLD',    price:'2,184', chg:'+0.45%', up:true },
+  { sym:'NAS100',  price:'18,246', chg:'+0.92%', up:true },
+  { sym:'USD/JPY', price:'151.24', chg:'-0.21%', up:false },
+  { sym:'OIL',     price:'81.34', chg:'-1.12%', up:false },
+  { sym:'SP500',   price:'5,203', chg:'+0.38%', up:true },
+];
 
-        // Reset when off screen
-        if (c.y > canvas.height + 100) {
-            candles[i] = createCandle();
-        }
-    });
-
-    requestAnimationFrame(animate);
+function buildTicker() {
+  const track = document.getElementById('ticker');
+  const doubled = [...tickers, ...tickers];
+  track.innerHTML = doubled.map(t =>
+    `<span class="tick-item">
+      <span class="sym">${t.sym}</span>
+      <span>${t.price}</span>
+      <span class="${t.up ? 'up' : 'dn'}">${t.chg}</span>
+    </span>`
+  ).join('');
 }
+buildTicker();
 
-animate();
+// ── Live clock ──
+function updateClock() {
+  const now = new Date();
+  const t = now.toTimeString().slice(0,8);
+  const d = now.toDateString().slice(0,10).toUpperCase();
+  document.querySelector('header > div:last-child > div:last-child').textContent =
+    `${d}  |  ${t}`;
+}
+setInterval(updateClock, 1000);
 </script>
 
 </body>
-
 </html>
-
-
-
-
-
-
