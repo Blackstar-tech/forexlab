@@ -782,6 +782,17 @@ function updateClock() {
     `${d}  |  ${t}`;
 }
 setInterval(updateClock, 1000);
+
+  // ── Tab switching ──
+document.querySelectorAll('.card').forEach(card => {
+  const items = card.querySelectorAll('.menu-item:not(.locked)');
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      items.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+});
 </script>
 
 </body>
