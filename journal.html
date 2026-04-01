@@ -349,25 +349,17 @@ body {
   font-size: 12px; font-weight: 600; text-decoration: none; background: var(--green-dim); transition: 0.3s; white-space: nowrap;
 }
 .chart-open-tv-btn:hover { background: var(--green); color: black; box-shadow: 0 0 18px var(--green); }
-
-/* NEW: Chart layout with right sidebar */
 .chart-layout {
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 16px;
-  align-items: start;
+  display: grid; grid-template-columns: 1fr 320px; gap: 16px; align-items: start;
 }
 .chart-main-col { display: flex; flex-direction: column; gap: 16px; }
 .chart-right-col { display: flex; flex-direction: column; gap: 14px; position: sticky; top: 80px; }
-
 .chart-main {
   background: rgba(0,0,0,0.7); border: 1px solid rgba(0,255,204,0.15);
   border-radius: 16px; overflow: hidden; position: relative; width: 100%;
 }
 .tv-widget-container { width: 100%; height: 620px; }
 .tv-widget-container iframe { width: 100% !important; height: 100% !important; border: none !important; }
-
-/* Right column cards */
 .chart-side-card {
   background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px; padding: 18px; position: relative; overflow: hidden;
@@ -379,15 +371,12 @@ body {
 .chart-side-card.goal-card::before { background: linear-gradient(180deg, #f5a623, #ff5555); }
 .chart-side-card.thoughts-card::before { background: linear-gradient(180deg, #b388ff, #64b5f6); }
 .chart-side-card.chat-card::before { background: var(--green); }
-
 .chart-side-title {
   font-size: 11px; font-weight: 700; color: var(--green); letter-spacing: 0.5px;
   margin-bottom: 12px; text-transform: uppercase; display: flex; align-items: center; gap: 6px;
 }
 .chart-side-title.orange { color: var(--orange); }
 .chart-side-title.purple { color: var(--purple); }
-
-/* ── DAILY GOAL CARD ── */
 .goal-input-wrap { position: relative; margin-bottom: 12px; }
 .goal-input-wrap textarea {
   width: 100%; background: var(--input-bg); border: 1px solid rgba(245,166,35,0.25);
@@ -396,7 +385,6 @@ body {
 }
 .goal-input-wrap textarea:focus { border-color: var(--orange); box-shadow: 0 0 10px rgba(245,166,35,0.15); }
 .goal-input-wrap textarea::placeholder { color: rgba(255,255,255,0.25); font-size: 12px; }
-
 .goal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
 .goal-tag-btn {
   padding: 5px 11px; border-radius: 20px; border: 1px solid rgba(245,166,35,0.25);
@@ -405,14 +393,12 @@ body {
 }
 .goal-tag-btn:hover { border-color: var(--orange); color: var(--orange); background: rgba(245,166,35,0.08); }
 .goal-tag-btn.selected { border-color: var(--orange); color: var(--orange); background: rgba(245,166,35,0.15); }
-
 .goal-save-btn {
   width: 100%; padding: 9px; border: 1.5px solid var(--orange); background: transparent;
   color: var(--orange); border-radius: 10px; cursor: pointer; font-size: 12px; font-weight: 700;
   font-family: 'Poppins', sans-serif; transition: 0.3s;
 }
 .goal-save-btn:hover { background: var(--orange); color: black; box-shadow: 0 0 14px rgba(245,166,35,0.4); }
-
 .goal-display {
   background: rgba(245,166,35,0.07); border: 1px solid rgba(245,166,35,0.2);
   border-radius: 10px; padding: 11px 13px; font-size: 13px; line-height: 1.6;
@@ -431,12 +417,9 @@ body {
   background: rgba(245,166,35,0.15); color: var(--orange); border: 1px solid rgba(245,166,35,0.3);
   margin-bottom: 7px;
 }
-
-/* ── THOUGHTS CARD ── */
 .thoughts-entries { display: flex; flex-direction: column; gap: 8px; max-height: 200px; overflow-y: auto; margin-bottom: 10px; }
 .thoughts-entries::-webkit-scrollbar { width: 4px; }
 .thoughts-entries::-webkit-scrollbar-thumb { background: rgba(179,136,255,0.3); border-radius: 10px; }
-
 .thought-entry {
   background: rgba(179,136,255,0.07); border: 1px solid rgba(179,136,255,0.18);
   border-radius: 9px; padding: 9px 11px; font-size: 12px; line-height: 1.55;
@@ -449,7 +432,6 @@ body {
   color: rgba(255,85,85,0.4); font-size: 13px; cursor: pointer; transition: 0.2s; line-height: 1;
 }
 .thought-del:hover { color: var(--red); }
-
 .thought-input-row { display: flex; gap: 7px; align-items: flex-end; }
 .thought-input-row textarea {
   flex: 1; background: var(--input-bg); border: 1px solid rgba(179,136,255,0.25);
@@ -465,8 +447,6 @@ body {
   height: 60px; display: flex; align-items: center; justify-content: center; min-width: 44px;
 }
 .thought-send-btn:hover { background: var(--purple); color: black; box-shadow: 0 0 12px rgba(179,136,255,0.4); }
-
-/* ── LIVE CHAT (compact) ── */
 .chart-note-area {
   width: 100%; background: var(--input-bg); border: 1px solid rgba(255,255,255,0.1);
   border-radius: 10px; padding: 10px 12px; color: white; font-size: 13px;
@@ -585,6 +565,311 @@ body {
 .tm-emotion-tag.negative { background: rgba(255,85,85,0.12); color: var(--red); border: 1px solid rgba(255,85,85,0.25); }
 .tm-emotion-tag.neutral  { background: rgba(245,166,35,0.12); color: var(--orange); border: 1px solid rgba(245,166,35,0.25); }
 
+/* ═══════════════════════════════════════════
+   INTELLIGENCE REPORT STYLES
+═══════════════════════════════════════════ */
+.intel-report { margin-top: 28px; }
+.intel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+.intel-title { display: flex; align-items: center; gap: 12px; }
+.intel-title-icon {
+  width: 42px; height: 42px; background: linear-gradient(135deg, rgba(0,255,204,0.15), rgba(100,181,246,0.1));
+  border: 1px solid rgba(0,255,204,0.3); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+  box-shadow: 0 0 16px rgba(0,255,204,0.1);
+}
+.intel-title-text h3 { font-size: 18px; font-weight: 700; color: white; margin-bottom: 2px; }
+.intel-title-text p { font-size: 11px; opacity: 0.4; letter-spacing: 0.5px; }
+.intel-refresh-btn {
+  padding: 8px 18px; border: 1.5px solid var(--green); background: var(--green-dim);
+  color: var(--green); border-radius: 20px; cursor: pointer; font-size: 12px; font-weight: 700;
+  font-family: 'Poppins', sans-serif; transition: 0.3s; display: flex; align-items: center; gap: 6px;
+}
+.intel-refresh-btn:hover { background: var(--green); color: black; box-shadow: 0 0 14px rgba(0,255,204,0.3); }
+.intel-refresh-btn.spinning .intel-spin { animation: spin 0.8s linear infinite; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.intel-score-row {
+  display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center;
+  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; padding: 24px 28px; margin-bottom: 20px; position: relative; overflow: hidden;
+}
+.intel-score-row::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+  background: linear-gradient(180deg, var(--green), var(--blue)); border-radius: 4px 0 0 4px;
+}
+.score-ring-wrap { position: relative; width: 110px; height: 110px; flex-shrink: 0; }
+.score-ring-wrap svg { transform: rotate(-90deg); }
+.score-ring-bg { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 8; }
+.score-ring-fill { fill: none; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1); }
+.score-ring-label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.score-number { font-size: 26px; font-weight: 700; line-height: 1; }
+.score-sub { font-size: 9px; opacity: 0.45; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 3px; }
+.intel-score-details { display: flex; flex-direction: column; gap: 10px; }
+.intel-score-title { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+.intel-score-subtitle { font-size: 12px; opacity: 0.5; margin-bottom: 8px; }
+.intel-mini-stats { display: flex; gap: 16px; flex-wrap: wrap; }
+.intel-mini-stat { text-align: center; }
+.intel-mini-val { font-size: 18px; font-weight: 700; }
+.intel-mini-lbl { font-size: 10px; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.5px; }
+.intel-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.intel-card {
+  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 18px; padding: 22px; position: relative; overflow: hidden;
+}
+.intel-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; border-radius: 3px 0 0 3px; }
+.intel-card.do-card::before { background: var(--green); }
+.intel-card.avoid-card::before { background: var(--red); }
+.intel-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.intel-card-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.do-card .intel-card-icon { background: rgba(0,255,204,0.12); border: 1px solid rgba(0,255,204,0.25); }
+.avoid-card .intel-card-icon { background: rgba(255,85,85,0.12); border: 1px solid rgba(255,85,85,0.25); }
+.intel-card-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.do-card .intel-card-label { color: var(--green); }
+.avoid-card .intel-card-label { color: var(--red); }
+.intel-insight {
+  display: flex; gap: 12px; align-items: flex-start; padding: 11px 13px; border-radius: 10px;
+  margin-bottom: 8px; transition: 0.2s;
+}
+.intel-insight:last-child { margin-bottom: 0; }
+.do-card .intel-insight { background: rgba(0,255,204,0.05); border: 1px solid rgba(0,255,204,0.1); }
+.avoid-card .intel-insight { background: rgba(255,85,85,0.05); border: 1px solid rgba(255,85,85,0.1); }
+.intel-insight:hover { transform: translateX(3px); }
+.insight-bullet { width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+.do-card .insight-bullet { background: rgba(0,255,204,0.15); color: var(--green); }
+.avoid-card .insight-bullet { background: rgba(255,85,85,0.15); color: var(--red); }
+.insight-text { font-size: 12px; line-height: 1.6; opacity: 0.85; }
+.insight-stat { display: inline-block; font-weight: 700; font-size: 11px; padding: 1px 6px; border-radius: 4px; margin-left: 4px; }
+.do-card .insight-stat { color: var(--green); background: rgba(0,255,204,0.1); }
+.avoid-card .insight-stat { color: var(--red); background: rgba(255,85,85,0.1); }
+.intel-patterns {
+  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 18px; padding: 22px; margin-bottom: 20px; position: relative; overflow: hidden;
+}
+.intel-patterns::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(180deg, var(--orange), var(--purple)); border-radius: 3px 0 0 3px; }
+.intel-patterns-title { font-size: 12px; font-weight: 700; color: var(--orange); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.intel-patterns-title::after { content: ''; flex: 1; height: 1px; background: rgba(245,166,35,0.15); }
+.patterns-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.pattern-tile { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 14px; text-align: center; transition: 0.25s; }
+.pattern-tile:hover { border-color: rgba(245,166,35,0.25); background: rgba(245,166,35,0.04); }
+.pattern-emoji { font-size: 22px; margin-bottom: 6px; }
+.pattern-label { font-size: 10px; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.pattern-value { font-size: 14px; font-weight: 700; }
+.pattern-verdict { font-size: 10px; font-weight: 700; margin-top: 4px; padding: 2px 8px; border-radius: 20px; display: inline-block; }
+.verdict-good { background: rgba(0,255,204,0.12); color: var(--green); }
+.verdict-warn { background: rgba(245,166,35,0.12); color: var(--orange); }
+.verdict-bad  { background: rgba(255,85,85,0.12); color: var(--red); }
+.intel-empty { text-align: center; padding: 50px 20px; background: var(--card-bg); border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; }
+.intel-empty-icon { font-size: 48px; margin-bottom: 14px; opacity: 0.5; }
+.intel-empty h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; opacity: 0.7; }
+.intel-empty p { font-size: 13px; opacity: 0.35; max-width: 300px; margin: 0 auto; line-height: 1.6; }
+
+/* ═══════════════════════════════════════════
+   MONTHLY P&L CALENDAR TAB
+═══════════════════════════════════════════ */
+.cal-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 24px; flex-wrap: wrap; gap: 12px;
+}
+.cal-nav { display: flex; align-items: center; gap: 14px; }
+.cal-nav-btn {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1.5px solid rgba(0,255,204,0.3); background: var(--green-dim);
+  color: var(--green); font-size: 18px; cursor: pointer; display: flex;
+  align-items: center; justify-content: center; transition: 0.3s; font-family: 'Poppins', sans-serif;
+}
+.cal-nav-btn:hover { background: var(--green); color: black; box-shadow: 0 0 14px var(--green); }
+.cal-month-label { font-size: 20px; font-weight: 700; color: white; min-width: 200px; text-align: center; }
+
+/* Summary strip */
+.cal-summary-strip {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 24px;
+}
+.cal-sum-card {
+  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; padding: 16px; text-align: center; position: relative; overflow: hidden;
+}
+.cal-sum-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; }
+.cal-sum-card.green-top::before { background: var(--green); }
+.cal-sum-card.red-top::before { background: var(--red); }
+.cal-sum-card.orange-top::before { background: var(--orange); }
+.cal-sum-card.purple-top::before { background: var(--purple); }
+.cal-sum-card.blue-top::before { background: var(--blue); }
+.cal-sum-val { font-size: 22px; font-weight: 700; margin-bottom: 3px; }
+.cal-sum-lbl { font-size: 10px; opacity: 0.45; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Progress bar */
+.cal-progress-wrap {
+  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; padding: 24px; margin-bottom: 24px; position: relative; overflow: hidden;
+}
+.cal-progress-wrap::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--green), var(--blue)); border-radius: 4px 0 0 4px; }
+.cal-progress-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 14px; }
+.cal-progress-title { font-size: 14px; font-weight: 700; color: white; }
+.cal-progress-pct { font-size: 32px; font-weight: 700; }
+.cal-progress-sub { font-size: 12px; opacity: 0.45; margin-top: 2px; }
+.cal-progress-bar-outer {
+  height: 14px; background: rgba(255,255,255,0.07); border-radius: 20px; overflow: hidden; margin-bottom: 10px;
+}
+.cal-progress-bar-inner {
+  height: 100%; border-radius: 20px; transition: width 1s cubic-bezier(0.4,0,0.2,1);
+  position: relative; overflow: hidden;
+}
+.cal-progress-bar-inner::after {
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 2s infinite;
+}
+@keyframes shimmer { to { left: 100%; } }
+.cal-progress-markers {
+  display: flex; justify-content: space-between; font-size: 10px; opacity: 0.35; margin-top: 6px;
+}
+.cal-target-row {
+  display: flex; gap: 12px; align-items: center; margin-top: 16px; flex-wrap: wrap;
+}
+.cal-target-input {
+  background: var(--input-bg); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; padding: 9px 14px; color: white; font-size: 14px;
+  font-family: 'Poppins', sans-serif; outline: none; width: 160px; transition: 0.3s;
+}
+.cal-target-input:focus { border-color: var(--green); box-shadow: 0 0 10px rgba(0,255,204,0.15); }
+.cal-target-btn {
+  padding: 9px 20px; border: 1.5px solid var(--green); background: transparent;
+  color: var(--green); border-radius: 10px; cursor: pointer; font-size: 13px; font-weight: 700;
+  font-family: 'Poppins', sans-serif; transition: 0.3s;
+}
+.cal-target-btn:hover { background: var(--green); color: black; }
+.cal-target-note { font-size: 12px; opacity: 0.45; }
+
+/* Calendar grid */
+.cal-grid-wrap {
+  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; overflow: hidden; margin-bottom: 24px;
+}
+.cal-dow-row {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  background: rgba(0,255,204,0.05); border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.cal-dow {
+  text-align: center; padding: 12px 0; font-size: 11px; font-weight: 700;
+  color: var(--green); letter-spacing: 1px; text-transform: uppercase;
+}
+.cal-days { display: grid; grid-template-columns: repeat(7, 1fr); }
+.cal-day {
+  border-right: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  min-height: 90px; padding: 10px; position: relative; cursor: pointer; transition: 0.2s;
+}
+.cal-day:nth-child(7n) { border-right: none; }
+.cal-day:hover { background: rgba(255,255,255,0.03); }
+.cal-day.today { background: rgba(0,255,204,0.04); }
+.cal-day.today .cal-day-num { color: var(--green); font-weight: 700; }
+.cal-day.empty { cursor: default; background: transparent; }
+.cal-day.empty:hover { background: transparent; }
+.cal-day.weekend .cal-day-num { opacity: 0.4; }
+.cal-day-num { font-size: 13px; font-weight: 600; opacity: 0.55; margin-bottom: 6px; }
+.cal-day.has-gain { background: rgba(0,255,204,0.06); border-color: rgba(0,255,204,0.1); }
+.cal-day.has-loss  { background: rgba(255,85,85,0.06); border-color: rgba(255,85,85,0.1); }
+.cal-day.has-zero  { background: rgba(255,165,0,0.04); border-color: rgba(255,165,0,0.08); }
+.cal-day-pnl {
+  font-size: 13px; font-weight: 700; margin-bottom: 3px; line-height: 1.2;
+}
+.cal-day-pnl.pos { color: var(--green); }
+.cal-day-pnl.neg { color: var(--red); }
+.cal-day-pnl.zero { color: var(--orange); }
+.cal-day-note { font-size: 10px; opacity: 0.45; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cal-day-edit-btn {
+  position: absolute; bottom: 6px; right: 6px; opacity: 0; transition: 0.2s;
+  background: rgba(0,255,204,0.12); border: 1px solid rgba(0,255,204,0.25);
+  color: var(--green); border-radius: 6px; padding: 2px 7px; font-size: 10px;
+  font-weight: 700; cursor: pointer; font-family: 'Poppins', sans-serif;
+}
+.cal-day:hover .cal-day-edit-btn { opacity: 1; }
+.cal-day.today .cal-day-indicator {
+  position: absolute; top: 8px; right: 8px; width: 7px; height: 7px;
+  border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green);
+}
+
+/* Day entry modal */
+.day-entry-modal-overlay {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 600;
+  align-items: center; justify-content: center; backdrop-filter: blur(6px); padding: 20px;
+}
+.day-entry-modal-overlay.open { display: flex; }
+.day-entry-modal {
+  background: #0a0f23; border: 1px solid rgba(0,255,204,0.25); border-radius: 22px;
+  width: 100%; max-width: 480px; padding: 32px;
+  box-shadow: 0 0 50px rgba(0,255,204,0.15), 0 30px 80px rgba(0,0,0,0.8);
+  animation: modalSlideIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.dem-title { font-size: 18px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+.dem-date  { font-size: 12px; opacity: 0.45; margin-bottom: 24px; }
+.dem-field { margin-bottom: 16px; }
+.dem-field label { font-size: 11px; opacity: 0.6; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; display: block; margin-bottom: 7px; }
+.dem-field input, .dem-field textarea, .dem-field select {
+  width: 100%; background: var(--input-bg); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; padding: 11px 14px; color: white; font-size: 14px;
+  font-family: 'Poppins', sans-serif; outline: none; transition: 0.3s;
+}
+.dem-field input:focus, .dem-field textarea:focus {
+  border-color: var(--green); box-shadow: 0 0 12px rgba(0,255,204,0.15);
+}
+.dem-field textarea { resize: vertical; min-height: 70px; }
+.dem-mood-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.dem-mood-btn {
+  padding: 7px 13px; border-radius: 20px; border: 1.5px solid rgba(255,255,255,0.12);
+  background: transparent; color: rgba(255,255,255,0.5); cursor: pointer;
+  font-size: 12px; font-weight: 600; transition: 0.3s; font-family: 'Poppins', sans-serif;
+}
+.dem-mood-btn.active { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.dem-actions { display: flex; gap: 10px; margin-top: 24px; }
+.dem-save-btn {
+  flex: 1; padding: 12px; border: 2px solid var(--green); background: transparent;
+  color: var(--green); border-radius: 12px; cursor: pointer; font-size: 14px;
+  font-weight: 700; transition: 0.3s; font-family: 'Poppins', sans-serif;
+}
+.dem-save-btn:hover { background: var(--green); color: black; box-shadow: 0 0 20px var(--green); }
+.dem-clear-btn {
+  padding: 12px 20px; border: 1.5px solid rgba(255,85,85,0.3); background: transparent;
+  color: #ff8080; border-radius: 12px; cursor: pointer; font-size: 14px;
+  font-weight: 700; transition: 0.3s; font-family: 'Poppins', sans-serif;
+}
+.dem-clear-btn:hover { background: rgba(255,85,85,0.15); }
+.dem-cancel-btn {
+  padding: 12px 20px; border: 1.5px solid rgba(255,255,255,0.12); background: transparent;
+  color: rgba(255,255,255,0.5); border-radius: 12px; cursor: pointer; font-size: 14px;
+  font-weight: 700; transition: 0.3s; font-family: 'Poppins', sans-serif;
+}
+.dem-cancel-btn:hover { border-color: rgba(255,255,255,0.3); color: white; }
+
+/* Heatmap legend */
+.cal-legend {
+  display: flex; gap: 20px; align-items: center; justify-content: flex-end;
+  font-size: 11px; opacity: 0.55; flex-wrap: wrap;
+}
+.cal-legend-item { display: flex; align-items: center; gap: 6px; }
+.cal-legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+
+/* Recent days list */
+.cal-recent-card {
+  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; padding: 24px; position: relative; overflow: hidden;
+}
+.cal-recent-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--purple), var(--blue)); border-radius: 4px 0 0 4px; }
+.cal-recent-title { font-size: 13px; font-weight: 700; color: var(--purple); margin-bottom: 16px; letter-spacing: 0.5px; }
+.cal-recent-entry {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 13px;
+}
+.cal-recent-entry:last-child { border-bottom: none; }
+.cal-recent-left { display: flex; flex-direction: column; gap: 2px; }
+.cal-recent-date { font-weight: 600; }
+.cal-recent-note { font-size: 11px; opacity: 0.4; }
+.cal-recent-right { display: flex; align-items: center; gap: 10px; }
+.cal-recent-pnl { font-size: 15px; font-weight: 700; }
+.cal-recent-pnl.pos { color: var(--green); }
+.cal-recent-pnl.neg { color: var(--red); }
+.cal-recent-pnl.zero { color: var(--orange); }
+.cal-no-data { text-align: center; padding: 30px 0; opacity: 0.3; font-size: 13px; }
+
 @media(max-width:768px) {
   .navbar { padding:15px 20px; }
   .form-grid, .form-grid.three { grid-template-columns:1fr; }
@@ -595,10 +880,19 @@ body {
   .screenshot-previews { grid-template-columns:1fr 1fr; }
   .chart-layout { grid-template-columns: 1fr; }
   .chart-right-col { position: static; }
+  .cal-summary-strip { grid-template-columns: repeat(2, 1fr); }
+  .cal-day { min-height: 64px; padding: 7px; }
+  .intel-two-col { grid-template-columns: 1fr; }
+  .patterns-grid { grid-template-columns: 1fr 1fr; }
+  .intel-score-row { grid-template-columns: 1fr; text-align: center; }
+  .intel-mini-stats { justify-content: center; }
 }
 @media(max-width:480px) {
   .stats-grid { grid-template-columns:1fr; }
   .screenshot-previews { grid-template-columns:1fr; }
+  .cal-summary-strip { grid-template-columns: 1fr 1fr; }
+  .cal-day { min-height: 54px; padding: 5px; }
+  .cal-day-pnl { font-size: 11px; }
 }
 @media(max-width: 900px) {
   .tv-widget-container { height: 500px; }
@@ -608,245 +902,6 @@ body {
   .chart-pair-btns { gap: 4px; }
   .chart-pair-btn { padding: 5px 10px; font-size: 11px; }
   .tv-widget-container { height: 350px; }
-}
-
-/* ═══════════════════════════════════════════
-   TRADER INTELLIGENCE REPORT
-═══════════════════════════════════════════ */
-.intel-report {
-  margin-top: 28px;
-}
-.intel-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.intel-title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.intel-title-icon {
-  width: 42px; height: 42px;
-  background: linear-gradient(135deg, rgba(0,255,204,0.15), rgba(100,181,246,0.1));
-  border: 1px solid rgba(0,255,204,0.3);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px;
-  box-shadow: 0 0 16px rgba(0,255,204,0.1);
-}
-.intel-title-text h3 {
-  font-size: 18px;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 2px;
-}
-.intel-title-text p {
-  font-size: 11px;
-  opacity: 0.4;
-  letter-spacing: 0.5px;
-}
-.intel-refresh-btn {
-  padding: 8px 18px;
-  border: 1.5px solid var(--green);
-  background: var(--green-dim);
-  color: var(--green);
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 700;
-  font-family: 'Poppins', sans-serif;
-  transition: 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.intel-refresh-btn:hover {
-  background: var(--green);
-  color: black;
-  box-shadow: 0 0 14px rgba(0,255,204,0.3);
-}
-.intel-refresh-btn.spinning .intel-spin { animation: spin 0.8s linear infinite; }
-@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-/* Score ring */
-.intel-score-row {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 20px;
-  align-items: center;
-  background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 20px;
-  padding: 24px 28px;
-  margin-bottom: 20px;
-  position: relative;
-  overflow: hidden;
-}
-.intel-score-row::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 4px; height: 100%;
-  background: linear-gradient(180deg, var(--green), var(--blue));
-  border-radius: 4px 0 0 4px;
-}
-.score-ring-wrap {
-  position: relative;
-  width: 110px; height: 110px;
-  flex-shrink: 0;
-}
-.score-ring-wrap svg { transform: rotate(-90deg); }
-.score-ring-bg { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 8; }
-.score-ring-fill {
-  fill: none; stroke-width: 8; stroke-linecap: round;
-  transition: stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1);
-}
-.score-ring-label {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.score-number {
-  font-size: 26px;
-  font-weight: 700;
-  line-height: 1;
-}
-.score-sub { font-size: 9px; opacity: 0.45; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 3px; }
-
-.intel-score-details { display: flex; flex-direction: column; gap: 10px; }
-.intel-score-title { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
-.intel-score-subtitle { font-size: 12px; opacity: 0.5; margin-bottom: 8px; }
-.intel-mini-stats { display: flex; gap: 16px; flex-wrap: wrap; }
-.intel-mini-stat { text-align: center; }
-.intel-mini-val { font-size: 18px; font-weight: 700; }
-.intel-mini-lbl { font-size: 10px; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.5px; }
-
-/* Do / Avoid columns */
-.intel-two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-.intel-card {
-  background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 18px;
-  padding: 22px;
-  position: relative;
-  overflow: hidden;
-}
-.intel-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0;
-  width: 3px; height: 100%;
-  border-radius: 3px 0 0 3px;
-}
-.intel-card.do-card::before { background: var(--green); }
-.intel-card.avoid-card::before { background: var(--red); }
-
-.intel-card-header {
-  display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
-}
-.intel-card-icon {
-  width: 36px; height: 36px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
-}
-.do-card .intel-card-icon { background: rgba(0,255,204,0.12); border: 1px solid rgba(0,255,204,0.25); }
-.avoid-card .intel-card-icon { background: rgba(255,85,85,0.12); border: 1px solid rgba(255,85,85,0.25); }
-.intel-card-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-.do-card .intel-card-label { color: var(--green); }
-.avoid-card .intel-card-label { color: var(--red); }
-
-.intel-insight {
-  display: flex; gap: 12px; align-items: flex-start;
-  padding: 11px 13px; border-radius: 10px;
-  margin-bottom: 8px; transition: 0.2s;
-}
-.intel-insight:last-child { margin-bottom: 0; }
-.do-card .intel-insight { background: rgba(0,255,204,0.05); border: 1px solid rgba(0,255,204,0.1); }
-.avoid-card .intel-insight { background: rgba(255,85,85,0.05); border: 1px solid rgba(255,85,85,0.1); }
-.intel-insight:hover { transform: translateX(3px); }
-.insight-bullet {
-  width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0; margin-top: 1px;
-  display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;
-}
-.do-card .insight-bullet { background: rgba(0,255,204,0.15); color: var(--green); }
-.avoid-card .insight-bullet { background: rgba(255,85,85,0.15); color: var(--red); }
-.insight-text { font-size: 12px; line-height: 1.6; opacity: 0.85; }
-.insight-stat {
-  display: inline-block; font-weight: 700; font-size: 11px;
-  padding: 1px 6px; border-radius: 4px; margin-left: 4px;
-}
-.do-card .insight-stat { color: var(--green); background: rgba(0,255,204,0.1); }
-.avoid-card .insight-stat { color: var(--red); background: rgba(255,85,85,0.1); }
-
-/* Pattern row */
-.intel-patterns {
-  background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 18px;
-  padding: 22px;
-  margin-bottom: 20px;
-  position: relative; overflow: hidden;
-}
-.intel-patterns::before {
-  content: ''; position: absolute; top: 0; left: 0;
-  width: 3px; height: 100%; background: linear-gradient(180deg, var(--orange), var(--purple));
-  border-radius: 3px 0 0 3px;
-}
-.intel-patterns-title {
-  font-size: 12px; font-weight: 700; color: var(--orange); letter-spacing: 1px;
-  text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
-}
-.intel-patterns-title::after { content: ''; flex: 1; height: 1px; background: rgba(245,166,35,0.15); }
-.patterns-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-.pattern-tile {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 12px;
-  padding: 14px;
-  text-align: center;
-  transition: 0.25s;
-}
-.pattern-tile:hover { border-color: rgba(245,166,35,0.25); background: rgba(245,166,35,0.04); }
-.pattern-emoji { font-size: 22px; margin-bottom: 6px; }
-.pattern-label { font-size: 10px; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-.pattern-value { font-size: 14px; font-weight: 700; }
-.pattern-verdict {
-  font-size: 10px; font-weight: 700; margin-top: 4px;
-  padding: 2px 8px; border-radius: 20px; display: inline-block;
-}
-.verdict-good { background: rgba(0,255,204,0.12); color: var(--green); }
-.verdict-warn { background: rgba(245,166,35,0.12); color: var(--orange); }
-.verdict-bad  { background: rgba(255,85,85,0.12); color: var(--red); }
-
-/* No-data state */
-.intel-empty {
-  text-align: center; padding: 50px 20px;
-  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 20px;
-}
-.intel-empty-icon { font-size: 48px; margin-bottom: 14px; opacity: 0.5; }
-.intel-empty h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; opacity: 0.7; }
-.intel-empty p { font-size: 13px; opacity: 0.35; max-width: 300px; margin: 0 auto; line-height: 1.6; }
-
-@media(max-width: 700px) {
-  .intel-two-col { grid-template-columns: 1fr; }
-  .patterns-grid { grid-template-columns: 1fr 1fr; }
-  .intel-score-row { grid-template-columns: 1fr; text-align: center; }
-  .intel-mini-stats { justify-content: center; }
 }
 </style>
 </head>
@@ -871,10 +926,11 @@ body {
 
 <!-- TABS -->
 <div class="tabs">
-  <button class="tab-btn active" onclick="switchTab('log')">📝 Log a Trade</button>
-  <button class="tab-btn" onclick="switchTab('history')">📋 Trade History</button>
-  <button class="tab-btn" onclick="switchTab('stats')">📊 My Stats</button>
-  <button class="tab-btn" onclick="switchTab('chart')" id="chartTabBtn">📈 Live Chart</button>
+  <button class="tab-btn active" onclick="switchTab('log', this)">📝 Log a Trade</button>
+  <button class="tab-btn" onclick="switchTab('history', this)">📋 Trade History</button>
+  <button class="tab-btn" onclick="switchTab('stats', this)">📊 My Stats</button>
+  <button class="tab-btn" onclick="switchTab('chart', this)">📈 Live Chart</button>
+  <button class="tab-btn" onclick="switchTab('calendar', this)">📅 Monthly P&amp;L</button>
 </div>
 
 <div class="content">
@@ -1189,7 +1245,6 @@ body {
         <textarea id="extraNotes" placeholder="Anything else about this trade you want to remember..."></textarea>
       </div>
     </div>
-
     <button class="submit-btn" onclick="saveTrade()">💾 Save Trade to Journal</button>
   </div>
 
@@ -1202,12 +1257,7 @@ body {
       </div>
       <div class="trades-table-wrap">
         <table class="trades-table" id="tradesTable">
-          <thead>
-            <tr>
-              <th>Date</th><th>Pair</th><th>Direction</th>
-              <th>R:R</th><th>Result</th><th>Rating</th><th>Screenshots</th><th></th>
-            </tr>
-          </thead>
+          <thead><tr><th>Date</th><th>Pair</th><th>Direction</th><th>R:R</th><th>Result</th><th>Rating</th><th>Screenshots</th><th></th></tr></thead>
           <tbody id="tradesBody"></tbody>
         </table>
       </div>
@@ -1227,22 +1277,13 @@ body {
     <div class="form-card"><h2>💱 Most Traded Pairs</h2><div id="pairBreakdown"><div class="empty-state"><div>📊</div><p>Log some trades to see your pair breakdown</p></div></div></div>
     <div class="form-card"><h2>⏱ Best Session Performance</h2><div id="sessionBreakdown"><div class="empty-state"><div>🕐</div><p>Log some trades to see session stats</p></div></div></div>
     <div class="form-card"><h2>🧠 Psychology Insights</h2><div id="psychInsights"><div class="empty-state"><div>🧠</div><p>Log some trades to see your mindset patterns</p></div></div></div>
-
-    <!-- ═══════════════════════════════════════
-         TRADER INTELLIGENCE REPORT
-    ═══════════════════════════════════════ -->
     <div class="intel-report">
       <div class="intel-header">
         <div class="intel-title">
           <div class="intel-title-icon">🤖</div>
-          <div class="intel-title-text">
-            <h3>Trader Intelligence Report</h3>
-            <p>PERSONALISED INSIGHTS FROM YOUR TRADE DATA</p>
-          </div>
+          <div class="intel-title-text"><h3>Trader Intelligence Report</h3><p>PERSONALISED INSIGHTS FROM YOUR TRADE DATA</p></div>
         </div>
-        <button class="intel-refresh-btn" onclick="generateIntelReport()">
-          <span class="intel-spin">🔄</span> Analyse My Trades
-        </button>
+        <button class="intel-refresh-btn" onclick="generateIntelReport()"><span class="intel-spin">🔄</span> Analyse My Trades</button>
       </div>
       <div id="intelContent">
         <div class="intel-empty">
@@ -1284,30 +1325,18 @@ body {
         </div>
       </div>
       <div class="chart-toolbar-right">
-        <a href="https://www.tradingview.com/chart/" target="_blank" class="chart-open-tv-btn">
-          🔗 Open Full TradingView
-        </a>
+        <a href="https://www.tradingview.com/chart/" target="_blank" class="chart-open-tv-btn">🔗 Open Full TradingView</a>
       </div>
     </div>
-
-    <!-- CHART + RIGHT SIDEBAR LAYOUT -->
     <div class="chart-layout">
-
-      <!-- LEFT: Chart -->
       <div class="chart-main-col">
         <div class="chart-main">
           <div id="tradingview_chart" class="tv-widget-container"></div>
         </div>
       </div>
-
-      <!-- RIGHT: Goal + Thoughts + Chat -->
       <div class="chart-right-col">
-
-        <!-- ① DAILY GOAL CARD -->
         <div class="chart-side-card goal-card">
           <div class="chart-side-title orange">🎯 Goal of the Day</div>
-
-          <!-- Goal type quick-select -->
           <div class="goal-tags" id="goalTags">
             <button class="goal-tag-btn" onclick="selectGoalType(this, 'Discipline')">🧘 Discipline</button>
             <button class="goal-tag-btn" onclick="selectGoalType(this, 'Max 2 Trades')">✌️ Max 2 Trades</button>
@@ -1316,38 +1345,28 @@ body {
             <button class="goal-tag-btn" onclick="selectGoalType(this, 'Follow Plan')">📋 Follow Plan</button>
             <button class="goal-tag-btn" onclick="selectGoalType(this, 'Risk Control')">🛡️ Risk Control</button>
           </div>
-
-          <!-- Goal text input (shown when editing) -->
           <div class="goal-input-wrap" id="goalInputWrap">
-            <textarea id="goalText" placeholder="Write your main goal for today's session... e.g. 'Only take A+ setups. Max 1% risk per trade. Walk away if I lose 2 trades.'"></textarea>
+            <textarea id="goalText" placeholder="Write your main goal for today's session..."></textarea>
           </div>
           <button class="goal-save-btn" id="goalSaveBtn" onclick="saveGoal()">💾 Set Today's Goal</button>
-
-          <!-- Goal display (shown when saved) -->
           <div class="goal-display" id="goalDisplay">
             <div class="goal-type-badge" id="goalTypeBadge" style="display:none;"></div>
             <div id="goalDisplayText"></div>
             <button class="goal-edit-btn" onclick="editGoal()">✏️ Edit</button>
           </div>
         </div>
-
-        <!-- ② TRADING THOUGHTS NOTEPAD -->
         <div class="chart-side-card thoughts-card">
           <div class="chart-side-title purple">💭 Trading Thoughts</div>
           <div style="font-size:11px; opacity:0.4; margin-bottom:10px; margin-top:-6px;">Jot observations as you watch the market</div>
-
           <div class="thoughts-entries" id="thoughtsEntries">
             <div style="text-align:center; padding:18px 0; font-size:12px; opacity:0.3;" id="thoughtsEmpty">No thoughts yet — start observing...</div>
           </div>
-
           <div class="thought-input-row">
             <textarea id="thoughtInput" placeholder="e.g. DXY looking weak, watching for GBP long..." onkeydown="thoughtKeydown(event)"></textarea>
             <button class="thought-send-btn" onclick="addThought()" title="Add thought (Ctrl+Enter)">✍️</button>
           </div>
           <div style="font-size:10px; opacity:0.28; text-align:right; margin-top:5px;">Ctrl+Enter to add</div>
         </div>
-
-        <!-- ③ LIVE CHAT (compact) -->
         <div class="chart-side-card chat-card">
           <div class="chart-side-title">💬 Live Trading Chat</div>
           <div id="liveChat" style="height:160px; overflow-y:auto; background:rgba(0,0,0,0.3); border-radius:10px; padding:10px; margin-bottom:10px; display:flex; flex-direction:column; gap:6px;">
@@ -1358,12 +1377,97 @@ body {
             <button onclick="sendChatMessage()" style="padding:10px 16px; background:var(--green-dim); border:1px solid var(--green); color:var(--green); border-radius:8px; cursor:pointer; font-size:12px; font-weight:600; font-family:'Poppins',sans-serif; transition:0.3s; white-space:nowrap;" onmouseover="this.style.background='var(--green)'; this.style.color='black';" onmouseout="this.style.background='var(--green-dim)'; this.style.color='var(--green)';">Send</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-      </div><!-- /chart-right-col -->
-    </div><!-- /chart-layout -->
-  </div><!-- /tab-chart -->
+  <!-- TAB 5: MONTHLY P&L CALENDAR -->
+  <div class="tab-panel" id="tab-calendar">
 
-</div>
+    <!-- Header -->
+    <div class="cal-header">
+      <div class="cal-nav">
+        <button class="cal-nav-btn" onclick="calChangeMonth(-1)">‹</button>
+        <div class="cal-month-label" id="calMonthLabel">—</div>
+        <button class="cal-nav-btn" onclick="calChangeMonth(1)">›</button>
+      </div>
+      <div class="cal-legend">
+        <div class="cal-legend-item"><div class="cal-legend-dot" style="background:rgba(0,255,204,0.5);"></div> Profit day</div>
+        <div class="cal-legend-item"><div class="cal-legend-dot" style="background:rgba(255,85,85,0.5);"></div> Loss day</div>
+        <div class="cal-legend-item"><div class="cal-legend-dot" style="background:rgba(255,165,0,0.5);"></div> Breakeven</div>
+        <div class="cal-legend-item"><div class="cal-legend-dot" style="background:rgba(255,255,255,0.12);"></div> No trade</div>
+      </div>
+    </div>
+
+    <!-- Summary strip -->
+    <div class="cal-summary-strip">
+      <div class="cal-sum-card green-top">
+        <div class="cal-sum-val" id="calTotalPnl" style="color:var(--green);">$0.00</div>
+        <div class="cal-sum-lbl">Month P&L</div>
+      </div>
+      <div class="cal-sum-card green-top">
+        <div class="cal-sum-val" id="calWinDays" style="color:var(--green);">0</div>
+        <div class="cal-sum-lbl">Profit Days</div>
+      </div>
+      <div class="cal-sum-card red-top">
+        <div class="cal-sum-val" id="calLossDays" style="color:var(--red);">0</div>
+        <div class="cal-sum-lbl">Loss Days</div>
+      </div>
+      <div class="cal-sum-card orange-top">
+        <div class="cal-sum-val" id="calBestDay" style="color:var(--orange);">—</div>
+        <div class="cal-sum-lbl">Best Day</div>
+      </div>
+      <div class="cal-sum-card blue-top">
+        <div class="cal-sum-val" id="calWorstDay" style="color:var(--blue);">—</div>
+        <div class="cal-sum-lbl">Worst Day</div>
+      </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="cal-progress-wrap">
+      <div class="cal-progress-top">
+        <div>
+          <div class="cal-progress-title">📈 Monthly Target Progress</div>
+          <div class="cal-progress-sub" id="calProgressSub">Set a monthly profit target below to track your progress</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="cal-progress-pct" id="calProgressPct" style="color:var(--green);">0%</div>
+          <div style="font-size:11px; opacity:0.4;" id="calProgressAmt">$0 / $0 target</div>
+        </div>
+      </div>
+      <div class="cal-progress-bar-outer">
+        <div class="cal-progress-bar-inner" id="calProgressBar" style="width:0%; background: linear-gradient(90deg, #00ffcc, #64b5f6);"></div>
+      </div>
+      <div class="cal-progress-markers">
+        <span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span>
+      </div>
+      <div class="cal-target-row">
+        <span style="font-size:12px; opacity:0.5; font-weight:600;">Monthly Target ($):</span>
+        <input type="number" class="cal-target-input" id="calTargetInput" placeholder="e.g. 500" step="10" min="0">
+        <button class="cal-target-btn" onclick="saveCalTarget()">Set Target</button>
+        <span class="cal-target-note" id="calTargetNote"></span>
+      </div>
+    </div>
+
+    <!-- Calendar grid -->
+    <div class="cal-grid-wrap">
+      <div class="cal-dow-row">
+        <div class="cal-dow">Sun</div><div class="cal-dow">Mon</div><div class="cal-dow">Tue</div>
+        <div class="cal-dow">Wed</div><div class="cal-dow">Thu</div><div class="cal-dow">Fri</div>
+        <div class="cal-dow">Sat</div>
+      </div>
+      <div class="cal-days" id="calDaysGrid"></div>
+    </div>
+
+    <!-- Recent entries list -->
+    <div class="cal-recent-card">
+      <div class="cal-recent-title">📋 Daily P&L Log — <span id="calRecentMonthLabel"></span></div>
+      <div id="calRecentList"></div>
+    </div>
+
+  </div><!-- /tab-calendar -->
+
+</div><!-- /content -->
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
@@ -1412,6 +1516,55 @@ body {
   </div>
 </div>
 
+<!-- DAY ENTRY MODAL -->
+<div class="day-entry-modal-overlay" id="dayEntryOverlay" onclick="closeDayModal(event)">
+  <div class="day-entry-modal" onclick="event.stopPropagation()">
+    <div class="dem-title" id="demTitle">Log Day P&L</div>
+    <div class="dem-date" id="demDateLabel">—</div>
+
+    <div class="dem-field">
+      <label>Daily P&L ($) — positive = profit, negative = loss</label>
+      <input type="number" id="demPnl" step="0.01" placeholder="e.g. 127.50 or -45.00">
+    </div>
+
+    <div class="dem-field">
+      <label>Number of Trades Taken</label>
+      <input type="number" id="demTrades" step="1" min="0" placeholder="e.g. 3">
+    </div>
+
+    <div class="dem-field">
+      <label>Account Balance After Session ($) <span style="opacity:0.4;">(optional)</span></label>
+      <input type="number" id="demBalance" step="0.01" placeholder="e.g. 2450.00">
+    </div>
+
+    <div class="dem-field">
+      <label>Session Mood</label>
+      <div class="dem-mood-row" id="demMoodRow">
+        <button class="dem-mood-btn" onclick="setDemMood(this)">😌 Calm</button>
+        <button class="dem-mood-btn" onclick="setDemMood(this)">💪 Confident</button>
+        <button class="dem-mood-btn" onclick="setDemMood(this)">😤 Frustrated</button>
+        <button class="dem-mood-btn" onclick="setDemMood(this)">😰 Anxious</button>
+        <button class="dem-mood-btn" onclick="setDemMood(this)">😶 Neutral</button>
+      </div>
+      <input type="hidden" id="demMood">
+    </div>
+
+    <div class="dem-field">
+      <label>Notes about today's session</label>
+      <textarea id="demNotes" placeholder="What happened today? Any key observations, wins, mistakes..."></textarea>
+    </div>
+
+    <div class="dem-actions">
+      <button class="dem-save-btn" onclick="saveDayEntry()">💾 Save Day</button>
+      <button class="dem-clear-btn" onclick="clearDayEntry()">🗑️ Clear</button>
+      <button class="dem-cancel-btn" onclick="closeDayModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Falling Candlesticks Background -->
+<canvas id="candleCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;"></canvas>
+
 <script>
 // ── AUTH GUARD ──
 if (!localStorage.getItem("flLoggedIn")) window.location.href = "login.html";
@@ -1419,9 +1572,9 @@ const user = JSON.parse(localStorage.getItem("flCurrentUser") || "{}");
 document.getElementById("navUser").textContent = user.username || "";
 
 // ── SET TODAY ──
-const now = new Date();
-document.getElementById("tradeDate").value = now.toISOString().split("T")[0];
-document.getElementById("tradeTime").value = now.toTimeString().slice(0,5);
+const nowInit = new Date();
+document.getElementById("tradeDate").value = nowInit.toISOString().split("T")[0];
+document.getElementById("tradeTime").value = nowInit.toTimeString().slice(0,5);
 
 // ── STATE ──
 let direction = "", result = "", rating = 0;
@@ -1431,63 +1584,58 @@ let duringEmotions = new Set();
 let slMove = "", earlyClose = "", added = "", obsess = "";
 
 // ── TABS ──
-function switchTab(name) {
+function switchTab(name, btn) {
   document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
   document.getElementById("tab-" + name).classList.add("active");
-  event.target.classList.add("active");
+  if (btn) btn.classList.add("active");
   if (name === "history") renderHistory();
   if (name === "stats") renderStats();
   if (name === "chart") { initChartTab(); loadGoal(); loadThoughts(); }
+  if (name === "calendar") renderCalendar();
 }
 
 // ── TRADINGVIEW CHART ──
 let tvWidget = null, tvSymbol = "FX:EURUSD", tvInterval = "60", chartInited = false;
-
 function initChartTab() {
   if (chartInited) return;
   chartInited = true;
   if (typeof TradingView === "undefined") {
-    const script = document.createElement("script");
-    script.src = "https://s3.tradingview.com/tv.js";
-    script.onload = buildTVWidget;
-    document.head.appendChild(script);
-  } else { buildTVWidget(); }
+    const s = document.createElement("script");
+    s.src = "https://s3.tradingview.com/tv.js";
+    s.onload = buildTVWidget;
+    document.head.appendChild(s);
+  } else buildTVWidget();
 }
-
 function buildTVWidget() {
   document.getElementById("tradingview_chart").innerHTML = "";
   tvWidget = new TradingView.widget({
     autosize: true, symbol: tvSymbol, interval: tvInterval,
     timezone: "Etc/UTC", theme: "dark", style: "1", locale: "en",
     toolbar_bg: "#0a0f23", enable_publishing: false, allow_symbol_change: true,
-    container_id: "tradingview_chart", hide_side_toolbar: false, studies: [],
+    container_id: "tradingview_chart", hide_side_toolbar: false,
     disabled_features: ["header_indicators","create_volume_indicator_by_default","study_templates","header_compare"],
-    enabled_features: [],
     overrides: {
-      "paneProperties.background": "#0a0f23", "paneProperties.backgroundType": "solid",
-      "scalesProperties.textColor": "#00ffcc", "gridProperties.color": "rgba(0,255,204,0.05)",
-      "mainSeriesProperties.candleStyle.upColor": "#00ffcc", "mainSeriesProperties.candleStyle.downColor": "#ff5555",
-      "mainSeriesProperties.candleStyle.wickUpColor": "#00ffcc", "mainSeriesProperties.candleStyle.wickDownColor": "#ff5555",
-      "mainSeriesProperties.candleStyle.borderUpColor": "#00ffcc", "mainSeriesProperties.candleStyle.borderDownColor": "#ff5555",
+      "paneProperties.background": "#0a0f23","paneProperties.backgroundType": "solid",
+      "scalesProperties.textColor": "#00ffcc","gridProperties.color": "rgba(0,255,204,0.05)",
+      "mainSeriesProperties.candleStyle.upColor": "#00ffcc","mainSeriesProperties.candleStyle.downColor": "#ff5555",
+      "mainSeriesProperties.candleStyle.wickUpColor": "#00ffcc","mainSeriesProperties.candleStyle.wickDownColor": "#ff5555",
+      "mainSeriesProperties.candleStyle.borderUpColor": "#00ffcc","mainSeriesProperties.candleStyle.borderDownColor": "#ff5555",
     },
     loading_screen: { backgroundColor: "#0a0f23", foregroundColor: "#00ffcc" },
   });
 }
-
 function changeChartSymbol(symbol, btn) {
   tvSymbol = symbol;
   document.querySelectorAll("#chartPairBtns .chart-pair-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
-  chartInited = false;
-  buildTVWidget();
+  chartInited = false; buildTVWidget();
 }
 function changeChartInterval(interval, btn) {
   tvInterval = interval;
   document.querySelectorAll("#chartTFBtns .chart-pair-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
-  chartInited = false;
-  buildTVWidget();
+  chartInited = false; buildTVWidget();
 }
 
 // ── LIVE CHAT ──
@@ -1496,27 +1644,21 @@ function sendChatMessage() {
   const msg = input.value.trim();
   if (!msg) return;
   const chat = document.getElementById("liveChat");
-  const msgEl = document.createElement("div");
-  msgEl.style.cssText = "padding:7px 10px; background:rgba(0,255,204,0.1); border:1px solid rgba(0,255,204,0.2); border-radius:8px; font-size:11px; word-wrap:break-word;";
-  msgEl.innerHTML = `<div style="color:var(--green); font-weight:600; font-size:10px;">You · ${new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</div><div style="margin-top:3px; opacity:0.9;">${msg}</div>`;
-  chat.appendChild(msgEl);
+  const el = document.createElement("div");
+  el.style.cssText = "padding:7px 10px; background:rgba(0,255,204,0.1); border:1px solid rgba(0,255,204,0.2); border-radius:8px; font-size:11px; word-wrap:break-word;";
+  el.innerHTML = `<div style="color:var(--green); font-weight:600; font-size:10px;">You · ${new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</div><div style="margin-top:3px; opacity:0.9;">${msg}</div>`;
+  chat.appendChild(el);
   chat.scrollTop = chat.scrollHeight;
   input.value = "";
 }
-document.addEventListener("keypress", function(e) {
-  if (e.key === "Enter" && document.activeElement.id === "chatInput") sendChatMessage();
-});
+document.addEventListener("keypress", e => { if (e.key==="Enter" && document.activeElement.id==="chatInput") sendChatMessage(); });
 
-// ═══════════════════════════════════
 // ── DAILY GOAL ──
-// ═══════════════════════════════════
 let selectedGoalType = "";
-
 function selectGoalType(btn, type) {
   document.querySelectorAll(".goal-tag-btn").forEach(b => b.classList.remove("selected"));
   btn.classList.add("selected");
   selectedGoalType = type;
-  // prefill textarea if empty
   const ta = document.getElementById("goalText");
   if (!ta.value.trim()) {
     const prefills = {
@@ -1530,119 +1672,68 @@ function selectGoalType(btn, type) {
     if (prefills[type]) ta.value = prefills[type];
   }
 }
-
 function saveGoal() {
   const text = document.getElementById("goalText").value.trim();
   if (!text) { showToast("⚠️ Please write your goal first"); return; }
   const goalData = { text, type: selectedGoalType, date: new Date().toISOString().split("T")[0] };
   localStorage.setItem("flDailyGoal_" + (user.email||"guest"), JSON.stringify(goalData));
-
   document.getElementById("goalInputWrap").style.display = "none";
   document.getElementById("goalSaveBtn").style.display = "none";
   document.getElementById("goalTags").style.display = "none";
-
   const badge = document.getElementById("goalTypeBadge");
   if (selectedGoalType) { badge.textContent = selectedGoalType; badge.style.display = "inline-block"; }
   else badge.style.display = "none";
-
   document.getElementById("goalDisplayText").textContent = text;
   document.getElementById("goalDisplay").classList.add("has-goal");
   showToast("🎯 Daily goal set!");
 }
-
 function editGoal() {
   document.getElementById("goalInputWrap").style.display = "block";
   document.getElementById("goalSaveBtn").style.display = "block";
   document.getElementById("goalTags").style.display = "flex";
   document.getElementById("goalDisplay").classList.remove("has-goal");
 }
-
 function loadGoal() {
   const raw = localStorage.getItem("flDailyGoal_" + (user.email||"guest"));
   if (!raw) return;
   try {
     const g = JSON.parse(raw);
-    const today = new Date().toISOString().split("T")[0];
-    if (g.date !== today) return; // only show today's goal
+    if (g.date !== new Date().toISOString().split("T")[0]) return;
     document.getElementById("goalText").value = g.text;
     selectedGoalType = g.type || "";
-    if (selectedGoalType) {
-      document.querySelectorAll(".goal-tag-btn").forEach(b => {
-        if (b.textContent.includes(selectedGoalType)) b.classList.add("selected");
-      });
-    }
     saveGoal();
   } catch(e) {}
 }
 
-// ═══════════════════════════════════
 // ── TRADING THOUGHTS ──
-// ═══════════════════════════════════
 let thoughts = [];
-
 function loadThoughts() {
   const raw = localStorage.getItem("flThoughts_" + (user.email||"guest"));
   if (!raw) return;
   try {
-    const data = JSON.parse(raw);
     const today = new Date().toISOString().split("T")[0];
-    thoughts = data.filter(t => t.date === today);
+    thoughts = JSON.parse(raw).filter(t => t.date === today);
     renderThoughts();
   } catch(e) {}
 }
-
-function saveThoughtsToStorage() {
-  localStorage.setItem("flThoughts_" + (user.email||"guest"), JSON.stringify(thoughts));
-}
-
+function saveThoughtsToStorage() { localStorage.setItem("flThoughts_" + (user.email||"guest"), JSON.stringify(thoughts)); }
 function addThought() {
   const input = document.getElementById("thoughtInput");
   const text = input.value.trim();
   if (!text) return;
-  const thought = {
-    id: Date.now(),
-    text,
-    time: new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}),
-    date: new Date().toISOString().split("T")[0],
-  };
-  thoughts.unshift(thought);
-  saveThoughtsToStorage();
-  renderThoughts();
-  input.value = "";
-  showToast("💭 Thought logged");
+  thoughts.unshift({ id: Date.now(), text, time: new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}), date: new Date().toISOString().split("T")[0] });
+  saveThoughtsToStorage(); renderThoughts(); input.value = ""; showToast("💭 Thought logged");
 }
-
-function deleteThought(id) {
-  thoughts = thoughts.filter(t => t.id !== id);
-  saveThoughtsToStorage();
-  renderThoughts();
-}
-
+function deleteThought(id) { thoughts = thoughts.filter(t => t.id !== id); saveThoughtsToStorage(); renderThoughts(); }
 function renderThoughts() {
   const container = document.getElementById("thoughtsEntries");
   const empty = document.getElementById("thoughtsEmpty");
-  if (thoughts.length === 0) {
-    container.innerHTML = '';
-    container.appendChild(empty);
-    empty.style.display = "block";
-    return;
-  }
+  if (thoughts.length === 0) { container.innerHTML = ''; container.appendChild(empty); empty.style.display = "block"; return; }
   empty && (empty.style.display = "none");
-  container.innerHTML = thoughts.map(t => `
-    <div class="thought-entry">
-      <div class="thought-time">🕐 ${t.time}</div>
-      <div>${escapeHtml(t.text)}</div>
-      <button class="thought-del" onclick="deleteThought(${t.id})" title="Delete">✕</button>
-    </div>`).join("");
+  container.innerHTML = thoughts.map(t => `<div class="thought-entry"><div class="thought-time">🕐 ${t.time}</div><div>${escapeHtml(t.text)}</div><button class="thought-del" onclick="deleteThought(${t.id})">✕</button></div>`).join("");
 }
-
-function thoughtKeydown(e) {
-  if (e.key === "Enter" && e.ctrlKey) { e.preventDefault(); addThought(); }
-}
-
-function escapeHtml(str) {
-  return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-}
+function thoughtKeydown(e) { if (e.key==="Enter" && e.ctrlKey) { e.preventDefault(); addThought(); } }
+function escapeHtml(str) { return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
 // ── SCREENSHOT TABS ──
 function switchSSTab(name, btn) {
@@ -1651,8 +1742,6 @@ function switchSSTab(name, btn) {
   document.getElementById("ssPanel-" + name).style.display = "block";
   btn.classList.add("active");
 }
-
-// ── DRAG & DROP ──
 function handleDragOver(e, zone) { e.preventDefault(); zone.classList.add("drag-over"); }
 function handleDragLeave(zone) { zone.classList.remove("drag-over"); }
 function handleDrop(e, type) { e.preventDefault(); e.currentTarget.classList.remove("drag-over"); handleFiles(e.dataTransfer.files, type); }
@@ -1661,24 +1750,13 @@ function handleFiles(files, type) {
   Array.from(files).forEach(file => {
     if (!file.type.startsWith("image/")) return;
     const reader = new FileReader();
-    reader.onload = function(e) {
-      screenshots[type].push({ name: file.name, dataUrl: e.target.result });
-      renderPreviews(type); updateSSCount(); showToast("📸 Screenshot added!");
-    };
+    reader.onload = e => { screenshots[type].push({ name: file.name, dataUrl: e.target.result }); renderPreviews(type); updateSSCount(); showToast("📸 Screenshot added!"); };
     reader.readAsDataURL(file);
   });
 }
 function renderPreviews(type) {
   const id = "preview" + type.charAt(0).toUpperCase() + type.slice(1);
-  document.getElementById(id).innerHTML = screenshots[type].map((img, i) => `
-    <div class="preview-item">
-      <img src="${img.dataUrl}" alt="${img.name}">
-      <div class="preview-label-badge">${type.toUpperCase()}</div>
-      <div class="preview-overlay">
-        <button class="preview-action-btn preview-view-btn" onclick="openLightbox('${type}',${i})">🔍 View</button>
-        <button class="preview-action-btn preview-del-btn" onclick="deleteScreenshot('${type}',${i})">✕</button>
-      </div>
-    </div>`).join("");
+  document.getElementById(id).innerHTML = screenshots[type].map((img, i) => `<div class="preview-item"><img src="${img.dataUrl}" alt="${img.name}"><div class="preview-label-badge">${type.toUpperCase()}</div><div class="preview-overlay"><button class="preview-action-btn preview-view-btn" onclick="openLightbox('${type}',${i})">🔍 View</button><button class="preview-action-btn preview-del-btn" onclick="deleteScreenshot('${type}',${i})">✕</button></div></div>`).join("");
 }
 function deleteScreenshot(type, index) { screenshots[type].splice(index, 1); renderPreviews(type); updateSSCount(); }
 function updateSSCount() {
@@ -1694,12 +1772,11 @@ function openLightbox(type, index) {
   document.getElementById("lightbox").classList.add("open");
 }
 function closeLightbox(e) {
-  if (!e || e.target === document.getElementById("lightbox") || e.currentTarget.tagName === "BUTTON") {
+  if (!e || e.target === document.getElementById("lightbox") || e.currentTarget.tagName === "BUTTON")
     document.getElementById("lightbox").classList.remove("open");
-  }
 }
 
-// ── DIRECTION ──
+// ── DIRECTION / RESULT / RATING ──
 function setDirection(dir) {
   direction = dir;
   document.querySelectorAll(".dir-btn").forEach(b => b.classList.remove("active"));
@@ -1707,8 +1784,6 @@ function setDirection(dir) {
   document.getElementById("direction").value = dir;
   calcRR();
 }
-
-// ── R:R CALCULATOR ──
 function calcRR() {
   const entry = parseFloat(document.getElementById("entry").value);
   const sl = parseFloat(document.getElementById("stopLoss").value);
@@ -1717,16 +1792,10 @@ function calcRR() {
   const risk = Math.abs(entry - sl);
   const reward = Math.abs(tp - entry);
   if (risk === 0) return;
-  document.getElementById("rr").value = "1 : " + (reward / risk).toFixed(2);
+  document.getElementById("rr").value = "1 : " + (reward/risk).toFixed(2);
 }
-["entry","stopLoss","takeProfit"].forEach(id => {
-  document.getElementById(id).addEventListener("input", calcRR);
-});
-
-function toggleCheck(el) {
-  el.classList.toggle("checked");
-  el.querySelector("input").checked = el.classList.contains("checked");
-}
+["entry","stopLoss","takeProfit"].forEach(id => document.getElementById(id).addEventListener("input", calcRR));
+function toggleCheck(el) { el.classList.toggle("checked"); el.querySelector("input").checked = el.classList.contains("checked"); }
 function setMood(btn, group) {
   btn.parentElement.querySelectorAll(".mood-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
@@ -1739,26 +1808,25 @@ function toggleEmotion(btn) {
   document.getElementById("duringEmotions").value = Array.from(duringEmotions).join(", ");
 }
 function setBehaviour(btn, group, value) {
-  const container = document.getElementById(group + "Group");
-  container.querySelectorAll(".behaviour-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById(group + "Group").querySelectorAll(".behaviour-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
   document.getElementById(group).value = value;
-  if (group === "slMove") slMove = value;
-  if (group === "earlyClose") earlyClose = value;
-  if (group === "added") added = value;
-  if (group === "obsess") obsess = value;
+  if (group==="slMove") slMove=value;
+  if (group==="earlyClose") earlyClose=value;
+  if (group==="added") added=value;
+  if (group==="obsess") obsess=value;
 }
 function updateUrgeValue(v) {
   const el = document.getElementById("urgeValue");
   el.textContent = v;
-  const colors = ["#00ffcc","#00ffcc","#4dffdd","#a0ffcc","#f5d76e","#f5a623","#f5a623","#ff8c00","#ff6633","#ff5555","#ff2222"];
-  el.style.color = colors[parseInt(v)];
+  const c = ["#00ffcc","#00ffcc","#4dffdd","#a0ffcc","#f5d76e","#f5a623","#f5a623","#ff8c00","#ff6633","#ff5555","#ff2222"];
+  el.style.color = c[parseInt(v)];
 }
 function updateStressValue(v) {
   const el = document.getElementById("stressValue");
   el.textContent = v;
-  const colors = ["","#00ffcc","#00ffcc","#4dffdd","#f5d76e","#f5a623","#f5a623","#ff8c00","#ff6633","#ff5555","#ff2222"];
-  el.style.color = colors[parseInt(v)];
+  const c = ["","#00ffcc","#00ffcc","#4dffdd","#f5d76e","#f5a623","#f5a623","#ff8c00","#ff6633","#ff5555","#ff2222"];
+  el.style.color = c[parseInt(v)];
 }
 function setResult(res) {
   result = res;
@@ -1769,25 +1837,20 @@ function setResult(res) {
 function setRating(n) {
   rating = n;
   document.getElementById("rating").value = n;
-  document.querySelectorAll(".star").forEach((s, i) => s.classList.toggle("active", i < n));
+  document.querySelectorAll(".star").forEach((s,i) => s.classList.toggle("active", i < n));
 }
-function logout() {
-  localStorage.removeItem("flLoggedIn"); localStorage.removeItem("flCurrentUser");
-  window.location.href = "index.html";
-}
+
+// ── UTILS ──
+function logout() { localStorage.removeItem("flLoggedIn"); localStorage.removeItem("flCurrentUser"); window.location.href = "index.html"; }
 function showToast(msg) {
   const t = document.getElementById("toast");
   t.textContent = msg; t.classList.add("show");
   setTimeout(() => t.classList.remove("show"), 3000);
 }
-function getTrades() {
-  const key = "flTrades_" + (user.email || "guest");
-  return JSON.parse(localStorage.getItem(key) || "[]");
-}
-function saveTrades(trades) {
-  const key = "flTrades_" + (user.email || "guest");
-  localStorage.setItem(key, JSON.stringify(trades));
-}
+function getTrades() { return JSON.parse(localStorage.getItem("flTrades_" + (user.email||"guest")) || "[]"); }
+function saveTrades(trades) { localStorage.setItem("flTrades_" + (user.email||"guest"), JSON.stringify(trades)); }
+
+// ── SAVE TRADE ──
 function saveTrade() {
   const date = document.getElementById("tradeDate").value;
   const pair = document.getElementById("pair").value;
@@ -1803,8 +1866,7 @@ function saveTrade() {
     takeProfit: document.getElementById("takeProfit").value,
     lotSize: document.getElementById("lotSize").value,
     riskPercent: document.getElementById("riskPercent").value,
-    rrPlanned: document.getElementById("rr").value,
-    checklist,
+    rrPlanned: document.getElementById("rr").value, checklist,
     mood: document.getElementById("mood").value,
     sleep: document.getElementById("sleep").value,
     confidence: document.getElementById("confidence").value,
@@ -1843,35 +1905,25 @@ function resetForm() {
   updateSSCount();
   document.querySelectorAll(".dir-btn,.result-btn,.mood-btn,.emotion-btn,.behaviour-btn").forEach(b => b.classList.remove("active"));
   document.querySelectorAll(".star").forEach(s => s.classList.remove("active"));
-  document.querySelectorAll(".check-item").forEach(el => {
-    el.classList.remove("checked"); el.querySelector("input").checked = false;
-  });
-  ["pair","session","entry","stopLoss","takeProfit","lotSize","riskPercent","rr",
-   "rrAchieved","pips","preNotes","wentWell","wentWrong","extraNotes",
-   "mood","sleep","confidence","result","rating","direction","retake",
-   "duringEmotions","slMove","earlyClose","added","obsess","duringNotes"].forEach(id => {
-    const el = document.getElementById(id); if (el) el.value = "";
-  });
+  document.querySelectorAll(".check-item").forEach(el => { el.classList.remove("checked"); el.querySelector("input").checked = false; });
+  ["pair","session","entry","stopLoss","takeProfit","lotSize","riskPercent","rr","rrAchieved","pips","preNotes","wentWell","wentWrong","extraNotes","mood","sleep","confidence","result","rating","direction","retake","duringEmotions","slMove","earlyClose","added","obsess","duringNotes"].forEach(id => { const el=document.getElementById(id); if(el) el.value=""; });
   document.getElementById("urgeSlider").value = 0; document.getElementById("urgeValue").textContent = "0";
   document.getElementById("stressSlider").value = 1; document.getElementById("stressValue").textContent = "1";
   const now = new Date();
   document.getElementById("tradeDate").value = now.toISOString().split("T")[0];
   document.getElementById("tradeTime").value = now.toTimeString().slice(0,5);
 }
+
+// ── HISTORY ──
 function renderHistory() {
   const trades = getTrades();
   const tbody = document.getElementById("tradesBody");
-  if (trades.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><div>📓</div><p>No trades logged yet.</p></div></td></tr>`;
-    return;
-  }
+  if (trades.length === 0) { tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><div>📓</div><p>No trades logged yet.</p></div></td></tr>`; return; }
   tbody.innerHTML = trades.map(t => {
     const ssCount = t.screenshots ? t.screenshots.total || 0 : 0;
-    const ssCell = ssCount > 0
-      ? `<span class="ss-count-badge" style="display:inline-flex; font-size:10px; padding:3px 9px;">📸 ${ssCount}</span>`
-      : `<span style="opacity:0.3; font-size:12px;">—</span>`;
+    const ssCell = ssCount > 0 ? `<span class="ss-count-badge" style="display:inline-flex; font-size:10px; padding:3px 9px;">📸 ${ssCount}</span>` : `<span style="opacity:0.3; font-size:12px;">—</span>`;
     const ratingStars = t.rating ? "★".repeat(t.rating) + `<span style="opacity:0.2;">${"★".repeat(5-t.rating)}</span>` : "—";
-    return `<tr class="trade-row" onclick="openTradeModal(${t.id})" title="Click to view trade details">
+    return `<tr class="trade-row" onclick="openTradeModal(${t.id})">
       <td>${t.date}<br><span style="opacity:0.4;font-size:11px;">${t.time||""}</span></td>
       <td><strong style="font-size:14px;">${t.pair}</strong>${t.session?`<br><span style="opacity:0.4;font-size:11px;">${t.session}</span>`:""}</td>
       <td><span class="badge ${t.direction}">${t.direction?t.direction.toUpperCase():"—"}</span></td>
@@ -1882,68 +1934,43 @@ function renderHistory() {
       <td><div style="display:flex;gap:6px;align-items:center;">
         <button class="view-trade-btn" onclick="event.stopPropagation(); openTradeModal(${t.id})">View →</button>
         <button class="delete-btn" onclick="event.stopPropagation(); deleteTrade(${t.id})">✕</button>
-      </div></td>
-    </tr>`;
+      </div></td></tr>`;
   }).join("");
 }
 function deleteTrade(id) { saveTrades(getTrades().filter(t => t.id !== id)); renderHistory(); showToast("🗑️ Trade deleted"); }
-function clearAll() {
-  if (confirm("Are you sure you want to delete ALL trades?")) { saveTrades([]); renderHistory(); showToast("🗑️ All trades cleared"); }
-}
+function clearAll() { if (confirm("Are you sure you want to delete ALL trades?")) { saveTrades([]); renderHistory(); showToast("🗑️ All trades cleared"); } }
+
+// ── STATS ──
 function renderStats() {
   const trades = getTrades();
   const total = trades.length;
-  const wins = trades.filter(t => t.result === "win").length;
-  const losses = trades.filter(t => t.result === "loss").length;
-  const be = trades.filter(t => t.result === "be").length;
-  const winRate = total > 0 ? Math.round((wins/total)*100) : 0;
-  const rrValues = trades.map(t => parseFloat(t.rrAchieved?.replace("1:","").replace("1 : ",""))).filter(v => !isNaN(v));
-  const avgRR = rrValues.length > 0 ? (rrValues.reduce((a,b)=>a+b,0)/rrValues.length).toFixed(2) : "—";
+  const wins = trades.filter(t=>t.result==="win").length;
+  const losses = trades.filter(t=>t.result==="loss").length;
+  const be = trades.filter(t=>t.result==="be").length;
+  const winRate = total>0 ? Math.round((wins/total)*100) : 0;
+  const rrValues = trades.map(t=>parseFloat(t.rrAchieved?.replace("1:","").replace("1 : ",""))).filter(v=>!isNaN(v));
+  const avgRR = rrValues.length ? (rrValues.reduce((a,b)=>a+b,0)/rrValues.length).toFixed(2) : "—";
   document.getElementById("statTotal").textContent = total;
   document.getElementById("statWinRate").textContent = winRate + "%";
-  document.getElementById("statAvgRR").textContent = avgRR === "—" ? "—" : "1:"+avgRR;
+  document.getElementById("statAvgRR").textContent = avgRR==="—" ? "—" : "1:"+avgRR;
   document.getElementById("statWins").textContent = wins;
   document.getElementById("statLosses").textContent = losses;
   document.getElementById("statBE").textContent = be;
   const pairCount = {};
   trades.forEach(t => { if(t.pair) pairCount[t.pair]=(pairCount[t.pair]||0)+1; });
   const pairDiv = document.getElementById("pairBreakdown");
-  if (Object.keys(pairCount).length === 0) {
-    pairDiv.innerHTML = `<div class="empty-state"><div>💱</div><p>No data yet</p></div>`;
-  } else {
-    pairDiv.innerHTML = Object.entries(pairCount).sort((a,b)=>b[1]-a[1]).map(([pair,count]) => `
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
-        <span style="font-weight:600;">${pair}</span>
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:120px;height:6px;background:rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;">
-            <div style="width:${count/total*100}%;height:100%;background:#00ffcc;border-radius:10px;"></div>
-          </div>
-          <span style="color:#00ffcc;font-weight:700;font-size:14px;">${count}</span>
-        </div>
-      </div>`).join("");
-  }
+  if (!Object.keys(pairCount).length) { pairDiv.innerHTML=`<div class="empty-state"><div>💱</div><p>No data yet</p></div>`; }
+  else { pairDiv.innerHTML = Object.entries(pairCount).sort((a,b)=>b[1]-a[1]).map(([pair,count])=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);"><span style="font-weight:600;">${pair}</span><div style="display:flex;align-items:center;gap:12px;"><div style="width:120px;height:6px;background:rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;"><div style="width:${count/total*100}%;height:100%;background:#00ffcc;border-radius:10px;"></div></div><span style="color:#00ffcc;font-weight:700;font-size:14px;">${count}</span></div></div>`).join(""); }
   const sessionWins = {};
   trades.forEach(t => {
     if (!t.session) return;
     if (!sessionWins[t.session]) sessionWins[t.session]={wins:0,total:0};
     sessionWins[t.session].total++;
-    if (t.result === "win") sessionWins[t.session].wins++;
+    if (t.result==="win") sessionWins[t.session].wins++;
   });
   const sessionDiv = document.getElementById("sessionBreakdown");
-  if (Object.keys(sessionWins).length === 0) {
-    sessionDiv.innerHTML = `<div class="empty-state"><div>🕐</div><p>No data yet</p></div>`;
-  } else {
-    sessionDiv.innerHTML = Object.entries(sessionWins).map(([session,data]) => {
-      const wr = Math.round((data.wins/data.total)*100);
-      return `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
-        <span style="font-weight:600;">${session}</span>
-        <div style="display:flex;align-items:center;gap:12px;">
-          <span style="font-size:12px;opacity:0.5;">${data.total} trades</span>
-          <span style="color:${wr>=50?'#00ffcc':'#ff5555'};font-weight:700;">${wr}% win</span>
-        </div>
-      </div>`;
-    }).join("");
-  }
+  if (!Object.keys(sessionWins).length) { sessionDiv.innerHTML=`<div class="empty-state"><div>🕐</div><p>No data yet</p></div>`; }
+  else { sessionDiv.innerHTML = Object.entries(sessionWins).map(([session,data])=>{ const wr=Math.round((data.wins/data.total)*100); return `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);"><span style="font-weight:600;">${session}</span><div style="display:flex;align-items:center;gap:12px;"><span style="font-size:12px;opacity:0.5;">${data.total} trades</span><span style="color:${wr>=50?'#00ffcc':'#ff5555'};font-weight:700;">${wr}% win</span></div></div>`; }).join(""); }
   const moodWins = {};
   trades.forEach(t => {
     if (!t.mood) return;
@@ -1953,513 +1980,418 @@ function renderStats() {
     if (t.result==="win") moodWins[key].wins++;
   });
   const psychDiv = document.getElementById("psychInsights");
-  if (Object.keys(moodWins).length === 0) {
-    psychDiv.innerHTML = `<div class="empty-state"><div>🧠</div><p>No data yet</p></div>`;
-  } else {
-    psychDiv.innerHTML = `<p style="font-size:13px;opacity:0.5;margin-bottom:16px;">Your win rate based on emotional state:</p>
-      ${Object.entries(moodWins).map(([m,data])=>{
-        const wr=Math.round((data.wins/data.total)*100);
-        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
-          <span style="font-weight:600;">${m}</span>
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="width:100px;height:6px;background:rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;">
-              <div style="width:${wr}%;height:100%;background:${wr>=50?'#00ffcc':'#ff5555'};border-radius:10px;"></div>
-            </div>
-            <span style="color:${wr>=50?'#00ffcc':'#ff5555'};font-weight:700;font-size:14px;">${wr}%</span>
-          </div>
-        </div>`;
-      }).join("")}`;
-  }
+  if (!Object.keys(moodWins).length) { psychDiv.innerHTML=`<div class="empty-state"><div>🧠</div><p>No data yet</p></div>`; }
+  else { psychDiv.innerHTML = `<p style="font-size:13px;opacity:0.5;margin-bottom:16px;">Your win rate based on emotional state:</p>${Object.entries(moodWins).map(([m,data])=>{ const wr=Math.round((data.wins/data.total)*100); return `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);"><span style="font-weight:600;">${m}</span><div style="display:flex;align-items:center;gap:12px;"><div style="width:100px;height:6px;background:rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;"><div style="width:${wr}%;height:100%;background:${wr>=50?'#00ffcc':'#ff5555'};border-radius:10px;"></div></div><span style="color:${wr>=50?'#00ffcc':'#ff5555'};font-weight:700;font-size:14px;">${wr}%</span></div></div>`; }).join("")}`; }
 }
+
+// ── TRADE MODAL ──
 function openTradeModal(id) {
-  const trade = getTrades().find(t => t.id === id);
+  const trade = getTrades().find(t=>t.id===id);
   if (!trade) return;
-  const resultColors = { win:'#00ffcc', loss:'#ff5555', be:'orange' };
-  const resultLabels = { win:'✅ WIN', loss:'❌ LOSS', be:'➖ BREAKEVEN' };
-  const dirColor = trade.direction === 'buy' ? '#00ffcc' : '#ff5555';
-  document.getElementById("tmPair").textContent = trade.pair || "—";
-  document.getElementById("tmMeta").textContent = `${trade.date}${trade.time?' · '+trade.time:''}${trade.session?' · '+trade.session+' Session':''}`;
-  const rb = document.getElementById("tmResultBadge");
-  if (trade.result) {
-    rb.textContent = resultLabels[trade.result]||trade.result.toUpperCase();
-    rb.style.background = `rgba(${trade.result==='win'?'0,255,204':trade.result==='loss'?'255,85,85':'255,165,0'},0.15)`;
-    rb.style.color = resultColors[trade.result]||'white'; rb.style.border = `1px solid ${resultColors[trade.result]}`;
-  } else { rb.textContent="— No Result"; rb.style.background="rgba(255,255,255,0.06)"; rb.style.color="rgba(255,255,255,0.4)"; rb.style.border="1px solid rgba(255,255,255,0.1)"; }
-  const stats = [
-    {label:"Entry",value:trade.entry||"—"},{label:"Stop Loss",value:trade.stopLoss||"—"},
-    {label:"Take Profit",value:trade.takeProfit||"—"},{label:"Lot Size",value:trade.lotSize||"—"},
-    {label:"Risk %",value:trade.riskPercent?trade.riskPercent+"%":"—"},{label:"Planned R:R",value:trade.rrPlanned||"—"},
-    {label:"Achieved R:R",value:trade.rrAchieved||"—"},{label:"Pips",value:trade.pips||"—"},
-  ];
-  document.getElementById("tmStatsRow").innerHTML = stats.map(s=>`<div class="tm-stat"><div class="tm-stat-label">${s.label}</div><div class="tm-stat-value">${s.value}</div></div>`).join("");
-  document.getElementById("tmDetails").innerHTML = `
-    <div class="tm-kv"><span class="tm-k">Direction</span><span class="tm-v" style="color:${dirColor};font-weight:700;">${trade.direction==='buy'?'📈 BUY / LONG':trade.direction==='sell'?'📉 SELL / SHORT':'—'}</span></div>
-    <div class="tm-kv"><span class="tm-k">Session</span><span class="tm-v">${trade.session||"—"}</span></div>
-    <div class="tm-kv"><span class="tm-k">Date</span><span class="tm-v">${trade.date||"—"}</span></div>
-    <div class="tm-kv"><span class="tm-k">Time</span><span class="tm-v">${trade.time||"—"}</span></div>`;
-  const cl = document.getElementById("tmChecklist");
-  cl.innerHTML = (trade.checklist&&trade.checklist.length>0)
-    ? `<div class="tm-checklist-grid">${trade.checklist.map(item=>`<div class="tm-check-item"><span class="tm-check-tick">✓</span><span>${item}</span></div>`).join("")}</div>`
-    : `<div style="opacity:0.35;font-size:13px;padding:8px 0;">No checklist items recorded</div>`;
-  document.getElementById("tmPsych").innerHTML = `
-    <div class="tm-kv"><span class="tm-k">Mood</span><span class="tm-v">${trade.mood||"—"}</span></div>
-    <div class="tm-kv"><span class="tm-k">Sleep</span><span class="tm-v">${trade.sleep||"—"}</span></div>
-    <div class="tm-kv"><span class="tm-k">Confidence</span><span class="tm-v">${trade.confidence||"—"}</span></div>`;
-  const preN = document.getElementById("tmPreNotes");
-  if (trade.preNotes) { preN.textContent=trade.preNotes; document.getElementById("tmPreNotesSec").style.display="block"; }
-  else document.getElementById("tmPreNotesSec").style.display="none";
-  const dur = trade.during;
-  const tmDuring = document.getElementById("tmDuring");
-  if (dur) {
-    const emotionTags = (dur.emotions||[]).map(e => {
-      const positives = ["Calm","Confident","Control","Patient","Detached"];
-      const isPos = positives.some(p => e.includes(p));
-      return `<span class="tm-emotion-tag ${isPos?'positive':'negative'}">${e}</span>`;
-    }).join("");
-    tmDuring.innerHTML = `
-      ${emotionTags ? `<div style="margin-bottom:10px;"><div style="font-size:10px;opacity:0.4;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Emotions felt</div><div class="tm-emotion-tags">${emotionTags}</div></div>` : ""}
-      <div class="tm-kv"><span class="tm-k">Urge to close early</span><span class="tm-v" style="color:var(--orange);">${dur.urgeToClose||0} / 10</span></div>
-      <div class="tm-kv"><span class="tm-k">Peak stress level</span><span class="tm-v" style="color:var(--red);">${dur.stressLevel||1} / 10</span></div>
-      <div class="tm-kv"><span class="tm-k">Moved stop loss</span><span class="tm-v">${dur.slMove||"—"}</span></div>
-      <div class="tm-kv"><span class="tm-k">Closed early</span><span class="tm-v">${dur.earlyClose||"—"}</span></div>
-      <div class="tm-kv"><span class="tm-k">Added to position</span><span class="tm-v">${dur.added||"—"}</span></div>
-      <div class="tm-kv"><span class="tm-k">Chart watching</span><span class="tm-v">${dur.obsess||"—"}</span></div>
-      ${dur.notes?`<div style="margin-top:10px;font-size:12px;opacity:0.65;line-height:1.6;border-top:1px solid rgba(245,166,35,0.1);padding-top:10px;">${dur.notes}</div>`:""}`;
-    document.getElementById("tmDuringSec").style.display = "block";
-  } else {
-    tmDuring.innerHTML = `<div style="opacity:0.35;font-size:13px;padding:8px 0;">No during-trade data recorded</div>`;
-  }
-  document.getElementById("tmPost").innerHTML = `
-    <div class="tm-kv"><span class="tm-k">Result</span><span class="tm-v">${trade.result?resultLabels[trade.result]:"—"}</span></div>
-    <div class="tm-kv"><span class="tm-k">R:R Achieved</span><span class="tm-v">${trade.rrAchieved||"—"}</span></div>
-    <div class="tm-kv"><span class="tm-k">Pips</span><span class="tm-v">${trade.pips||"—"}</span></div>
-    <div class="tm-kv"><span class="tm-k">Screenshots</span><span class="tm-v">${trade.screenshots&&trade.screenshots.total>0?'📸 '+trade.screenshots.total+' attached':"None"}</span></div>`;
-  const r = trade.rating||0;
-  document.getElementById("tmRating").innerHTML = `<span style="color:#f5a623;">${"★".repeat(r)}</span><span style="opacity:0.25;">${"★".repeat(5-r)}</span>`;
-  document.getElementById("tmRetake").textContent = trade.retake?"Would retake? "+trade.retake:"";
-  const rev = document.getElementById("tmReview");
-  if (trade.wentWell||trade.wentWrong) {
-    rev.innerHTML = `
-      ${trade.wentWell?`<div class="tm-review-box tm-went-well"><div class="tm-review-label">✅ What went well</div><div>${trade.wentWell}</div></div>`:""}
-      ${trade.wentWrong?`<div class="tm-review-box tm-went-wrong"><div class="tm-review-label">❌ What went wrong</div><div>${trade.wentWrong}</div></div>`:""}`;
-    document.getElementById("tmReviewSec").style.display="block";
-  } else document.getElementById("tmReviewSec").style.display="none";
-  const xn = document.getElementById("tmExtraNotes");
-  if (trade.extraNotes) { xn.textContent=trade.extraNotes; document.getElementById("tmExtraNotesSec").style.display="block"; }
-  else document.getElementById("tmExtraNotesSec").style.display="none";
-  const ss = trade.screenshots;
-  const ssSection = document.getElementById("tmScreenshotsSec");
-  if (ss&&ss.total>0) {
-    const allSS = [...(ss.before||[]).map(img=>({...img,type:"BEFORE"})),...(ss.after||[]).map(img=>({...img,type:"AFTER"})),...(ss.analysis||[]).map(img=>({...img,type:"ANALYSIS"}))];
-    document.getElementById("tmSSGrid").innerHTML = allSS.map(img=>`
-      <div class="tm-ss-item" onclick="openModalLightbox('${img.dataUrl}','${img.type} — ${img.name}')">
-        <img src="${img.dataUrl}" alt="${img.name}">
-        <div class="tm-ss-label">${img.type}</div>
-        <div class="tm-ss-hover">🔍 View</div>
-      </div>`).join("");
-    ssSection.style.display="block";
-  } else ssSection.style.display="none";
+  const resultColors={win:'#00ffcc',loss:'#ff5555',be:'orange'};
+  const resultLabels={win:'✅ WIN',loss:'❌ LOSS',be:'➖ BREAKEVEN'};
+  const dirColor=trade.direction==='buy'?'#00ffcc':'#ff5555';
+  document.getElementById("tmPair").textContent=trade.pair||"—";
+  document.getElementById("tmMeta").textContent=`${trade.date}${trade.time?' · '+trade.time:''}${trade.session?' · '+trade.session+' Session':''}`;
+  const rb=document.getElementById("tmResultBadge");
+  if(trade.result){rb.textContent=resultLabels[trade.result]||trade.result.toUpperCase();rb.style.background=`rgba(${trade.result==='win'?'0,255,204':trade.result==='loss'?'255,85,85':'255,165,0'},0.15)`;rb.style.color=resultColors[trade.result]||'white';rb.style.border=`1px solid ${resultColors[trade.result]}`;}
+  else{rb.textContent="— No Result";rb.style.background="rgba(255,255,255,0.06)";rb.style.color="rgba(255,255,255,0.4)";rb.style.border="1px solid rgba(255,255,255,0.1)";}
+  const stats=[{label:"Entry",value:trade.entry||"—"},{label:"Stop Loss",value:trade.stopLoss||"—"},{label:"Take Profit",value:trade.takeProfit||"—"},{label:"Lot Size",value:trade.lotSize||"—"},{label:"Risk %",value:trade.riskPercent?trade.riskPercent+"%":"—"},{label:"Planned R:R",value:trade.rrPlanned||"—"},{label:"Achieved R:R",value:trade.rrAchieved||"—"},{label:"Pips",value:trade.pips||"—"}];
+  document.getElementById("tmStatsRow").innerHTML=stats.map(s=>`<div class="tm-stat"><div class="tm-stat-label">${s.label}</div><div class="tm-stat-value">${s.value}</div></div>`).join("");
+  document.getElementById("tmDetails").innerHTML=`<div class="tm-kv"><span class="tm-k">Direction</span><span class="tm-v" style="color:${dirColor};font-weight:700;">${trade.direction==='buy'?'📈 BUY / LONG':trade.direction==='sell'?'📉 SELL / SHORT':'—'}</span></div><div class="tm-kv"><span class="tm-k">Session</span><span class="tm-v">${trade.session||"—"}</span></div><div class="tm-kv"><span class="tm-k">Date</span><span class="tm-v">${trade.date||"—"}</span></div><div class="tm-kv"><span class="tm-k">Time</span><span class="tm-v">${trade.time||"—"}</span></div>`;
+  const cl=document.getElementById("tmChecklist");
+  cl.innerHTML=(trade.checklist&&trade.checklist.length>0)?`<div class="tm-checklist-grid">${trade.checklist.map(item=>`<div class="tm-check-item"><span class="tm-check-tick">✓</span><span>${item}</span></div>`).join("")}</div>`:`<div style="opacity:0.35;font-size:13px;padding:8px 0;">No checklist items recorded</div>`;
+  document.getElementById("tmPsych").innerHTML=`<div class="tm-kv"><span class="tm-k">Mood</span><span class="tm-v">${trade.mood||"—"}</span></div><div class="tm-kv"><span class="tm-k">Sleep</span><span class="tm-v">${trade.sleep||"—"}</span></div><div class="tm-kv"><span class="tm-k">Confidence</span><span class="tm-v">${trade.confidence||"—"}</span></div>`;
+  const preN=document.getElementById("tmPreNotes");
+  if(trade.preNotes){preN.textContent=trade.preNotes;document.getElementById("tmPreNotesSec").style.display="block";}else document.getElementById("tmPreNotesSec").style.display="none";
+  const dur=trade.during;
+  const tmDuring=document.getElementById("tmDuring");
+  if(dur){
+    const emotionTags=(dur.emotions||[]).map(e=>{const pos=["Calm","Confident","Control","Patient","Detached"].some(p=>e.includes(p));return `<span class="tm-emotion-tag ${pos?'positive':'negative'}">${e}</span>`;}).join("");
+    tmDuring.innerHTML=`${emotionTags?`<div style="margin-bottom:10px;"><div style="font-size:10px;opacity:0.4;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Emotions felt</div><div class="tm-emotion-tags">${emotionTags}</div></div>`:""}<div class="tm-kv"><span class="tm-k">Urge to close early</span><span class="tm-v" style="color:var(--orange);">${dur.urgeToClose||0} / 10</span></div><div class="tm-kv"><span class="tm-k">Peak stress level</span><span class="tm-v" style="color:var(--red);">${dur.stressLevel||1} / 10</span></div><div class="tm-kv"><span class="tm-k">Moved stop loss</span><span class="tm-v">${dur.slMove||"—"}</span></div><div class="tm-kv"><span class="tm-k">Closed early</span><span class="tm-v">${dur.earlyClose||"—"}</span></div><div class="tm-kv"><span class="tm-k">Added to position</span><span class="tm-v">${dur.added||"—"}</span></div><div class="tm-kv"><span class="tm-k">Chart watching</span><span class="tm-v">${dur.obsess||"—"}</span></div>${dur.notes?`<div style="margin-top:10px;font-size:12px;opacity:0.65;line-height:1.6;border-top:1px solid rgba(245,166,35,0.1);padding-top:10px;">${dur.notes}</div>`:""}`;
+    document.getElementById("tmDuringSec").style.display="block";
+  }else{tmDuring.innerHTML=`<div style="opacity:0.35;font-size:13px;padding:8px 0;">No during-trade data recorded</div>`;}
+  document.getElementById("tmPost").innerHTML=`<div class="tm-kv"><span class="tm-k">Result</span><span class="tm-v">${trade.result?resultLabels[trade.result]:"—"}</span></div><div class="tm-kv"><span class="tm-k">R:R Achieved</span><span class="tm-v">${trade.rrAchieved||"—"}</span></div><div class="tm-kv"><span class="tm-k">Pips</span><span class="tm-v">${trade.pips||"—"}</span></div><div class="tm-kv"><span class="tm-k">Screenshots</span><span class="tm-v">${trade.screenshots&&trade.screenshots.total>0?'📸 '+trade.screenshots.total+' attached':"None"}</span></div>`;
+  const r=trade.rating||0;
+  document.getElementById("tmRating").innerHTML=`<span style="color:#f5a623;">${"★".repeat(r)}</span><span style="opacity:0.25;">${"★".repeat(5-r)}</span>`;
+  document.getElementById("tmRetake").textContent=trade.retake?"Would retake? "+trade.retake:"";
+  const rev=document.getElementById("tmReview");
+  if(trade.wentWell||trade.wentWrong){rev.innerHTML=`${trade.wentWell?`<div class="tm-review-box tm-went-well"><div class="tm-review-label">✅ What went well</div><div>${trade.wentWell}</div></div>`:""}${trade.wentWrong?`<div class="tm-review-box tm-went-wrong"><div class="tm-review-label">❌ What went wrong</div><div>${trade.wentWrong}</div></div>`:""}`; document.getElementById("tmReviewSec").style.display="block"; }else document.getElementById("tmReviewSec").style.display="none";
+  const xn=document.getElementById("tmExtraNotes");
+  if(trade.extraNotes){xn.textContent=trade.extraNotes;document.getElementById("tmExtraNotesSec").style.display="block";}else document.getElementById("tmExtraNotesSec").style.display="none";
+  const ss=trade.screenshots;
+  const ssSec=document.getElementById("tmScreenshotsSec");
+  if(ss&&ss.total>0){const allSS=[...(ss.before||[]).map(img=>({...img,type:"BEFORE"})),...(ss.after||[]).map(img=>({...img,type:"AFTER"})),...(ss.analysis||[]).map(img=>({...img,type:"ANALYSIS"}))];document.getElementById("tmSSGrid").innerHTML=allSS.map(img=>`<div class="tm-ss-item" onclick="openModalLightbox('${img.dataUrl}','${img.type} — ${img.name}')"><img src="${img.dataUrl}" alt="${img.name}"><div class="tm-ss-label">${img.type}</div><div class="tm-ss-hover">🔍 View</div></div>`).join("");ssSec.style.display="block";}else ssSec.style.display="none";
   document.getElementById("tradeModalOverlay").classList.add("open");
   document.body.style.overflow="hidden";
 }
 function closeTradeModal(e) {
-  if (e&&e.target!==document.getElementById("tradeModalOverlay")&&!e.target.classList.contains("tm-close-btn")) return;
+  if(e&&e.target!==document.getElementById("tradeModalOverlay")&&!e.target.classList.contains("tm-close-btn")) return;
   document.getElementById("tradeModalOverlay").classList.remove("open");
   document.body.style.overflow="";
 }
-function openModalLightbox(src, caption) {
-  document.getElementById("lightboxImg").src=src;
-  document.getElementById("lightboxCaption").textContent=caption;
-  document.getElementById("lightbox").classList.add("open");
-}
+function openModalLightbox(src, caption) { document.getElementById("lightboxImg").src=src; document.getElementById("lightboxCaption").textContent=caption; document.getElementById("lightbox").classList.add("open"); }
 
 // ═══════════════════════════════════════════════════
-// ── TRADER INTELLIGENCE REPORT ENGINE ──
+// ── INTELLIGENCE REPORT ──
 // ═══════════════════════════════════════════════════
 function generateIntelReport() {
   const trades = getTrades();
   const container = document.getElementById("intelContent");
   const btn = document.querySelector(".intel-refresh-btn");
-
-  if (trades.length < 3) {
-    container.innerHTML = `<div class="intel-empty">
-      <div class="intel-empty-icon">📡</div>
-      <h4>Need More Data</h4>
-      <p>You have <strong>${trades.length}</strong> trade${trades.length !== 1 ? 's' : ''} logged. Log at least <strong>3 trades</strong> to unlock your intelligence report.</p>
-    </div>`;
-    return;
-  }
-
+  if (trades.length < 3) { container.innerHTML=`<div class="intel-empty"><div class="intel-empty-icon">📡</div><h4>Need More Data</h4><p>You have <strong>${trades.length}</strong> trade${trades.length!==1?'s':''} logged. Log at least <strong>3 trades</strong> to unlock your intelligence report.</p></div>`; return; }
   btn.classList.add("spinning");
-
   setTimeout(() => {
     btn.classList.remove("spinning");
-
-    // ── CORE METRICS ──
-    const total = trades.length;
-    const wins   = trades.filter(t => t.result === "win");
-    const losses = trades.filter(t => t.result === "loss");
-    const bes    = trades.filter(t => t.result === "be");
-    const winRate = Math.round((wins.length / total) * 100);
-
-    // R:R achieved
-    const rrVals = trades.map(t => {
-      const v = parseFloat((t.rrAchieved || "").replace(/1\s*:\s*/,""));
-      return isNaN(v) ? null : v;
-    }).filter(v => v !== null);
-    const avgRR = rrVals.length ? (rrVals.reduce((a,b)=>a+b,0)/rrVals.length) : 0;
-
-    // ── SESSION ANALYSIS ──
-    const sessionData = {};
-    trades.forEach(t => {
-      if (!t.session) return;
-      if (!sessionData[t.session]) sessionData[t.session] = {wins:0,total:0};
-      sessionData[t.session].total++;
-      if (t.result==="win") sessionData[t.session].wins++;
-    });
-    let bestSession = null, worstSession = null;
-    let bestWR = -1, worstWR = 200;
-    Object.entries(sessionData).forEach(([s,d]) => {
-      if (d.total < 2) return;
-      const wr = (d.wins/d.total)*100;
-      if (wr > bestWR) { bestWR = wr; bestSession = s; }
-      if (wr < worstWR) { worstWR = wr; worstSession = s; }
-    });
-
-    // ── PAIR ANALYSIS ──
-    const pairData = {};
-    trades.forEach(t => {
-      if (!t.pair) return;
-      if (!pairData[t.pair]) pairData[t.pair] = {wins:0,total:0};
-      pairData[t.pair].total++;
-      if (t.result==="win") pairData[t.pair].wins++;
-    });
-    let bestPair = null, worstPair = null;
-    let bestPairWR = -1, worstPairWR = 200;
-    Object.entries(pairData).forEach(([p,d]) => {
-      if (d.total < 2) return;
-      const wr = (d.wins/d.total)*100;
-      if (wr > bestPairWR) { bestPairWR = wr; bestPair = p; }
-      if (wr < worstPairWR) { worstPairWR = wr; worstPair = p; }
-    });
-
-    // ── MOOD/PSYCHOLOGY ANALYSIS ──
-    const moodData = {};
-    trades.forEach(t => {
-      if (!t.mood) return;
-      const key = t.mood.replace(/^[\S]{1,2}\s/,"").trim();
-      if (!moodData[key]) moodData[key] = {wins:0,total:0};
-      moodData[key].total++;
-      if (t.result==="win") moodData[key].wins++;
-    });
-    let bestMood = null, worstMood = null;
-    let bestMoodWR = -1, worstMoodWR = 200;
-    Object.entries(moodData).forEach(([m,d]) => {
-      if (d.total < 2) return;
-      const wr = (d.wins/d.total)*100;
-      if (wr > bestMoodWR) { bestMoodWR = wr; bestMood = m; }
-      if (wr < worstMoodWR) { worstMoodWR = wr; worstMood = m; }
-    });
-
-    // ── DIRECTION ANALYSIS ──
-    const buyTrades  = trades.filter(t => t.direction==="buy");
-    const sellTrades = trades.filter(t => t.direction==="sell");
-    const buyWR  = buyTrades.length  ? Math.round((buyTrades.filter(t=>t.result==="win").length  / buyTrades.length)  * 100) : null;
-    const sellWR = sellTrades.length ? Math.round((sellTrades.filter(t=>t.result==="win").length / sellTrades.length) * 100) : null;
-    const betterDir = (buyWR !== null && sellWR !== null) ? (buyWR >= sellWR ? "BUY" : "SELL") : null;
-    const betterDirWR = betterDir === "BUY" ? buyWR : sellWR;
-    const worseDir = betterDir === "BUY" ? "SELL" : "BUY";
-    const worseDirWR = betterDir === "BUY" ? sellWR : buyWR;
-
-    // ── BEHAVIOUR ANALYSIS ──
-    const slMoves   = trades.filter(t => t.during && t.during.slMove && t.during.slMove !== "No — held it");
-    const earlyClose = trades.filter(t => t.during && t.during.earlyClose && t.during.earlyClose !== "No — let it run");
-    const obsess    = trades.filter(t => t.during && t.during.obsess === "Yes — constantly");
-    const stressed  = trades.filter(t => t.during && parseInt(t.during.stressLevel) >= 8);
-    const highUrge  = trades.filter(t => t.during && parseInt(t.during.urgeToClose) >= 7);
-
-    // Wins when stress was low vs high
-    const lowStressTrades = trades.filter(t => t.during && parseInt(t.during.stressLevel) <= 4);
-    const lowStressWR = lowStressTrades.length ? Math.round((lowStressTrades.filter(t=>t.result==="win").length/lowStressTrades.length)*100) : null;
-    const highStressTrades = trades.filter(t => t.during && parseInt(t.during.stressLevel) >= 7);
-    const highStressWR = highStressTrades.length ? Math.round((highStressTrades.filter(t=>t.result==="win").length/highStressTrades.length)*100) : null;
-
-    // ── RATING ANALYSIS ──
-    const ratedTrades = trades.filter(t => t.rating > 0);
-    const highQualityTrades = ratedTrades.filter(t => t.rating >= 4);
-    const lowQualityTrades  = ratedTrades.filter(t => t.rating <= 2);
-    const highQWR = highQualityTrades.length ? Math.round((highQualityTrades.filter(t=>t.result==="win").length/highQualityTrades.length)*100) : null;
-    const lowQWR  = lowQualityTrades.length  ? Math.round((lowQualityTrades.filter(t=>t.result==="win").length /lowQualityTrades.length) *100) : null;
-
-    // ── CHECKLIST ANALYSIS ──
-    const fullChecklist = trades.filter(t => t.checklist && t.checklist.length >= 8);
-    const partialChecklist = trades.filter(t => t.checklist && t.checklist.length <= 3);
-    const fullCheckWR = fullChecklist.length ? Math.round((fullChecklist.filter(t=>t.result==="win").length/fullChecklist.length)*100) : null;
-    const partCheckWR = partialChecklist.length ? Math.round((partialChecklist.filter(t=>t.result==="win").length/partialChecklist.length)*100) : null;
-
-    // ── OVERALL SCORE (0-100) ──
-    let score = 50;
-    if (winRate >= 60) score += 15; else if (winRate >= 50) score += 8; else if (winRate < 35) score -= 10;
-    if (avgRR >= 2) score += 15; else if (avgRR >= 1.5) score += 8; else if (avgRR < 1) score -= 8;
-    const badBehaviourRate = (slMoves.length + earlyClose.length) / (total * 2);
-    score -= Math.round(badBehaviourRate * 20);
-    if (highQWR !== null && lowQWR !== null && highQWR > lowQWR) score += 5;
-    score = Math.max(10, Math.min(98, score));
-
-    const scoreColor = score >= 70 ? "#00ffcc" : score >= 50 ? "#f5a623" : "#ff5555";
-    const scoreLabel = score >= 70 ? "Strong Trader" : score >= 50 ? "Developing" : "Needs Work";
-
-    // ── BUILD DO INSIGHTS ──
-    const doInsights = [];
-    if (bestSession) doInsights.push({ icon:"🕐", text:`Trade the <strong>${bestSession}</strong> session — your win rate there is`, stat:`${Math.round(bestWR)}%`, suffix: "vs your overall "+winRate+"%" });
-    if (betterDir)   doInsights.push({ icon:"📈", text:`Favour <strong>${betterDir}</strong> trades — they win`, stat:`${betterDirWR}%`, suffix: "of the time for you" });
-    if (bestPair)    doInsights.push({ icon:"💱", text:`Stick to <strong>${bestPair}</strong> — your best pair at`, stat:`${Math.round(bestPairWR)}%`, suffix: "win rate" });
-    if (bestMood)    doInsights.push({ icon:"🧘", text:`Trade when feeling <strong>${bestMood}</strong> — that mindset produces`, stat:`${Math.round(bestMoodWR)}%`, suffix: "wins" });
-    if (fullCheckWR !== null && fullCheckWR > winRate) doInsights.push({ icon:"✅", text:`Complete the full pre-trade checklist — trades with 8+ checks win`, stat:`${fullCheckWR}%`, suffix: "of the time" });
-    if (lowStressWR !== null && lowStressTrades.length >= 2) doInsights.push({ icon:"😌", text:`Stay relaxed — low-stress trades win`, stat:`${lowStressWR}%`, suffix: "vs "+( highStressWR !== null ? highStressWR+"%" : "less" )+" when stressed" });
-    if (highQWR !== null && highQualityTrades.length >= 2) doInsights.push({ icon:"⭐", text:`Only take A-grade setups — 4-5★ rated trades win`, stat:`${highQWR}%`, suffix: "of the time" });
-    if (avgRR >= 1.5) doInsights.push({ icon:"🎯", text:`Keep targeting your current R:R — you're averaging`, stat:`1:${avgRR.toFixed(1)}`, suffix: "which is solid" });
-    // fallback
-    if (doInsights.length < 2) doInsights.push({ icon:"📊", text:`Log more trades to unlock personalised DO recommendations`, stat:"", suffix: "" });
-
-    // ── BUILD AVOID INSIGHTS ──
-    const avoidInsights = [];
-    if (worstSession && worstSession !== bestSession) avoidInsights.push({ icon:"⚠️", text:`Avoid trading the <strong>${worstSession}</strong> session — only`, stat:`${Math.round(worstWR)}%`, suffix: "win rate there" });
-    if (worseDir && worseDirWR !== null && worseDirWR < 45) avoidInsights.push({ icon:"🚫", text:`Be selective with <strong>${worseDir}</strong> trades — only winning`, stat:`${worseDirWR}%`, suffix: "of them" });
-    if (worstPair && worstPair !== bestPair) avoidInsights.push({ icon:"💸", text:`Reduce exposure on <strong>${worstPair}</strong> — win rate is only`, stat:`${Math.round(worstPairWR)}%`, suffix: "on that pair" });
-    if (worstMood && worstMood !== bestMood) avoidInsights.push({ icon:"😤", text:`Don't trade when feeling <strong>${worstMood}</strong> — win rate drops to`, stat:`${Math.round(worstMoodWR)}%`, suffix: "" });
-    if (slMoves.length > total * 0.4) avoidInsights.push({ icon:"🛑", text:`Stop moving your stop loss — you did it`, stat:`${slMoves.length}/${total}`, suffix: "trades. Let price play out." });
-    if (earlyClose.length > total * 0.35) avoidInsights.push({ icon:"✂️", text:`Stop closing trades early — it happened in`, stat:`${earlyClose.length}/${total}`, suffix: "trades and is costing you R" });
-    if (obsess.length > total * 0.3) avoidInsights.push({ icon:"📱", text:`Walk away from the screen — you obsessively watched`, stat:`${obsess.length}/${total}`, suffix: "trades" });
-    if (highStressWR !== null && highStressTrades.length >= 2 && highStressWR < winRate) avoidInsights.push({ icon:"😰", text:`Don't trade when stressed (8+/10) — win rate falls to`, stat:`${highStressWR}%`, suffix: "" });
-    if (lowQWR !== null && lowQualityTrades.length >= 2 && lowQWR < 40) avoidInsights.push({ icon:"🎲", text:`Don't take low-quality setups (1-2★) — they only win`, stat:`${lowQWR}%`, suffix: "of the time" });
-    if (partCheckWR !== null && partCheckWR < winRate) avoidInsights.push({ icon:"📋", text:`Don't skip your checklist — partial checks produce only`, stat:`${partCheckWR}%`, suffix: "wins" });
-    if (avoidInsights.length < 2) avoidInsights.push({ icon:"🔍", text:`Log more trades to unlock personalised AVOID warnings`, stat:"", suffix: "" });
-
-    // ── PATTERN TILES ──
-    const patternTiles = [
-      {
-        emoji: "🕐",
-        label: "Best Session",
-        value: bestSession || "—",
-        verdict: bestSession ? "verdict-good" : "verdict-warn",
-        vLabel: bestSession ? Math.round(bestWR)+"% WR" : "More data",
-      },
-      {
-        emoji: "💱",
-        label: "Best Pair",
-        value: bestPair ? bestPair.replace(" (Gold)","").replace(" (Silver)","") : "—",
-        verdict: bestPair ? "verdict-good" : "verdict-warn",
-        vLabel: bestPair ? Math.round(bestPairWR)+"% WR" : "More data",
-      },
-      {
-        emoji: "🧠",
-        label: "Best Mindset",
-        value: bestMood || "—",
-        verdict: bestMood ? "verdict-good" : "verdict-warn",
-        vLabel: bestMood ? Math.round(bestMoodWR)+"% WR" : "More data",
-      },
-      {
-        emoji: "📉",
-        label: "Worst Session",
-        value: worstSession && worstSession!==bestSession ? worstSession : "—",
-        verdict: (worstSession && worstSession!==bestSession && worstWR < 40) ? "verdict-bad" : "verdict-warn",
-        vLabel: (worstSession && worstSession!==bestSession) ? Math.round(worstWR)+"% WR" : "Balanced",
-      },
-      {
-        emoji: "⚠️",
-        label: "Rule Breaks",
-        value: (slMoves.length + earlyClose.length) + " trades",
-        verdict: (slMoves.length + earlyClose.length) > total*0.3 ? "verdict-bad" : (slMoves.length + earlyClose.length) > 0 ? "verdict-warn" : "verdict-good",
-        vLabel: (slMoves.length + earlyClose.length) === 0 ? "Clean!" : "Watch this",
-      },
-      {
-        emoji: "📊",
-        label: "Avg R:R",
-        value: avgRR > 0 ? "1:"+avgRR.toFixed(1) : "—",
-        verdict: avgRR >= 2 ? "verdict-good" : avgRR >= 1.2 ? "verdict-warn" : "verdict-bad",
-        vLabel: avgRR >= 2 ? "Excellent" : avgRR >= 1.2 ? "Acceptable" : avgRR > 0 ? "Too low" : "No data",
-      },
-    ];
-
-    // ── RENDER ──
-    const circumference = 2 * Math.PI * 46;
-    const dashoffset = circumference - (score / 100) * circumference;
-
-    const renderInsights = (arr, type) => arr.slice(0,5).map((ins,i) => `
-      <div class="intel-insight">
-        <span class="insight-bullet">${type==="do" ? "✓" : "✕"}</span>
-        <span class="insight-text">${ins.icon} ${ins.text}${ins.stat ? `<span class="insight-stat">${ins.stat}</span>` : ""} ${ins.suffix}</span>
-      </div>`).join("");
-
-    container.innerHTML = `
-      <!-- SCORE ROW -->
-      <div class="intel-score-row">
-        <div class="score-ring-wrap">
-          <svg width="110" height="110" viewBox="0 0 110 110">
-            <circle class="score-ring-bg" cx="55" cy="55" r="46"/>
-            <circle class="score-ring-fill" cx="55" cy="55" r="46"
-              stroke="${scoreColor}"
-              stroke-dasharray="${circumference}"
-              stroke-dashoffset="${dashoffset}"
-              style="filter:drop-shadow(0 0 6px ${scoreColor}66);"/>
-          </svg>
-          <div class="score-ring-label">
-            <span class="score-number" style="color:${scoreColor};">${score}</span>
-            <span class="score-sub">/ 100</span>
-          </div>
-        </div>
-        <div class="intel-score-details">
-          <div class="intel-score-title" style="color:${scoreColor};">${scoreLabel}</div>
-          <div class="intel-score-subtitle">Based on ${total} logged trades · updated just now</div>
-          <div class="intel-mini-stats">
-            <div class="intel-mini-stat"><div class="intel-mini-val" style="color:#00ffcc;">${winRate}%</div><div class="intel-mini-lbl">Win Rate</div></div>
-            <div class="intel-mini-stat"><div class="intel-mini-val" style="color:#64b5f6;">${avgRR > 0 ? "1:"+avgRR.toFixed(1) : "—"}</div><div class="intel-mini-lbl">Avg R:R</div></div>
-            <div class="intel-mini-stat"><div class="intel-mini-val" style="color:#f5a623;">${wins.length}W / ${losses.length}L</div><div class="intel-mini-lbl">Record</div></div>
-            <div class="intel-mini-stat"><div class="intel-mini-val" style="color:#b388ff;">${Math.round(((slMoves.length+earlyClose.length)/Math.max(1,total))*100)}%</div><div class="intel-mini-lbl">Rule Break %</div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PATTERNS GRID -->
-      <div class="intel-patterns">
-        <div class="intel-patterns-title">🔍 Key Patterns Detected</div>
-        <div class="patterns-grid">
-          ${patternTiles.map(t=>`
-            <div class="pattern-tile">
-              <div class="pattern-emoji">${t.emoji}</div>
-              <div class="pattern-label">${t.label}</div>
-              <div class="pattern-value">${t.value}</div>
-              <span class="pattern-verdict ${t.verdict}">${t.vLabel}</span>
-            </div>`).join("")}
-        </div>
-      </div>
-
-      <!-- DO / AVOID TWO COLUMNS -->
-      <div class="intel-two-col">
-        <div class="intel-card do-card">
-          <div class="intel-card-header">
-            <div class="intel-card-icon">✅</div>
-            <div>
-              <div class="intel-card-label">What To Do More Of</div>
-              <div style="font-size:11px;opacity:0.4;margin-top:2px;">Your winning patterns</div>
-            </div>
-          </div>
-          ${renderInsights(doInsights, "do")}
-        </div>
-        <div class="intel-card avoid-card">
-          <div class="intel-card-header">
-            <div class="intel-card-icon">🚫</div>
-            <div>
-              <div class="intel-card-label">What To Avoid</div>
-              <div style="font-size:11px;opacity:0.4;margin-top:2px;">Your losing patterns</div>
-            </div>
-          </div>
-          ${renderInsights(avoidInsights, "avoid")}
-        </div>
-      </div>
-
-      <div style="text-align:center; font-size:11px; opacity:0.3; padding-bottom:10px;">
-        💡 Report generated from ${total} trades · Log more trades for deeper insights
-      </div>
-    `;
-
+    const total=trades.length;
+    const wins=trades.filter(t=>t.result==="win");
+    const losses=trades.filter(t=>t.result==="loss");
+    const winRate=Math.round((wins.length/total)*100);
+    const rrVals=trades.map(t=>{const v=parseFloat((t.rrAchieved||"").replace(/1\s*:\s*/,""));return isNaN(v)?null:v;}).filter(v=>v!==null);
+    const avgRR=rrVals.length?(rrVals.reduce((a,b)=>a+b,0)/rrVals.length):0;
+    const sessionData={};
+    trades.forEach(t=>{if(!t.session)return;if(!sessionData[t.session])sessionData[t.session]={wins:0,total:0};sessionData[t.session].total++;if(t.result==="win")sessionData[t.session].wins++;});
+    let bestSession=null,worstSession=null,bestWR=-1,worstWR=200;
+    Object.entries(sessionData).forEach(([s,d])=>{if(d.total<2)return;const wr=(d.wins/d.total)*100;if(wr>bestWR){bestWR=wr;bestSession=s;}if(wr<worstWR){worstWR=wr;worstSession=s;}});
+    const pairData={};
+    trades.forEach(t=>{if(!t.pair)return;if(!pairData[t.pair])pairData[t.pair]={wins:0,total:0};pairData[t.pair].total++;if(t.result==="win")pairData[t.pair].wins++;});
+    let bestPair=null,worstPair=null,bestPairWR=-1,worstPairWR=200;
+    Object.entries(pairData).forEach(([p,d])=>{if(d.total<2)return;const wr=(d.wins/d.total)*100;if(wr>bestPairWR){bestPairWR=wr;bestPair=p;}if(wr<worstPairWR){worstPairWR=wr;worstPair=p;}});
+    const moodData={};
+    trades.forEach(t=>{if(!t.mood)return;const key=t.mood.replace(/^[\S]{1,2}\s/,"").trim();if(!moodData[key])moodData[key]={wins:0,total:0};moodData[key].total++;if(t.result==="win")moodData[key].wins++;});
+    let bestMood=null,worstMood=null,bestMoodWR=-1,worstMoodWR=200;
+    Object.entries(moodData).forEach(([m,d])=>{if(d.total<2)return;const wr=(d.wins/d.total)*100;if(wr>bestMoodWR){bestMoodWR=wr;bestMood=m;}if(wr<worstMoodWR){worstMoodWR=wr;worstMood=m;}});
+    const buyT=trades.filter(t=>t.direction==="buy"),sellT=trades.filter(t=>t.direction==="sell");
+    const buyWR=buyT.length?Math.round((buyT.filter(t=>t.result==="win").length/buyT.length)*100):null;
+    const sellWR=sellT.length?Math.round((sellT.filter(t=>t.result==="win").length/sellT.length)*100):null;
+    const betterDir=(buyWR!==null&&sellWR!==null)?(buyWR>=sellWR?"BUY":"SELL"):null;
+    const betterDirWR=betterDir==="BUY"?buyWR:sellWR;
+    const worseDir=betterDir==="BUY"?"SELL":"BUY";
+    const worseDirWR=betterDir==="BUY"?sellWR:buyWR;
+    const slMoves=trades.filter(t=>t.during&&t.during.slMove&&t.during.slMove!=="No — held it");
+    const earlyCloseT=trades.filter(t=>t.during&&t.during.earlyClose&&t.during.earlyClose!=="No — let it run");
+    const obsessT=trades.filter(t=>t.during&&t.during.obsess==="Yes — constantly");
+    const lowStressT=trades.filter(t=>t.during&&parseInt(t.during.stressLevel)<=4);
+    const lowStressWR=lowStressT.length?Math.round((lowStressT.filter(t=>t.result==="win").length/lowStressT.length)*100):null;
+    const highStressT=trades.filter(t=>t.during&&parseInt(t.during.stressLevel)>=7);
+    const highStressWR=highStressT.length?Math.round((highStressT.filter(t=>t.result==="win").length/highStressT.length)*100):null;
+    const ratedT=trades.filter(t=>t.rating>0);
+    const highQT=ratedT.filter(t=>t.rating>=4),lowQT=ratedT.filter(t=>t.rating<=2);
+    const highQWR=highQT.length?Math.round((highQT.filter(t=>t.result==="win").length/highQT.length)*100):null;
+    const lowQWR=lowQT.length?Math.round((lowQT.filter(t=>t.result==="win").length/lowQT.length)*100):null;
+    const fullCL=trades.filter(t=>t.checklist&&t.checklist.length>=8);
+    const partCL=trades.filter(t=>t.checklist&&t.checklist.length<=3);
+    const fullCheckWR=fullCL.length?Math.round((fullCL.filter(t=>t.result==="win").length/fullCL.length)*100):null;
+    const partCheckWR=partCL.length?Math.round((partCL.filter(t=>t.result==="win").length/partCL.length)*100):null;
+    let score=50;
+    if(winRate>=60)score+=15;else if(winRate>=50)score+=8;else if(winRate<35)score-=10;
+    if(avgRR>=2)score+=15;else if(avgRR>=1.5)score+=8;else if(avgRR<1)score-=8;
+    const badBehRate=(slMoves.length+earlyCloseT.length)/(total*2);
+    score-=Math.round(badBehRate*20);
+    if(highQWR!==null&&lowQWR!==null&&highQWR>lowQWR)score+=5;
+    score=Math.max(10,Math.min(98,score));
+    const scoreColor=score>=70?"#00ffcc":score>=50?"#f5a623":"#ff5555";
+    const scoreLabel=score>=70?"Strong Trader":score>=50?"Developing":"Needs Work";
+    const doInsights=[];
+    if(bestSession)doInsights.push({icon:"🕐",text:`Trade the <strong>${bestSession}</strong> session — your win rate there is`,stat:`${Math.round(bestWR)}%`,suffix:"vs your overall "+winRate+"%"});
+    if(betterDir)doInsights.push({icon:"📈",text:`Favour <strong>${betterDir}</strong> trades — they win`,stat:`${betterDirWR}%`,suffix:"of the time for you"});
+    if(bestPair)doInsights.push({icon:"💱",text:`Stick to <strong>${bestPair}</strong> — your best pair at`,stat:`${Math.round(bestPairWR)}%`,suffix:"win rate"});
+    if(bestMood)doInsights.push({icon:"🧘",text:`Trade when feeling <strong>${bestMood}</strong> — that mindset produces`,stat:`${Math.round(bestMoodWR)}%`,suffix:"wins"});
+    if(fullCheckWR!==null&&fullCheckWR>winRate)doInsights.push({icon:"✅",text:`Complete the full pre-trade checklist — trades with 8+ checks win`,stat:`${fullCheckWR}%`,suffix:"of the time"});
+    if(lowStressWR!==null&&lowStressT.length>=2)doInsights.push({icon:"😌",text:`Stay relaxed — low-stress trades win`,stat:`${lowStressWR}%`,suffix:"vs "+(highStressWR!==null?highStressWR+"%":"less")+" when stressed"});
+    if(highQWR!==null&&highQT.length>=2)doInsights.push({icon:"⭐",text:`Only take A-grade setups — 4-5★ rated trades win`,stat:`${highQWR}%`,suffix:"of the time"});
+    if(avgRR>=1.5)doInsights.push({icon:"🎯",text:`Keep targeting your current R:R — you're averaging`,stat:`1:${avgRR.toFixed(1)}`,suffix:"which is solid"});
+    if(doInsights.length<2)doInsights.push({icon:"📊",text:`Log more trades to unlock personalised DO recommendations`,stat:"",suffix:""});
+    const avoidInsights=[];
+    if(worstSession&&worstSession!==bestSession)avoidInsights.push({icon:"⚠️",text:`Avoid trading the <strong>${worstSession}</strong> session — only`,stat:`${Math.round(worstWR)}%`,suffix:"win rate there"});
+    if(worseDir&&worseDirWR!==null&&worseDirWR<45)avoidInsights.push({icon:"🚫",text:`Be selective with <strong>${worseDir}</strong> trades — only winning`,stat:`${worseDirWR}%`,suffix:"of them"});
+    if(worstPair&&worstPair!==bestPair)avoidInsights.push({icon:"💸",text:`Reduce exposure on <strong>${worstPair}</strong> — win rate is only`,stat:`${Math.round(worstPairWR)}%`,suffix:"on that pair"});
+    if(worstMood&&worstMood!==bestMood)avoidInsights.push({icon:"😤",text:`Don't trade when feeling <strong>${worstMood}</strong> — win rate drops to`,stat:`${Math.round(worstMoodWR)}%`,suffix:""});
+    if(slMoves.length>total*0.4)avoidInsights.push({icon:"🛑",text:`Stop moving your stop loss — you did it`,stat:`${slMoves.length}/${total}`,suffix:"trades. Let price play out."});
+    if(earlyCloseT.length>total*0.35)avoidInsights.push({icon:"✂️",text:`Stop closing trades early — it happened in`,stat:`${earlyCloseT.length}/${total}`,suffix:"trades and is costing you R"});
+    if(obsessT.length>total*0.3)avoidInsights.push({icon:"📱",text:`Walk away from the screen — you obsessively watched`,stat:`${obsessT.length}/${total}`,suffix:"trades"});
+    if(highStressWR!==null&&highStressT.length>=2&&highStressWR<winRate)avoidInsights.push({icon:"😰",text:`Don't trade when stressed (8+/10) — win rate falls to`,stat:`${highStressWR}%`,suffix:""});
+    if(lowQWR!==null&&lowQT.length>=2&&lowQWR<40)avoidInsights.push({icon:"🎲",text:`Don't take low-quality setups (1-2★) — they only win`,stat:`${lowQWR}%`,suffix:"of the time"});
+    if(partCheckWR!==null&&partCheckWR<winRate)avoidInsights.push({icon:"📋",text:`Don't skip your checklist — partial checks produce only`,stat:`${partCheckWR}%`,suffix:"wins"});
+    if(avoidInsights.length<2)avoidInsights.push({icon:"🔍",text:`Log more trades to unlock personalised AVOID warnings`,stat:"",suffix:""});
+    const patternTiles=[{emoji:"🕐",label:"Best Session",value:bestSession||"—",verdict:bestSession?"verdict-good":"verdict-warn",vLabel:bestSession?Math.round(bestWR)+"% WR":"More data"},{emoji:"💱",label:"Best Pair",value:bestPair?bestPair.replace(" (Gold)","").replace(" (Silver)",""):"—",verdict:bestPair?"verdict-good":"verdict-warn",vLabel:bestPair?Math.round(bestPairWR)+"% WR":"More data"},{emoji:"🧠",label:"Best Mindset",value:bestMood||"—",verdict:bestMood?"verdict-good":"verdict-warn",vLabel:bestMood?Math.round(bestMoodWR)+"% WR":"More data"},{emoji:"📉",label:"Worst Session",value:worstSession&&worstSession!==bestSession?worstSession:"—",verdict:(worstSession&&worstSession!==bestSession&&worstWR<40)?"verdict-bad":"verdict-warn",vLabel:(worstSession&&worstSession!==bestSession)?Math.round(worstWR)+"% WR":"Balanced"},{emoji:"⚠️",label:"Rule Breaks",value:(slMoves.length+earlyCloseT.length)+" trades",verdict:(slMoves.length+earlyCloseT.length)>total*0.3?"verdict-bad":(slMoves.length+earlyCloseT.length)>0?"verdict-warn":"verdict-good",vLabel:(slMoves.length+earlyCloseT.length)===0?"Clean!":"Watch this"},{emoji:"📊",label:"Avg R:R",value:avgRR>0?"1:"+avgRR.toFixed(1):"—",verdict:avgRR>=2?"verdict-good":avgRR>=1.2?"verdict-warn":"verdict-bad",vLabel:avgRR>=2?"Excellent":avgRR>=1.2?"Acceptable":avgRR>0?"Too low":"No data"}];
+    const circ=2*Math.PI*46;
+    const dashoff=circ-(score/100)*circ;
+    const renderInsights=(arr,type)=>arr.slice(0,5).map(ins=>`<div class="intel-insight"><span class="insight-bullet">${type==="do"?"✓":"✕"}</span><span class="insight-text">${ins.icon} ${ins.text}${ins.stat?`<span class="insight-stat">${ins.stat}</span>`:""} ${ins.suffix}</span></div>`).join("");
+    container.innerHTML=`<div class="intel-score-row"><div class="score-ring-wrap"><svg width="110" height="110" viewBox="0 0 110 110"><circle class="score-ring-bg" cx="55" cy="55" r="46"/><circle class="score-ring-fill" cx="55" cy="55" r="46" stroke="${scoreColor}" stroke-dasharray="${circ}" stroke-dashoffset="${dashoff}" style="filter:drop-shadow(0 0 6px ${scoreColor}66);"/></svg><div class="score-ring-label"><span class="score-number" style="color:${scoreColor};">${score}</span><span class="score-sub">/ 100</span></div></div><div class="intel-score-details"><div class="intel-score-title" style="color:${scoreColor};">${scoreLabel}</div><div class="intel-score-subtitle">Based on ${total} logged trades · updated just now</div><div class="intel-mini-stats"><div class="intel-mini-stat"><div class="intel-mini-val" style="color:#00ffcc;">${winRate}%</div><div class="intel-mini-lbl">Win Rate</div></div><div class="intel-mini-stat"><div class="intel-mini-val" style="color:#64b5f6;">${avgRR>0?"1:"+avgRR.toFixed(1):"—"}</div><div class="intel-mini-lbl">Avg R:R</div></div><div class="intel-mini-stat"><div class="intel-mini-val" style="color:#f5a623;">${wins.length}W / ${losses.length}L</div><div class="intel-mini-lbl">Record</div></div><div class="intel-mini-stat"><div class="intel-mini-val" style="color:#b388ff;">${Math.round(((slMoves.length+earlyCloseT.length)/Math.max(1,total))*100)}%</div><div class="intel-mini-lbl">Rule Break %</div></div></div></div></div><div class="intel-patterns"><div class="intel-patterns-title">🔍 Key Patterns Detected</div><div class="patterns-grid">${patternTiles.map(t=>`<div class="pattern-tile"><div class="pattern-emoji">${t.emoji}</div><div class="pattern-label">${t.label}</div><div class="pattern-value">${t.value}</div><span class="pattern-verdict ${t.verdict}">${t.vLabel}</span></div>`).join("")}</div></div><div class="intel-two-col"><div class="intel-card do-card"><div class="intel-card-header"><div class="intel-card-icon">✅</div><div><div class="intel-card-label">What To Do More Of</div><div style="font-size:11px;opacity:0.4;margin-top:2px;">Your winning patterns</div></div></div>${renderInsights(doInsights,"do")}</div><div class="intel-card avoid-card"><div class="intel-card-header"><div class="intel-card-icon">🚫</div><div><div class="intel-card-label">What To Avoid</div><div style="font-size:11px;opacity:0.4;margin-top:2px;">Your losing patterns</div></div></div>${renderInsights(avoidInsights,"avoid")}</div></div><div style="text-align:center;font-size:11px;opacity:0.3;padding-bottom:10px;">💡 Report generated from ${total} trades · Log more trades for deeper insights</div>`;
     showToast("🤖 Intelligence report generated!");
   }, 600);
 }
-</script>
 
-<!-- Falling Candlesticks Background -->
-<canvas id="candleCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;"></canvas>
+// ═══════════════════════════════════════════════════
+// ── MONTHLY P&L CALENDAR ──
+// ═══════════════════════════════════════════════════
+let calYear = new Date().getFullYear();
+let calMonth = new Date().getMonth(); // 0-indexed
+let currentDayKey = ""; // the day being edited
 
-<script>
+const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const DAY_NAMES = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+function getCalData() {
+  return JSON.parse(localStorage.getItem("flCalPnl_" + (user.email||"guest")) || "{}");
+}
+function saveCalData(data) {
+  localStorage.setItem("flCalPnl_" + (user.email||"guest"), JSON.stringify(data));
+}
+function getCalTarget() {
+  return parseFloat(localStorage.getItem("flCalTarget_" + (user.email||"guest")) || "0");
+}
+
+function saveCalTarget() {
+  const val = parseFloat(document.getElementById("calTargetInput").value);
+  if (isNaN(val) || val < 0) { showToast("⚠️ Enter a valid target amount"); return; }
+  localStorage.setItem("flCalTarget_" + (user.email||"guest"), val.toString());
+  document.getElementById("calTargetNote").textContent = `Target set: $${val.toFixed(2)}`;
+  renderCalendar();
+  showToast("🎯 Monthly target updated!");
+}
+
+function calChangeMonth(dir) {
+  calMonth += dir;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  if (calMonth < 0)  { calMonth = 11; calYear--; }
+  renderCalendar();
+}
+
+function renderCalendar() {
+  const data = getCalData();
+  const target = getCalTarget();
+  const today = new Date();
+  const isCurrentMonth = (calYear === today.getFullYear() && calMonth === today.getMonth());
+
+  document.getElementById("calMonthLabel").textContent = MONTH_NAMES[calMonth] + " " + calYear;
+  document.getElementById("calRecentMonthLabel").textContent = MONTH_NAMES[calMonth] + " " + calYear;
+
+  // Restore target input
+  if (target > 0) {
+    document.getElementById("calTargetInput").value = target;
+    document.getElementById("calTargetNote").textContent = `Target set: $${target.toFixed(2)}`;
+  }
+
+  // Build day keys for this month
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const firstDOW = new Date(calYear, calMonth, 1).getDay(); // 0=Sun
+
+  // Compute month totals
+  let monthPnl = 0, winDays = 0, lossDays = 0, bestDay = -Infinity, worstDay = Infinity;
+  for (let d = 1; d <= daysInMonth; d++) {
+    const key = `${calYear}-${String(calMonth+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+    if (data[key] !== undefined) {
+      const pnl = data[key].pnl;
+      monthPnl += pnl;
+      if (pnl > 0) { winDays++; if (pnl > bestDay) bestDay = pnl; }
+      else if (pnl < 0) { lossDays++; if (pnl < worstDay) worstDay = pnl; }
+    }
+  }
+
+  // Update summary strip
+  const pnlEl = document.getElementById("calTotalPnl");
+  pnlEl.textContent = (monthPnl >= 0 ? "+" : "") + "$" + monthPnl.toFixed(2);
+  pnlEl.style.color = monthPnl > 0 ? "var(--green)" : monthPnl < 0 ? "var(--red)" : "var(--orange)";
+  document.getElementById("calWinDays").textContent = winDays;
+  document.getElementById("calLossDays").textContent = lossDays;
+  document.getElementById("calBestDay").textContent = bestDay === -Infinity ? "—" : "+$" + bestDay.toFixed(2);
+  document.getElementById("calWorstDay").textContent = worstDay === Infinity ? "—" : "$" + worstDay.toFixed(2);
+
+  // Progress bar
+  const pctRaw = target > 0 ? Math.max(0, (monthPnl / target) * 100) : 0;
+  const pct = Math.min(pctRaw, 100);
+  document.getElementById("calProgressPct").textContent = Math.round(pctRaw) + "%";
+  document.getElementById("calProgressPct").style.color = pctRaw >= 100 ? "var(--green)" : pctRaw >= 50 ? "var(--orange)" : "var(--red)";
+  document.getElementById("calProgressBar").style.width = pct + "%";
+  document.getElementById("calProgressBar").style.background = pctRaw >= 100
+    ? "linear-gradient(90deg, #00ffcc, #00ffaa)"
+    : pctRaw >= 50 ? "linear-gradient(90deg, #f5a623, #00ffcc)"
+    : "linear-gradient(90deg, #ff5555, #f5a623)";
+  document.getElementById("calProgressAmt").textContent = target > 0
+    ? `$${monthPnl.toFixed(2)} / $${target.toFixed(2)} target`
+    : "No target set";
+  document.getElementById("calProgressSub").textContent = target > 0
+    ? (pctRaw >= 100 ? "🎉 Monthly target achieved!" : `$${(target - monthPnl).toFixed(2)} remaining to reach your goal`)
+    : "Set a monthly profit target below to track your progress";
+
+  // Calendar grid
+  const grid = document.getElementById("calDaysGrid");
+  grid.innerHTML = "";
+
+  // Empty leading cells
+  for (let i = 0; i < firstDOW; i++) {
+    const empty = document.createElement("div");
+    empty.className = "cal-day empty";
+    grid.appendChild(empty);
+  }
+
+  // Day cells
+  for (let d = 1; d <= daysInMonth; d++) {
+    const key = `${calYear}-${String(calMonth+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+    const dayData = data[key];
+    const dow = new Date(calYear, calMonth, d).getDay();
+    const isToday = isCurrentMonth && d === today.getDate();
+    const isWeekend = dow === 0 || dow === 6;
+
+    const cell = document.createElement("div");
+    cell.className = "cal-day" + (isToday ? " today" : "") + (isWeekend ? " weekend" : "");
+
+    if (dayData !== undefined) {
+      const pnl = dayData.pnl;
+      if (pnl > 0) cell.classList.add("has-gain");
+      else if (pnl < 0) cell.classList.add("has-loss");
+      else cell.classList.add("has-zero");
+    }
+
+    let inner = `<div class="cal-day-num">${d}</div>`;
+    if (isToday) inner += `<div class="cal-day-indicator"></div>`;
+
+    if (dayData !== undefined) {
+      const pnl = dayData.pnl;
+      const pnlClass = pnl > 0 ? "pos" : pnl < 0 ? "neg" : "zero";
+      const pnlStr = (pnl >= 0 ? "+" : "") + "$" + pnl.toFixed(2);
+      inner += `<div class="cal-day-pnl ${pnlClass}">${pnlStr}</div>`;
+      if (dayData.trades) inner += `<div class="cal-day-note">${dayData.trades} trade${dayData.trades!==1?"s":""}</div>`;
+      if (dayData.note) inner += `<div class="cal-day-note" style="margin-top:2px; opacity:0.35;">${escapeHtml(dayData.note.slice(0,20))}${dayData.note.length>20?"…":""}</div>`;
+    }
+
+    inner += `<button class="cal-day-edit-btn" onclick="openDayModal('${key}', ${d})">${dayData?"✏️":"+"}</button>`;
+    cell.innerHTML = inner;
+    cell.addEventListener("click", function(e) { if (!e.target.classList.contains("cal-day-edit-btn")) openDayModal(key, d); });
+    grid.appendChild(cell);
+  }
+
+  // Recent list
+  renderCalRecentList(data, daysInMonth);
+}
+
+function renderCalRecentList(data, daysInMonth) {
+  const list = document.getElementById("calRecentList");
+  const entries = [];
+  for (let d = 1; d <= daysInMonth; d++) {
+    const key = `${calYear}-${String(calMonth+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+    if (data[key] !== undefined) entries.push({ key, d, ...data[key] });
+  }
+  entries.sort((a,b) => b.d - a.d);
+  if (entries.length === 0) { list.innerHTML = `<div class="cal-no-data">No entries yet for ${MONTH_NAMES[calMonth]}. Click any day to log your P&L.</div>`; return; }
+  list.innerHTML = entries.map(e => {
+    const pnlClass = e.pnl > 0 ? "pos" : e.pnl < 0 ? "neg" : "zero";
+    const pnlStr = (e.pnl >= 0 ? "+" : "") + "$" + e.pnl.toFixed(2);
+    const dow = DAY_NAMES[new Date(calYear, calMonth, e.d).getDay()];
+    return `<div class="cal-recent-entry">
+      <div class="cal-recent-left">
+        <div class="cal-recent-date">${dow}, ${MONTH_NAMES[calMonth]} ${e.d}</div>
+        <div class="cal-recent-note">${e.trades ? e.trades+" trade"+(e.trades!==1?"s":"") : ""}${e.mood ? (e.trades?" · ":"")+e.mood : ""}${e.note ? (e.trades||e.mood?" · ":"")+e.note.slice(0,40)+(e.note.length>40?"…":"") : ""}</div>
+      </div>
+      <div class="cal-recent-right">
+        <span class="cal-recent-pnl ${pnlClass}">${pnlStr}</span>
+        <button onclick="openDayModal('${e.key}', ${e.d})" style="background:var(--green-dim);border:1px solid var(--green-border);color:var(--green);padding:4px 10px;border-radius:7px;cursor:pointer;font-size:11px;font-weight:700;font-family:'Poppins',sans-serif;transition:0.2s;" onmouseover="this.style.background='var(--green)';this.style.color='black';" onmouseout="this.style.background='var(--green-dim)';this.style.color='var(--green)';">Edit</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+// ── DAY ENTRY MODAL ──
+let demMoodVal = "";
+function openDayModal(key, day) {
+  currentDayKey = key;
+  const data = getCalData();
+  const entry = data[key] || {};
+  const dow = DAY_NAMES[new Date(calYear, calMonth, day).getDay()];
+
+  document.getElementById("demTitle").textContent = dow + ", " + MONTH_NAMES[calMonth] + " " + day;
+  document.getElementById("demDateLabel").textContent = calYear + " · Log your trading session P&L";
+  document.getElementById("demPnl").value = entry.pnl !== undefined ? entry.pnl : "";
+  document.getElementById("demTrades").value = entry.trades !== undefined ? entry.trades : "";
+  document.getElementById("demBalance").value = entry.balance !== undefined ? entry.balance : "";
+  document.getElementById("demNotes").value = entry.note || "";
+
+  // Reset mood
+  demMoodVal = entry.mood || "";
+  document.querySelectorAll(".dem-mood-btn").forEach(b => {
+    b.classList.toggle("active", b.textContent.trim() === demMoodVal);
+  });
+
+  document.getElementById("dayEntryOverlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+  setTimeout(() => document.getElementById("demPnl").focus(), 100);
+}
+function closeDayModal(e) {
+  if (e && e.target !== document.getElementById("dayEntryOverlay")) return;
+  document.getElementById("dayEntryOverlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+function setDemMood(btn) {
+  document.querySelectorAll(".dem-mood-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  demMoodVal = btn.textContent.trim();
+}
+function saveDayEntry() {
+  const pnlRaw = document.getElementById("demPnl").value;
+  if (pnlRaw === "" || pnlRaw === null) { showToast("⚠️ Enter a P&L value (0 for breakeven)"); return; }
+  const pnl = parseFloat(pnlRaw);
+  if (isNaN(pnl)) { showToast("⚠️ Enter a valid number"); return; }
+
+  const data = getCalData();
+  data[currentDayKey] = {
+    pnl,
+    trades: parseInt(document.getElementById("demTrades").value) || 0,
+    balance: parseFloat(document.getElementById("demBalance").value) || undefined,
+    mood: demMoodVal,
+    note: document.getElementById("demNotes").value.trim(),
+    savedAt: new Date().toISOString(),
+  };
+  if (data[currentDayKey].balance === undefined) delete data[currentDayKey].balance;
+  saveCalData(data);
+
+  document.getElementById("dayEntryOverlay").classList.remove("open");
+  document.body.style.overflow = "";
+  renderCalendar();
+  showToast("📅 Day P&L saved!");
+}
+function clearDayEntry() {
+  if (!confirm("Clear this day's entry?")) return;
+  const data = getCalData();
+  delete data[currentDayKey];
+  saveCalData(data);
+  document.getElementById("dayEntryOverlay").classList.remove("open");
+  document.body.style.overflow = "";
+  renderCalendar();
+  showToast("🗑️ Day entry cleared");
+}
+
+// Close day modal on Escape
+document.addEventListener("keydown", e => { if (e.key==="Escape") { closeDayModal({target:document.getElementById("dayEntryOverlay")}); closeTradeModal({target:document.getElementById("tradeModalOverlay")}); } });
+
+// ── CANDLESTICK BACKGROUND ──
 const canvas = document.getElementById('candleCanvas');
 const ctx = canvas.getContext('2d');
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
+window.addEventListener('resize', () => { canvas.width=window.innerWidth; canvas.height=window.innerHeight; });
 const candles = [];
 const CANDLE_COUNT = 25;
-
-function randomBetween(min, max) {
-    return Math.random() * (max - min) + min;
-}
-
+function randomBetween(min, max) { return Math.random()*(max-min)+min; }
 function createCandle() {
-    const isBullish = Math.random() > 0.5;
-    return {
-        x: randomBetween(0, canvas.width),
-        y: randomBetween(-300, -50),
-        speed: randomBetween(1, 3),
-        bodyHeight: randomBetween(20, 60),
-        bodyWidth: randomBetween(10, 20),
-        wickTop: randomBetween(10, 25),
-        wickBottom: randomBetween(10, 25),
-        color: isBullish ? '#00ffcc' : '#ff6464',
-        opacity: randomBetween(0.2, 0.6),
-        rotation: randomBetween(-15, 15)
-    };
+  return { x:randomBetween(0,canvas.width), y:randomBetween(-300,-50), speed:randomBetween(1,3), bodyHeight:randomBetween(20,60), bodyWidth:randomBetween(10,20), wickTop:randomBetween(10,25), wickBottom:randomBetween(10,25), color:Math.random()>0.5?'#00ffcc':'#ff6464', opacity:randomBetween(0.2,0.6), rotation:randomBetween(-15,15) };
 }
-
-// Initialize candles
-for (let i = 0; i < CANDLE_COUNT; i++) {
-    const candle = createCandle();
-    candle.y = randomBetween(-canvas.height, canvas.height); // spread initially
-    candles.push(candle);
-}
-
+for (let i=0;i<CANDLE_COUNT;i++) { const c=createCandle(); c.y=randomBetween(-canvas.height,canvas.height); candles.push(c); }
 function drawCandle(c) {
-    ctx.save();
-    ctx.globalAlpha = c.opacity;
-    ctx.translate(c.x, c.y);
-    ctx.rotate((c.rotation * Math.PI) / 180);
-
-    ctx.strokeStyle = c.color;
-    ctx.fillStyle = c.color;
-    ctx.lineWidth = 1.5;
-
-    // Top wick
-    ctx.beginPath();
-    ctx.moveTo(0, -c.bodyHeight / 2 - c.wickTop);
-    ctx.lineTo(0, -c.bodyHeight / 2);
-    ctx.stroke();
-
-    // Bottom wick
-    ctx.beginPath();
-    ctx.moveTo(0, c.bodyHeight / 2);
-    ctx.lineTo(0, c.bodyHeight / 2 + c.wickBottom);
-    ctx.stroke();
-
-    // Body
-    ctx.fillRect(-c.bodyWidth / 2, -c.bodyHeight / 2, c.bodyWidth, c.bodyHeight);
-
-    ctx.restore();
+  ctx.save(); ctx.globalAlpha=c.opacity; ctx.translate(c.x,c.y); ctx.rotate((c.rotation*Math.PI)/180);
+  ctx.strokeStyle=c.color; ctx.fillStyle=c.color; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(0,-c.bodyHeight/2-c.wickTop); ctx.lineTo(0,-c.bodyHeight/2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0,c.bodyHeight/2); ctx.lineTo(0,c.bodyHeight/2+c.wickBottom); ctx.stroke();
+  ctx.fillRect(-c.bodyWidth/2,-c.bodyHeight/2,c.bodyWidth,c.bodyHeight);
+  ctx.restore();
 }
-
 function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    candles.forEach((c, i) => {
-        drawCandle(c);
-        c.y += c.speed;
-
-        // Reset when off screen
-        if (c.y > canvas.height + 100) {
-            candles[i] = createCandle();
-        }
-    });
-
-    requestAnimationFrame(animate);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  candles.forEach((c,i) => { drawCandle(c); c.y+=c.speed; if(c.y>canvas.height+100) candles[i]=createCandle(); });
+  requestAnimationFrame(animate);
 }
-
 animate();
 </script>
 </body>
-
 </html>
