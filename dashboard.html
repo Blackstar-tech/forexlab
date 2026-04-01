@@ -748,6 +748,17 @@ window.addEventListener('resize', resize);
 resize();
 drawCandles();
 
+// ── Tab switching ──
+document.querySelectorAll('.card').forEach(card => {
+  const items = card.querySelectorAll('.menu-item:not(.locked)');
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      items.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+});
+
 // ── Ticker ──
 const tickers = [
   { sym:'EUR/USD', price:'1.0842', chg:'+0.12%', up:true },
